@@ -1,17 +1,10 @@
 package com.aals.countriesexchange;
 
 import android.os.Bundle;
-import android.util.Log;
+import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
 import java.net.HttpURLConnection;
 
@@ -27,10 +20,15 @@ public class MainActivity extends AppCompatActivity {
 
         tv1 = findViewById(R.id.tv1);
         tv2 = findViewById(R.id.tv2);
+        tv2.setMovementMethod(new ScrollingMovementMethod());
 
-// Instantiate the RequestQueue.
+        Controller controller = new Controller();
+        controller.start();
+//        tv2.setText("         hjghjjhghjg     ");
+
+/*// Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8080/ods/api/v2/datasources";
+        String url = "http://10.0.2.2:9000/storage/1?order=id.desc&limit=1";
 
 // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -50,30 +48,7 @@ public class MainActivity extends AppCompatActivity {
 
 // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
-
-/*        Retrofit querry = new Retrofit.Builder()
-                .baseUrl("http://10.0.2.2:8080/ods/api/v2/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        ODSAPI odsapi = querry.create(ODSAPI.class);
-        Call<List<Data>> call = odsapi.getData();
-
-        call.enqueue(new Callback<List<Data>>() {
-            @Override
-            public void onResponse(Call<List<Data>> call, Response<List<Data>> response) {
-                if (!response.isSuccessful()) {
-                    tv2.setText("Code:" + response.code());
-                    return;
-                }
-            }
-
-            @Override
-            public void onFailure(Call<List<Data>> call, Throwable t) {
-                tv2.setText(t.getMessage());
-            }
-        });*/
-
+*/
 
     }
 

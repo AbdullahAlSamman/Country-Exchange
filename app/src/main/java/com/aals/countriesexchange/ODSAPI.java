@@ -7,6 +7,6 @@ import retrofit2.http.GET;
 
 public interface ODSAPI {
 
-    @GET("datasources")
-    Call<List<Data>> getData();
+    @GET("storage/1?order=id.desc&limit=1")
+    Call<List<ODSObject>> getCountries();
 }
