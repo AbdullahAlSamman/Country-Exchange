@@ -16,11 +16,22 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Controller implements Callback<List<ODSObject>> {
 
-    private static final String url = "http://10.0.2.2:9000/";
     private static Gson gson;
     List<ODSObject> odsObjectList;
+    private String url;
     private ArrayList<Country> countries = new ArrayList<Country>();
 
+    public Controller(String url) {
+        this.url = url;
+    }
+
+    public ArrayList<Country> getCountries() {
+        return countries;
+    }
+
+    public void setCountries(ArrayList<Country> countries) {
+        this.countries = countries;
+    }
 
     public void start() {
 
@@ -47,24 +58,25 @@ public class Controller implements Callback<List<ODSObject>> {
 
             ArrayList<Object> jsonData = odsObjectList.get(0).getData().getData();
 
-
-            Log.i("ODSObject", odsObjectList.size() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getId() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getLicense() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getTimestamp() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getOrigin() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getData().getData().size() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getData().getData().get(0).toString() + "");
-            Log.i("ODSObject", jsonData.size() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getData().getStats().getDurationInMilliSeconds() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getData().getStats().getStartTimestamp() + "");
-            Log.i("ODSObject", odsObjectList.get(0).getData().getStats().getEndTimestamp() + "");
+            //Log Data
+            Log.i("ODSObject", "Size: " + odsObjectList.size() + "");
+            Log.i("ODSObject", "ID: " + odsObjectList.get(0).getId() + "");
+            Log.i("ODSObject", "License: " + odsObjectList.get(0).getLicense() + "");
+            Log.i("ODSObject", "TimeStamp: " + odsObjectList.get(0).getTimestamp() + "");
+            Log.i("ODSObject", "Origin: " + odsObjectList.get(0).getOrigin() + "");
+            Log.i("ODSObject", "Data Array Size: " + odsObjectList.get(0).getData().getData().size() + "");
+            Log.i("ODSObject", "Data as String: " + odsObjectList.get(0).getData().getData().get(0).toString() + "");
+            Log.i("ODSObject", "DurationInMilliSeconds: " + odsObjectList.get(0).getData().getStats().getDurationInMilliSeconds() + "");
+            Log.i("ODSObject", "StartTimestamp: " + odsObjectList.get(0).getData().getStats().getStartTimestamp() + "");
+            Log.i("ODSObject", "EndTimeStamp: " + odsObjectList.get(0).getData().getStats().getEndTimestamp() + "");
 
 
             for (int i = 0; i < jsonData.size(); i++) {
                 countries.add(gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
-                Log.i("ODSObject " + i, countries.get(i).getName() + "");
+                //Log Countries
+                Log.i("Country " + i, countries.get(i).getName() + " ");
             }
+
         } else {
             Log.e("Error", response.errorBody().toString());
         }
@@ -72,6 +84,8 @@ public class Controller implements Callback<List<ODSObject>> {
 
     @Override
     public void onFailure(Call<List<ODSObject>> call, Throwable t) {
+        //TODO:send message to user
+        // TODS:Testing
         Log.e("Controller Error", t.getMessage());
     }
 }

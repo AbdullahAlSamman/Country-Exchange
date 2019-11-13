@@ -11,7 +11,7 @@ public class Country {
     ArrayList<Object> currencies = new ArrayList<Object>();
     ArrayList<Object> altSpellings = new ArrayList<Object>();
     ArrayList<Object> callingCodes = new ArrayList<Object>();
-    Translations TranslationsObject;
+    Translations TranslationsObject = new Translations();
     ArrayList<Object> regionalBlocs = new ArrayList<Object>();
     ArrayList<Object> topLevelDomain = new ArrayList<Object>();
     private float area;

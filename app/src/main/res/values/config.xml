@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="server_url" type="string">http://10.0.2.2:9000/</item>
+</resources>
