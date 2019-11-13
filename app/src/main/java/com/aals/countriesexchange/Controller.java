@@ -1,6 +1,12 @@
 package com.aals.countriesexchange;
 
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -19,13 +25,32 @@ public class Controller implements Callback<List<ODSObject>> {
     private static Gson gson;
     List<ODSObject> odsObjectList;
     private String url;
-    private ArrayList<Country> countries = new ArrayList<Country>();
+    private List<Country> countries = new ArrayList<Country>();
+    private Handler uiHandler;
+    private RecyclerView recyclerView;
+    private Context baseContext;
 
     public Controller(String url) {
         this.url = url;
     }
 
-    public ArrayList<Country> getCountries() {
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
+    public void setRecyclerView(RecyclerView recyclerView) {
+        this.recyclerView = recyclerView;
+    }
+
+    public Context getBaseContext() {
+        return baseContext;
+    }
+
+    public void setBaseContext(Context baseContext) {
+        this.baseContext = baseContext;
+    }
+
+    public List<Country> getCountries() {
         return countries;
     }
 
@@ -34,6 +59,8 @@ public class Controller implements Callback<List<ODSObject>> {
     }
 
     public void start() {
+
+        uiHandler = new Handler(Looper.getMainLooper());
 
         gson = new GsonBuilder()
                 .setLenient()
@@ -76,6 +103,18 @@ public class Controller implements Callback<List<ODSObject>> {
                 //Log Countries
                 Log.i("Country " + i, countries.get(i).getName() + " ");
             }
+
+            if (recyclerView != null)
+                uiHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.i("UIHandler", getCountries().size() + "");
+                        CountriesAdapter adpCountries = new CountriesAdapter(getCountries());
+                        recyclerView.setAdapter(adpCountries);
+                        adpCountries.notifyDataSetChanged();
+                        recyclerView.setLayoutManager(new LinearLayoutManager(baseContext));
+                    }
+                });
 
         } else {
             Log.e("Error", response.errorBody().toString());

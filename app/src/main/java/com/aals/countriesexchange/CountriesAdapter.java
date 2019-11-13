@@ -4,19 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> {
 
-    private ArrayList<Country> mCountries;
+    private List<Country> mCountries;
 
-    public CountriesAdapter(ArrayList<Country> countries) {
+    public CountriesAdapter(List<Country> countries) {
         this.mCountries = countries;
     }
 
@@ -37,11 +36,13 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         Country country = mCountries.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = holder.nameTextView;
+        TextView textView = holder.nameTV;
         textView.setText(country.getName());
-        Button button = holder.messageButton;
-        button.setText(country.getPopulation() + "");
-        button.setEnabled(true);
+        TextView textView1 = holder.languageTV;
+        //TODO: get rid of 1120E7
+        textView1.setText(Float.toString(country.getPopulation()));
+        TextView textView2 = holder.callingCodeTV;
+        textView2.setText(country.getCallingCodes().get(0) + "");
     }
 
     @Override
@@ -51,14 +52,16 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        public TextView nameTextView;
-        public Button messageButton;
+        public TextView nameTV;
+        public TextView languageTV;
+        public TextView callingCodeTV;
 
 
         public ViewHolder(View itemView) {
             super(itemView);
-            nameTextView = itemView.findViewById(R.id.country_name);
-            messageButton = itemView.findViewById(R.id.message_button);
+            nameTV = itemView.findViewById(R.id.country_name);
+            languageTV = itemView.findViewById(R.id.country_language);
+            callingCodeTV = itemView.findViewById(R.id.country_calling_code);
         }
     }
 }

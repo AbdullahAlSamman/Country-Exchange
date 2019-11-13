@@ -3,7 +3,6 @@ package com.aals.countriesexchange;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class MainActivity extends AppCompatActivity {
@@ -19,11 +18,8 @@ public class MainActivity extends AppCompatActivity {
         rvCoutries = findViewById(R.id.rv_countries);
 
         controller = new Controller(getResources().getString(R.string.server_url));
+        controller.setBaseContext(getBaseContext());
+        controller.setRecyclerView(rvCoutries);
         controller.start();
-
-        //TODO: sync data from Retrofit with UI
-        CountriesAdapter adpCountries = new CountriesAdapter(controller.getCountries());
-        rvCoutries.setAdapter(adpCountries);
-        rvCoutries.setLayoutManager(new LinearLayoutManager(this));
     }
 }

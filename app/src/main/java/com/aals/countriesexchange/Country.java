@@ -1,5 +1,7 @@
 package com.aals.countriesexchange;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 
 public class Country {
@@ -28,6 +30,9 @@ public class Country {
     private String nativeName;
     private float population;
     private String numericCode;
+
+    public Country() {
+    }
 
     public ArrayList<Object> getLatlng() {
         return latlng;
