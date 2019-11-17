@@ -1,5 +1,10 @@
 package com.aals.countriesexchange;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.JSONTokener;
+
 import java.util.ArrayList;
 
 public class Country {
@@ -30,6 +35,21 @@ public class Country {
     private String numericCode;
 
     public Country() {
+    }
+
+    @Deprecated
+    public static JSONArray objectToJSONArray(Object object) {
+        Object json = null;
+        JSONArray jsonArray = null;
+        try {
+            json = new JSONTokener(object.toString()).nextValue();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        if (json instanceof JSONArray) {
+            jsonArray = (JSONArray) json;
+        }
+        return jsonArray;
     }
 
     public ArrayList<Object> getLatlng() {
@@ -224,10 +244,15 @@ public class Country {
         this.numericCode = numericCode;
     }
 
-    public String languagesToString(ArrayList<Object> arrayList) {
+    public String languagesToString(ArrayList<Object> arrayList) throws Exception {
         String result = "";
-        for (int i = 0; i < arrayList.size(); i++) {
-            result += arrayList.get(i).toString();
+        JSONArray languageJSONArray = new JSONArray(arrayList);
+        for (int i = 0; i < languageJSONArray.length(); i++) {
+            JSONObject obj = languageJSONArray.getJSONObject(i);
+            if (i == languageJSONArray.length() - 1)
+                result += obj.getString("name");
+            else
+                result += obj.getString("name") + ", ";
         }
         return result;
     }

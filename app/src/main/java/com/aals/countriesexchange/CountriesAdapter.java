@@ -35,15 +35,16 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Country country = mCountries.get(position);
-
-        // Set item views based on your views and data model
-        TextView countryName = holder.nameTV;
-        countryName.setText(country.getName());
-        TextView countryLanguage = holder.languageTV;
-        //TODO: get rid of 1120E7
-//        countryLanguage.setText(country.languagesToString(country.getLanguages()));
-        TextView countryCallingCodes = holder.callingCodeTV;
-        countryCallingCodes.setText(country.callingCodesToString(country.getCallingCodes()));
+        try {
+            TextView countryName = holder.nameTV;
+            countryName.setText(country.getName());
+            TextView countryLanguage = holder.languageTV;
+            countryLanguage.setText(country.languagesToString(country.getLanguages()));
+            TextView countryCallingCodes = holder.callingCodeTV;
+            countryCallingCodes.setText(country.callingCodesToString(country.getCallingCodes()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
