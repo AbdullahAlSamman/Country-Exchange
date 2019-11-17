@@ -1,24 +1,43 @@
 package com.aals.countriesexchange.Model;
 
-import android.graphics.Bitmap;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Ignore;
+import androidx.room.PrimaryKey;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
+@Entity(tableName = "countries")
 public class Country {
-
+    @Ignore
     ArrayList<Object> latlng = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> borders = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> languages = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> timezones = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> currencies = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> altSpellings = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> callingCodes = new ArrayList<Object>();
+    @Ignore
     Translations TranslationsObject = new Translations();
+    @Ignore
     ArrayList<Object> regionalBlocs = new ArrayList<Object>();
+    @Ignore
     ArrayList<Object> topLevelDomain = new ArrayList<Object>();
+    @PrimaryKey
+    @NonNull
+    private String alpha3Code;
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] countryFlag;
     private float area;
     private String cioc;
     private String flag;
@@ -29,20 +48,81 @@ public class Country {
     private String demonym;
     private String subregion;
     private String alpha2Code;
-    private String alpha3Code;
     private String nativeName;
     private float population;
     private String numericCode;
-    private Bitmap countryFlag;
+    private double lat;
+    private double lng;
+    private String stringBorders;
+    private String stringLanguages;
+    private String stringTimesZones;
+    private String stringCallingsCodes;
+    private String stringCurrencies;
 
     public Country() {
     }
 
-    public Bitmap getCountryFlag() {
+    public String getStringCurrencies() {
+        return stringCurrencies;
+    }
+
+    public void setStringCurrencies(String stringCurrencies) {
+        this.stringCurrencies = stringCurrencies;
+    }
+
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public String getStringBorders() {
+        return stringBorders;
+    }
+
+    public void setStringBorders(String stringBorders) {
+        this.stringBorders = stringBorders;
+    }
+
+    public String getStringLanguages() {
+        return stringLanguages;
+    }
+
+    public void setStringLanguages(String stringLanguages) {
+        this.stringLanguages = stringLanguages;
+    }
+
+    public String getStringTimesZones() {
+        return stringTimesZones;
+    }
+
+    public void setStringTimesZones(String stringtimeszones) {
+        this.stringTimesZones = stringtimeszones;
+    }
+
+    public String getStringCallingsCodes() {
+        return stringCallingsCodes;
+    }
+
+    public void setStringCallingsCodes(String stringCallingsCodes) {
+        this.stringCallingsCodes = stringCallingsCodes;
+    }
+
+    public byte[] getCountryFlag() {
         return countryFlag;
     }
 
-    public void setCountryFlag(Bitmap countryFlag) {
+    public void setCountryFlag(byte[] countryFlag) {
         this.countryFlag = countryFlag;
     }
 
@@ -251,7 +331,23 @@ public class Country {
         return result;
     }
 
-    public String callingCodesToString(ArrayList<Object> arrayList) throws Exception {
+    public String currenciesToString(ArrayList<Object> arrayList) throws Exception {
+        String result = "";
+        JSONArray languageJSONArray = new JSONArray(arrayList);
+        for (int i = 0; i < languageJSONArray.length(); i++) {
+            JSONObject obj = languageJSONArray.getJSONObject(i);
+            if (i == languageJSONArray.length() - 1)
+                result += obj.getString("name");
+            else
+                result += obj.getString("name") + ", ";
+        }
+        return result;
+    }
+
+    /**
+     * This is for CallingsCodes, Timezones, Borders
+     */
+    public String jsonArrayToString(ArrayList<Object> arrayList) throws Exception {
         String result = "";
         JSONArray callingJSONArray = new JSONArray(arrayList);
         for (int i = 0; i < callingJSONArray.length(); i++) {
@@ -262,5 +358,26 @@ public class Country {
         }
         return result;
     }
+
+    protected void latLngToDouble() throws Exception {
+        JSONArray callingJSONArray = new JSONArray(getLatlng());
+        setLat(callingJSONArray.getDouble(0));
+        setLng(callingJSONArray.getDouble(1));
+    }
+
+
+    public void convertValuesToString() {
+        try {
+            setStringCallingsCodes(jsonArrayToString(getCallingCodes()));
+            setStringTimesZones(jsonArrayToString(getTimezones()));
+            setStringBorders(jsonArrayToString(getBorders()));
+            setStringCurrencies(currenciesToString(getCurrencies()));
+            setStringLanguages(languagesToString(getLanguages()));
+            latLngToDouble();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
 

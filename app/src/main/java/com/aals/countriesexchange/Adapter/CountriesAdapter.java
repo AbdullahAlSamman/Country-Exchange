@@ -44,7 +44,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             TextView countryLanguage = holder.languageTV;
             countryLanguage.setText(country.languagesToString(country.getLanguages()));
             TextView countryCallingCodes = holder.callingCodeTV;
-            countryCallingCodes.setText(country.callingCodesToString(country.getCallingCodes()));
+            countryCallingCodes.setText(country.jsonArrayToString(country.getCallingCodes()));
         } catch (Exception e) {
             //TODO:right handling
             e.printStackTrace();

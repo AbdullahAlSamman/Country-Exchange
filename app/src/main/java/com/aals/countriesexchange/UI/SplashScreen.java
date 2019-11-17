@@ -16,8 +16,8 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-//        mainController = new MainController(getResources().getString(R.string.server_url));
-//        mainController.setBaseContext(getBaseContext());
-//        mainController.start();
+        mainController = new MainController(getResources().getString(R.string.server_url));
+        mainController.setBaseContext(getBaseContext());
+        mainController.start();
     }
 }

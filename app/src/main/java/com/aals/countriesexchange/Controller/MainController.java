@@ -2,16 +2,14 @@ package com.aals.countriesexchange.Controller;
 
 import android.content.Context;
 import android.os.Handler;
-import android.os.Looper;
 import android.util.Log;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.ODSAPI;
 import com.aals.countriesexchange.Model.ODSObject;
-import com.aals.countriesexchange.Adapter.CountriesAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -27,9 +25,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainController implements Callback<List<ODSObject>> {
 
     private static Gson gson;
+    AppDB db;
     private List<ODSObject> odsObjectList;
     private String url;
-    private List<Country> countries = new ArrayList<Country>();
+    private ArrayList<Country> countries = new ArrayList<Country>();
     private Handler uiHandler;
     private CacheController memoryCache;
     private ImageController imageController;
@@ -66,11 +65,9 @@ public class MainController implements Callback<List<ODSObject>> {
 
     public void start() {
 
-        uiHandler = new Handler(Looper.getMainLooper());
-
-        memoryCache = new CacheController();
-
         imageController = new ImageController();
+
+        db = AppDB.getInstance(this.baseContext);
 
         gson = new GsonBuilder()
                 .setLenient()
@@ -99,31 +96,23 @@ public class MainController implements Callback<List<ODSObject>> {
 
             if (jsonData.size() > 0) {
                 Log.i("ODSObject", "Data as String: " + odsObjectList.get(0).getData().getData().get(0).toString() + "");
-                for (int i = 0; i < jsonData.size(); i++) {
-                    Country country = (gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
-//                    imageController.fetchSvg(this.baseContext, country.getFlag(), country.getAlpha3Code());
-                    countries.add(country);
+                try {
+                    for (int i = 0; i < jsonData.size(); i++) {
+                        Country country = (gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
+                        country.convertValuesToString();
+                        countries.add(country);
 
-                    Log.i("Country " + i, countries.get(i).getName() + " " + countries.get(i).getArea());
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
 
-                //TODO:CacheCountry
 
-
-                if (recyclerView != null)
-                    uiHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.i("UIHandler", getCountries().size() + "");
-                            CountriesAdapter adpCountries = new CountriesAdapter(getCountries());
-                            recyclerView.setAdapter(adpCountries);
-                            adpCountries.notifyDataSetChanged();
-                            recyclerView.setLayoutManager(new LinearLayoutManager(baseContext));
-                        }
-                    });
+                db.userDao().insertAll(countries);
             }
 
         } else {
+            //TODO:Handle error or internet
             Log.e("Error", response.errorBody().toString());
         }
     }
