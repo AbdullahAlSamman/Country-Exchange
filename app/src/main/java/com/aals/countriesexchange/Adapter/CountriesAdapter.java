@@ -1,4 +1,4 @@
-package com.aals.countriesexchange;
+package com.aals.countriesexchange.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.aals.countriesexchange.Model.Country;
+import com.aals.countriesexchange.R;
 
 import java.util.List;
 
@@ -43,6 +46,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             TextView countryCallingCodes = holder.callingCodeTV;
             countryCallingCodes.setText(country.callingCodesToString(country.getCallingCodes()));
         } catch (Exception e) {
+            //TODO:right handling
             e.printStackTrace();
         }
     }

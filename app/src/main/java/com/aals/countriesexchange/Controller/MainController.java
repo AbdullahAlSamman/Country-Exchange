@@ -1,4 +1,4 @@
-package com.aals.countriesexchange;
+package com.aals.countriesexchange.Controller;
 
 import android.content.Context;
 import android.os.Handler;
@@ -8,6 +8,10 @@ import android.util.Log;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.aals.countriesexchange.Model.Country;
+import com.aals.countriesexchange.Model.ODSAPI;
+import com.aals.countriesexchange.Model.ODSObject;
+import com.aals.countriesexchange.Adapter.CountriesAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -20,17 +24,19 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class Controller implements Callback<List<ODSObject>> {
+public class MainController implements Callback<List<ODSObject>> {
 
     private static Gson gson;
-    List<ODSObject> odsObjectList;
+    private List<ODSObject> odsObjectList;
     private String url;
     private List<Country> countries = new ArrayList<Country>();
     private Handler uiHandler;
+    private CacheController memoryCache;
+    private ImageController imageController;
     private RecyclerView recyclerView;
     private Context baseContext;
 
-    public Controller(String url) {
+    public MainController(String url) {
         this.url = url;
     }
 
@@ -62,6 +68,10 @@ public class Controller implements Callback<List<ODSObject>> {
 
         uiHandler = new Handler(Looper.getMainLooper());
 
+        memoryCache = new CacheController();
+
+        imageController = new ImageController();
+
         gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -85,25 +95,20 @@ public class Controller implements Callback<List<ODSObject>> {
 
             ArrayList<Object> jsonData = odsObjectList.get(0).getData().getData();
 
-            //Log Data
-            Log.i("ODSObject", "Size: " + odsObjectList.size() + "");
-            Log.i("ODSObject", "ID: " + odsObjectList.get(0).getId() + "");
-            Log.i("ODSObject", "License: " + odsObjectList.get(0).getLicense() + "");
-            Log.i("ODSObject", "TimeStamp: " + odsObjectList.get(0).getTimestamp() + "");
-            Log.i("ODSObject", "Origin: " + odsObjectList.get(0).getOrigin() + "");
-            Log.i("ODSObject", "Data Array Size: " + odsObjectList.get(0).getData().getData().size() + "");
-            Log.i("ODSObject", "DurationInMilliSeconds: " + odsObjectList.get(0).getData().getStats().getDurationInMilliSeconds() + "");
-            Log.i("ODSObject", "StartTimestamp: " + odsObjectList.get(0).getData().getStats().getStartTimestamp() + "");
-            Log.i("ODSObject", "EndTimeStamp: " + odsObjectList.get(0).getData().getStats().getEndTimestamp() + "");
-
+            logging();
 
             if (jsonData.size() > 0) {
                 Log.i("ODSObject", "Data as String: " + odsObjectList.get(0).getData().getData().get(0).toString() + "");
                 for (int i = 0; i < jsonData.size(); i++) {
-                    countries.add(gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
-                    //Log Countries
-                    Log.i("Country " + i, countries.get(i).getName() + " ");
+                    Country country = (gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
+//                    imageController.fetchSvg(this.baseContext, country.getFlag(), country.getAlpha3Code());
+                    countries.add(country);
+
+                    Log.i("Country " + i, countries.get(i).getName() + " " + countries.get(i).getArea());
                 }
+
+                //TODO:CacheCountry
+
 
                 if (recyclerView != null)
                     uiHandler.post(new Runnable() {
@@ -127,7 +132,20 @@ public class Controller implements Callback<List<ODSObject>> {
     public void onFailure(Call<List<ODSObject>> call, Throwable t) {
         //TODO:send message to user
         // TODS:Testing
-        Log.e("Controller Error", t.getMessage());
+        Log.e("MainController Error", t.getMessage());
+    }
+
+    public void logging() {
+        //Log Data
+        Log.i("ODSObject", "Size: " + odsObjectList.size() + "");
+        Log.i("ODSObject", "ID: " + odsObjectList.get(0).getId() + "");
+        Log.i("ODSObject", "License: " + odsObjectList.get(0).getLicense() + "");
+        Log.i("ODSObject", "TimeStamp: " + odsObjectList.get(0).getTimestamp() + "");
+        Log.i("ODSObject", "Origin: " + odsObjectList.get(0).getOrigin() + "");
+        Log.i("ODSObject", "Data Array Size: " + odsObjectList.get(0).getData().getData().size() + "");
+        Log.i("ODSObject", "DurationInMilliSeconds: " + odsObjectList.get(0).getData().getStats().getDurationInMilliSeconds() + "");
+        Log.i("ODSObject", "StartTimestamp: " + odsObjectList.get(0).getData().getStats().getStartTimestamp() + "");
+        Log.i("ODSObject", "EndTimeStamp: " + odsObjectList.get(0).getData().getStats().getEndTimestamp() + "");
     }
 }
 

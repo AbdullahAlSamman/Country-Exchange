@@ -1,9 +1,9 @@
-package com.aals.countriesexchange;
+package com.aals.countriesexchange.Model;
+
+import android.graphics.Bitmap;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.JSONTokener;
 
 import java.util.ArrayList;
 
@@ -33,23 +33,17 @@ public class Country {
     private String nativeName;
     private float population;
     private String numericCode;
+    private Bitmap countryFlag;
 
     public Country() {
     }
 
-    @Deprecated
-    public static JSONArray objectToJSONArray(Object object) {
-        Object json = null;
-        JSONArray jsonArray = null;
-        try {
-            json = new JSONTokener(object.toString()).nextValue();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        if (json instanceof JSONArray) {
-            jsonArray = (JSONArray) json;
-        }
-        return jsonArray;
+    public Bitmap getCountryFlag() {
+        return countryFlag;
+    }
+
+    public void setCountryFlag(Bitmap countryFlag) {
+        this.countryFlag = countryFlag;
     }
 
     public ArrayList<Object> getLatlng() {

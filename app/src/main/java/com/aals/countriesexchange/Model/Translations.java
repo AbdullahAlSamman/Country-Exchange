@@ -1,4 +1,4 @@
-package com.aals.countriesexchange;
+package com.aals.countriesexchange.Model;
 
 public class Translations {
     private String br;

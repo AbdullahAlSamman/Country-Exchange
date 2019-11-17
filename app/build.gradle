@@ -21,6 +21,7 @@ android {
 dependencies {
     //Room version
     def room_version = "2.2.1"
+
     //Android support lib
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'androidx.appcompat:appcompat:1.0.2'
@@ -32,6 +33,10 @@ dependencies {
     //Retrofit Gson
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+
+    //Okhttp3
+    implementation 'com.squareup.okhttp3:okhttp:3.12.0'
+    implementation 'com.pixplicity.sharp:library:1.1.0'
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
