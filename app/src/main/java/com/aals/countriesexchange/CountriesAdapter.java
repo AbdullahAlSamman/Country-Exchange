@@ -41,9 +41,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         countryName.setText(country.getName());
         TextView countryLanguage = holder.languageTV;
         //TODO: get rid of 1120E7
-        countryLanguage.setText(country.arraryToString(country.getLanguages()));
+//        countryLanguage.setText(country.languagesToString(country.getLanguages()));
         TextView countryCallingCodes = holder.callingCodeTV;
-        countryCallingCodes.setText(country.arraryToString(country.getCallingCodes()));
+        countryCallingCodes.setText(country.callingCodesToString(country.getCallingCodes()));
     }
 
     @Override

@@ -224,12 +224,17 @@ public class Country {
         this.numericCode = numericCode;
     }
 
-    public String arraryToString(ArrayList<Object> arrayList) {
+    public String languagesToString(ArrayList<Object> arrayList) {
         String result = "";
         for (int i = 0; i < arrayList.size(); i++) {
-            result += arrayList.get(i).toString() + ",";
+            result += arrayList.get(i).toString();
         }
         return result;
+    }
+
+    public String callingCodesToString(ArrayList<Object> arrayList) {
+
+        return arrayList.get(0).toString();
     }
 }
 
