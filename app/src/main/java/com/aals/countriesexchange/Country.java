@@ -257,9 +257,16 @@ public class Country {
         return result;
     }
 
-    public String callingCodesToString(ArrayList<Object> arrayList) {
-
-        return arrayList.get(0).toString();
+    public String callingCodesToString(ArrayList<Object> arrayList) throws Exception {
+        String result = "";
+        JSONArray callingJSONArray = new JSONArray(arrayList);
+        for (int i = 0; i < callingJSONArray.length(); i++) {
+            if (i == callingJSONArray.length() - 1)
+                result += callingJSONArray.getString(i);
+            else
+                result += callingJSONArray.getString(i) + ", ";
+        }
+        return result;
     }
 }
 
