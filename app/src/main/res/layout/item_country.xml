@@ -3,28 +3,45 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp">
 
-    <TextView
-        android:id="@+id/country_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
+    <ImageView
+        android:id="@+id/country_flag"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:contentDescription="@string/description"
+        android:src="@drawable/ic_flag"></ImageView>
 
-    <TextView
-        android:id="@+id/country_language"
+
+    <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="12sp" />
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:layout_weight="2"
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/country_calling_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:textSize="12sp" />
+        <TextView
+            android:id="@+id/country_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/country_name"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/country_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/country_language"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/country_calling_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/country_callingcodes"
+            android:textSize="12sp" />
+    </LinearLayout>
 </LinearLayout>

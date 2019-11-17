@@ -92,29 +92,31 @@ public class Controller implements Callback<List<ODSObject>> {
             Log.i("ODSObject", "TimeStamp: " + odsObjectList.get(0).getTimestamp() + "");
             Log.i("ODSObject", "Origin: " + odsObjectList.get(0).getOrigin() + "");
             Log.i("ODSObject", "Data Array Size: " + odsObjectList.get(0).getData().getData().size() + "");
-            Log.i("ODSObject", "Data as String: " + odsObjectList.get(0).getData().getData().get(0).toString() + "");
             Log.i("ODSObject", "DurationInMilliSeconds: " + odsObjectList.get(0).getData().getStats().getDurationInMilliSeconds() + "");
             Log.i("ODSObject", "StartTimestamp: " + odsObjectList.get(0).getData().getStats().getStartTimestamp() + "");
             Log.i("ODSObject", "EndTimeStamp: " + odsObjectList.get(0).getData().getStats().getEndTimestamp() + "");
 
 
-            for (int i = 0; i < jsonData.size(); i++) {
-                countries.add(gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
-                //Log Countries
-                Log.i("Country " + i, countries.get(i).getName() + " ");
-            }
+            if (jsonData.size() > 0) {
+                Log.i("ODSObject", "Data as String: " + odsObjectList.get(0).getData().getData().get(0).toString() + "");
+                for (int i = 0; i < jsonData.size(); i++) {
+                    countries.add(gson.fromJson(gson.toJson(jsonData.get(i)), Country.class));
+                    //Log Countries
+                    Log.i("Country " + i, countries.get(i).getName() + " ");
+                }
 
-            if (recyclerView != null)
-                uiHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.i("UIHandler", getCountries().size() + "");
-                        CountriesAdapter adpCountries = new CountriesAdapter(getCountries());
-                        recyclerView.setAdapter(adpCountries);
-                        adpCountries.notifyDataSetChanged();
-                        recyclerView.setLayoutManager(new LinearLayoutManager(baseContext));
-                    }
-                });
+                if (recyclerView != null)
+                    uiHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.i("UIHandler", getCountries().size() + "");
+                            CountriesAdapter adpCountries = new CountriesAdapter(getCountries());
+                            recyclerView.setAdapter(adpCountries);
+                            adpCountries.notifyDataSetChanged();
+                            recyclerView.setLayoutManager(new LinearLayoutManager(baseContext));
+                        }
+                    });
+            }
 
         } else {
             Log.e("Error", response.errorBody().toString());

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,13 +37,13 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         Country country = mCountries.get(position);
 
         // Set item views based on your views and data model
-        TextView textView = holder.nameTV;
-        textView.setText(country.getName());
-        TextView textView1 = holder.languageTV;
+        TextView countryName = holder.nameTV;
+        countryName.setText(country.getName());
+        TextView countryLanguage = holder.languageTV;
         //TODO: get rid of 1120E7
-        textView1.setText(Float.toString(country.getPopulation()));
-        TextView textView2 = holder.callingCodeTV;
-        textView2.setText(country.getCallingCodes().get(0) + "");
+        countryLanguage.setText(country.arraryToString(country.getLanguages()));
+        TextView countryCallingCodes = holder.callingCodeTV;
+        countryCallingCodes.setText(country.arraryToString(country.getCallingCodes()));
     }
 
     @Override
@@ -55,6 +56,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         public TextView nameTV;
         public TextView languageTV;
         public TextView callingCodeTV;
+        public ImageView flagIV;
 
 
         public ViewHolder(View itemView) {
@@ -62,6 +64,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             nameTV = itemView.findViewById(R.id.country_name);
             languageTV = itemView.findViewById(R.id.country_language);
             callingCodeTV = itemView.findViewById(R.id.country_calling_code);
+            flagIV = itemView.findViewById(R.id.country_flag);
         }
     }
 }

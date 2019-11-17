@@ -1,7 +1,5 @@
 package com.aals.countriesexchange;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
 
 public class Country {
@@ -226,6 +224,12 @@ public class Country {
         this.numericCode = numericCode;
     }
 
-
+    public String arraryToString(ArrayList<Object> arrayList) {
+        String result = "";
+        for (int i = 0; i < arrayList.size(); i++) {
+            result += arrayList.get(i).toString() + ",";
+        }
+        return result;
+    }
 }
 
