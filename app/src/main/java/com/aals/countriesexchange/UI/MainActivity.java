@@ -1,17 +1,23 @@
 package com.aals.countriesexchange.UI;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aals.countriesexchange.Controller.ODSManager;
+import com.aals.countriesexchange.Adapter.CountriesAdapter;
+import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.R;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ODSManager ODSManager;
     private RecyclerView rvCoutries;
+    private List<Country> countries;
+    private CountriesAdapter countriesAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,9 +26,11 @@ public class MainActivity extends AppCompatActivity {
 
         rvCoutries = findViewById(R.id.rv_countries);
 
-        ODSManager = new ODSManager(getResources().getString(R.string.server_url));
-        ODSManager.setBaseContext(getBaseContext());
-        ODSManager.setRecyclerView(rvCoutries);
-        ODSManager.start();
+        countries = (List<Country>) getIntent().getSerializableExtra("countries");
+        countriesAdapter = new CountriesAdapter(countries);
+        Log.i("main", countries.size() + "");
+        rvCoutries.setLayoutManager(new LinearLayoutManager(this));
+        rvCoutries.setAdapter(countriesAdapter);
+
     }
 }

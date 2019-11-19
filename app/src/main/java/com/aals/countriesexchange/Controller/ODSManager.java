@@ -1,17 +1,19 @@
 package com.aals.countriesexchange.Controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.ODS;
 import com.aals.countriesexchange.Model.ODSAPI;
+import com.aals.countriesexchange.UI.MainActivity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ODSManager implements Callback<List<ODS>> {
 
     private static Gson gson;
-    AppDB db;
     private List<ODS> odsList = new ArrayList<ODS>();
     private String url;
     private List<Country> countries = new ArrayList<Country>();
@@ -62,8 +63,6 @@ public class ODSManager implements Callback<List<ODS>> {
 
     public void start() {
 
-        db = AppDB.getInstance(this.baseContext);
-
         gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -88,8 +87,14 @@ public class ODSManager implements Callback<List<ODS>> {
             logging();
 
             countries = odsList.get(0).getData();
+
+            Intent startMain = new Intent(getBaseContext(), MainActivity.class);
+            startMain.putExtra("countries", (Serializable) countries);
+            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            baseContext.startActivity(startMain);
+
+
             //TODO: Start image bring from server
-//            db.userDao().insertAll(countries);
         } else {
             //TODO:Handle error or internet
             Log.e("Error", response.errorBody().toString());

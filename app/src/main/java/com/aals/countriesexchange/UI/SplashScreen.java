@@ -17,7 +17,9 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         ODSManager = new ODSManager(getResources().getString(R.string.server_url));
-        ODSManager.setBaseContext(getBaseContext());
+        ODSManager.setBaseContext(getApplicationContext());
         ODSManager.start();
+
+
     }
 }

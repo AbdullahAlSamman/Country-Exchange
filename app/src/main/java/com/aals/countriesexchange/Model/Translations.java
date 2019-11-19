@@ -3,7 +3,9 @@ package com.aals.countriesexchange.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Translations {
+import java.io.Serializable;
+
+public class Translations implements Serializable {
 
     @SerializedName("br")
     @Expose
