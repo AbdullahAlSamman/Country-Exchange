@@ -5,12 +5,12 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.aals.countriesexchange.Controller.MainController;
+import com.aals.countriesexchange.Controller.ODSManager;
 import com.aals.countriesexchange.R;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MainController mainController;
+    private ODSManager ODSManager;
     private RecyclerView rvCoutries;
 
     @Override
@@ -20,9 +20,9 @@ public class MainActivity extends AppCompatActivity {
 
         rvCoutries = findViewById(R.id.rv_countries);
 
-        mainController = new MainController(getResources().getString(R.string.server_url));
-        mainController.setBaseContext(getBaseContext());
-        mainController.setRecyclerView(rvCoutries);
-        mainController.start();
+        ODSManager = new ODSManager(getResources().getString(R.string.server_url));
+        ODSManager.setBaseContext(getBaseContext());
+        ODSManager.setRecyclerView(rvCoutries);
+        ODSManager.start();
     }
 }

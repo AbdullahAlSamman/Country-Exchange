@@ -1,7 +1,6 @@
 package com.aals.countriesexchange.Controller;
 
 import android.content.Context;
-import android.os.Handler;
 import android.util.Log;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,21 +21,18 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainController implements Callback<List<ODS>> {
+public class ODSManager implements Callback<List<ODS>> {
 
     private static Gson gson;
     AppDB db;
     private List<ODS> odsList = new ArrayList<ODS>();
     private String url;
     private List<Country> countries = new ArrayList<Country>();
-    private Handler uiHandler;
-    private CacheController memoryCache;
-    private ImageController imageController;
     private RecyclerView recyclerView;
     private Context baseContext;
 
 
-    public MainController(String url) {
+    public ODSManager(String url) {
         this.url = url;
     }
 
@@ -66,8 +62,6 @@ public class MainController implements Callback<List<ODS>> {
 
     public void start() {
 
-        imageController = new ImageController();
-
         db = AppDB.getInstance(this.baseContext);
 
         gson = new GsonBuilder()
@@ -93,23 +87,13 @@ public class MainController implements Callback<List<ODS>> {
 
             logging();
 
-            Log.i("ODSObject", "Data as String: " + odsList.get(0).getData() + "");
-            try {
-                for (int i = 0; i < odsList.size(); i++) {
-                    countries = odsList.get(i).getData();
-
-
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
+            countries = odsList.get(0).getData();
+            //TODO: Start image bring from server
 //            db.userDao().insertAll(countries);
         } else {
             //TODO:Handle error or internet
             Log.e("Error", response.errorBody().toString());
         }
-
 
     }
 
@@ -117,7 +101,7 @@ public class MainController implements Callback<List<ODS>> {
     public void onFailure(Call<List<ODS>> call, Throwable t) {
         //TODO:send message to user
         // TODS:Testing
-        Log.e("MainController Error", t.getMessage());
+        Log.e("ODSManager Error", t.getMessage());
     }
 
     public void logging() {
