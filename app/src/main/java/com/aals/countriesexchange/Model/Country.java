@@ -291,4 +291,26 @@ public class Country implements Serializable {
         this.topLevelDomain = topLevelDomain;
     }
 
+    public String languagesToString() {
+        String result = "";
+        for (int i = 0; i < languages.size(); i++) {
+            if (i == languages.size() - 1)
+                result += languages.get(i).getName();
+            else
+                result += languages.get(i).getName() + ", ";
+        }
+        return result;
+    }
+
+    public String callingCodesToString() {
+        String result = "";
+        for (int i = 0; i < callingCodes.size(); i++) {
+            if (i == callingCodes.size() - 1)
+                result += callingCodes.get(i).toString();
+            else
+                result += callingCodes.get(i).toString() + ", ";
+        }
+        return result;
+    }
+
 }
