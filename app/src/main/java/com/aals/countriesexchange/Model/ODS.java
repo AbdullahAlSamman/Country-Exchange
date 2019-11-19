@@ -1,30 +1,45 @@
 package com.aals.countriesexchange.Model;
 
-public class ODSObject {
-    Data data;
-    private float id;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+import java.util.List;
+
+public class ODS {
+
+    @SerializedName("id")
+    @Expose
+    private Integer id;
+    @SerializedName("data")
+    @Expose
+    private List<Country> data = null;
+    @SerializedName("timestamp")
+    @Expose
     private String timestamp;
+    @SerializedName("origin")
+    @Expose
     private String origin;
+    @SerializedName("license")
+    @Expose
     private String license;
+    @SerializedName("pipelineId")
+    @Expose
     private String pipelineId;
 
-
-    // Getter Methods
-
-    public float getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(float id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
-    public Data getData() {
+    public List<Country> getData() {
         return data;
     }
 
-    public void setData(Data dataObject) {
-        this.data = dataObject;
+    public void setData(List<Country> data) {
+        this.data = data;
     }
 
     public String getTimestamp() {
@@ -34,8 +49,6 @@ public class ODSObject {
     public void setTimestamp(String timestamp) {
         this.timestamp = timestamp;
     }
-
-    // Setter Methods
 
     public String getOrigin() {
         return origin;
@@ -60,4 +73,5 @@ public class ODSObject {
     public void setPipelineId(String pipelineId) {
         this.pipelineId = pipelineId;
     }
+
 }

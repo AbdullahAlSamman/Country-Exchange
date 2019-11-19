@@ -7,7 +7,6 @@ import androidx.room.Query;
 
 import com.aals.countriesexchange.Model.Country;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Dao
@@ -23,7 +22,7 @@ public interface CountryDao {
     Country findByName(String name);
 
     @Insert
-    void insertAll(ArrayList<Country> countries);
+    void insertAll(List<Country> countries);
 
     @Delete
     void delete(Country country);

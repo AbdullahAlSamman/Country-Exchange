@@ -42,9 +42,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             TextView countryName = holder.nameTV;
             countryName.setText(country.getName());
             TextView countryLanguage = holder.languageTV;
-            countryLanguage.setText(country.languagesToString(country.getLanguages()));
+            countryLanguage.setText(country.getLanguages().toString());
             TextView countryCallingCodes = holder.callingCodeTV;
-            countryCallingCodes.setText(country.jsonArrayToString(country.getCallingCodes()));
+            countryCallingCodes.setText(country.getCallingCodes().toString());
         } catch (Exception e) {
             //TODO:right handling
             e.printStackTrace();
