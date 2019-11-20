@@ -5,10 +5,12 @@ import android.content.Context;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.room.TypeConverters;
 
 import com.aals.countriesexchange.Model.Country;
 
 @Database(entities = {Country.class}, version = 1, exportSchema = false)
+@TypeConverters(Converters.class)
 public abstract class AppDB extends RoomDatabase {
     private static final String DB_NAME = "app-db";
     private static AppDB instance;

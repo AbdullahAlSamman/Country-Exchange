@@ -1,6 +1,7 @@
 package com.aals.countriesexchange.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.R;
+import com.pixplicity.sharp.Sharp;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.List;
 
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> {
@@ -45,6 +49,12 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             countryLanguage.setText(country.languagesToString());
             TextView countryCallingCodes = holder.callingCodeTV;
             countryCallingCodes.setText(country.callingCodesToString());
+            ImageView flagImage = holder.flagIV;
+//            Bitmap bmp = BitmapFactory.decodeByteArray(country.getFlagImage(), 0, country.getFlagImage().length);
+//            flagImage.setImageURI(Uri.parse(country.getFlag()));
+            InputStream targetStream = new ByteArrayInputStream(country.getFlagImage());
+            Log.e("flag adapter", country.getFlagImage().length + "");
+            Sharp.loadInputStream(targetStream).into(flagImage);
         } catch (Exception e) {
             //TODO:right handling
             e.printStackTrace();

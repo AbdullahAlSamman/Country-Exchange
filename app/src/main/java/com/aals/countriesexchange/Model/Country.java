@@ -1,6 +1,7 @@
 package com.aals.countriesexchange.Model;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
@@ -17,87 +18,110 @@ public class Country implements Serializable {
     @SerializedName("area")
     @Expose
     private double area;
+
     @SerializedName("cioc")
     @Expose
     private String cioc;
+
     @SerializedName("flag")
     @Expose
     private String flag;
+
     @SerializedName("gini")
     @Expose
     private double gini;
+
     @SerializedName("name")
-    @Expose
-    private String name;
-    @SerializedName("latlng")
-    @Expose
-    @Ignore
-    private List<Double> latlng = null;
-    @SerializedName("region")
-    @Expose
-    private String region;
-    @SerializedName("borders")
-    @Expose
-    @Ignore
-    private List<String> borders = null;
-    @SerializedName("capital")
-    @Expose
-    private String capital;
-    @SerializedName("demonym")
-    @Expose
-    private String demonym;
-    @SerializedName("languages")
-    @Expose
-    @Ignore
-    private List<Language> languages = null;
-    @SerializedName("subregion")
-    @Expose
-    private String subregion;
-    @SerializedName("timezones")
-    @Expose
-    @Ignore
-    private List<String> timezones = null;
-    @SerializedName("alpha2Code")
     @Expose
     @PrimaryKey
     @NonNull
+    private String name;
+
+    @SerializedName("latlng")
+    @Expose
+    private List<Double> latlng = null;
+
+    @SerializedName("region")
+    @Expose
+    private String region;
+
+    @SerializedName("borders")
+    @Expose
+    private List<String> borders = null;
+
+    @SerializedName("capital")
+    @Expose
+    private String capital;
+
+    @SerializedName("demonym")
+    @Expose
+    private String demonym;
+
+    @SerializedName("languages")
+    @Expose
+    private List<Language> languages = null;
+
+    @SerializedName("subregion")
+    @Expose
+    private String subregion;
+
+    @SerializedName("timezones")
+    @Expose
+    private List<String> timezones = null;
+
+    @SerializedName("alpha2Code")
+    @Expose
     private String alpha2Code;
+
     @SerializedName("alpha3Code")
     @Expose
     private String alpha3Code;
+
     @SerializedName("currencies")
     @Expose
-    @Ignore
     private List<Currency> currencies = null;
+
     @SerializedName("nativeName")
     @Expose
     private String nativeName;
+
     @SerializedName("population")
     @Expose
     private Integer population;
+
     @SerializedName("numericCode")
     @Expose
     private String numericCode;
+
     @SerializedName("altSpellings")
     @Expose
-    @Ignore
     private List<String> altSpellings = null;
+
     @SerializedName("callingCodes")
     @Expose
-    @Ignore
     private List<String> callingCodes = null;
+
     @SerializedName("translations")
     @Expose
     @Ignore
     private Translations translations;
     @SerializedName("regionalBlocs")
     @Expose
-    @Ignore
     private List<RegionalBloc> regionalBlocs = null;
     @SerializedName("topLevelDomain")
     @Expose
-    @Ignore
     private List<String> topLevelDomain = null;
+    @SerializedName("flagImage")
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] flagImage;
+
+    public byte[] getFlagImage() {
+        return flagImage;
+    }
+
+    public void setFlagImage(byte[] flagImage) {
+        this.flagImage = flagImage;
+    }
 
     public double getArea() {
         return area;
