@@ -14,7 +14,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,42 +34,29 @@ public class ODSManager implements Callback<List<ODS>> {
     private static Context baseContext;
     private static List<Country> countries = new ArrayList<Country>();
     private List<ODS> odsList = new ArrayList<ODS>();
-    private AppDB db;
 
 
     public ODSManager(String url) {
         this.url = url;
     }
 
-    public static void fetchSvg(final int index, String flagUrl) {
+    public static void fetchSvg(final int index, String flagUrl) throws Exception {
         if (httpClient == null) {
             httpClient = new OkHttpClient.Builder()
                     .build();
         }
 
         Request request = new Request.Builder().url(flagUrl).build();
-        httpClient.newCall(request).enqueue(new okhttp3.Callback() {
-            @Override
-            public void onFailure(okhttp3.Call call, IOException e) {
-                Log.e("Flag", e.getMessage());
-            }
+        okhttp3.Response response = httpClient.newCall(request).execute();
 
-            @Override
-            public void onResponse(okhttp3.Call call, okhttp3.Response response) throws IOException {
-                try {
-                    if (response.isSuccessful()) {
-                        InputStream stream = response.body().byteStream();
-                        countries.get(index).setFlagImage(toByteArray(stream));
-                        Log.e("flag", countries.get(index).getFlagImage().length + "");
-                        stream.close();
-                    } else {
-                        Log.e("flag", "failed to get data");
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
+        if (response.isSuccessful()) {
+            InputStream stream = response.body().byteStream();
+            countries.get(index).setFlagImage(toByteArray(stream));
+            Log.e("flag", countries.get(index).getFlagImage().length + "");
+            stream.close();
+        } else {
+            Log.e("flag", "failed to get data");
+        }
     }
 
     public static byte[] toByteArray(InputStream bitmap) throws Exception {
@@ -103,8 +89,6 @@ public class ODSManager implements Callback<List<ODS>> {
 
     public void start() {
 
-        db = AppDB.getInstance(baseContext);
-
         gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -118,7 +102,6 @@ public class ODSManager implements Callback<List<ODS>> {
 
         Call<List<ODS>> call = odsapi.getCountries();
         call.enqueue(this);
-
     }
 
     @Override
@@ -130,21 +113,8 @@ public class ODSManager implements Callback<List<ODS>> {
 
             countries = odsList.get(0).getData();
 
-
-            for (int i = 0; i < countries.size(); i++) {
-
-                fetchSvg(i, countries.get(i).getFlag());
-            }
-
             new dbInsertAll().execute(null, null, null);
 
-//            Intent startMain = new Intent(getBaseContext(), MainActivity.class);
-//            startMain.putExtra("countries", (Serializable) countries);
-//            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//            baseContext.startActivity(startMain);
-
-
-            //TODO: Start image bring from server
         } else {
             //TODO:Handle error or internet
             Log.e("Error", response.errorBody().toString());
@@ -173,7 +143,15 @@ public class ODSManager implements Callback<List<ODS>> {
 
         @Override
         protected Void doInBackground(Void... voids) {
-            AppDB.getInstance(getBaseContext()).userDao().insertAll(countries);
+
+            try {
+                for (int i = 0; i < countries.size(); i++) {
+                    fetchSvg(i, countries.get(i).getFlag());
+                }
+                AppDB.getInstance(baseContext).userDao().insertAll(countries);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             return null;
         }
 
@@ -181,7 +159,6 @@ public class ODSManager implements Callback<List<ODS>> {
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
             Intent startMain = new Intent(getBaseContext(), MainActivity.class);
-//            startMain.putExtra("countries", (Serializable) countries);
             startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             baseContext.startActivity(startMain);
         }

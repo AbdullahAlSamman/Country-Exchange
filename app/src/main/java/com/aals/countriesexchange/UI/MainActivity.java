@@ -3,7 +3,6 @@ package com.aals.countriesexchange.UI;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -29,9 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         rvCoutries = findViewById(R.id.rv_countries);
 
-//        countries = (List<Country>) getIntent().getSerializableExtra("countries");
         new getDataFromDB().execute(getApplicationContext());
-
 
     }
 
@@ -45,11 +42,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(String s) {
+            super.onPostExecute(s);
             countriesAdapter = new CountriesAdapter(countries);
-            Log.i("main", countries.size() + "");
             rvCoutries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             rvCoutries.setAdapter(countriesAdapter);
-            super.onPostExecute(s);
         }
     }
 }

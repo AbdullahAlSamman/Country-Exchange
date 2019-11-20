@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/colorCountryItem"
     android:paddingTop="5dp"
     android:paddingBottom="5dp">
 
@@ -13,6 +14,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerVertical="true"
         android:layout_margin="10dp"
+        android:background="@color/colorCountryItem"
         android:contentDescription="@string/description"
         android:src="@drawable/ic_flag"></ImageView>
 
