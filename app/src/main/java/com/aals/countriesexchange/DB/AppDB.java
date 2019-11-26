@@ -8,8 +8,9 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.aals.countriesexchange.Model.Country;
+import com.aals.countriesexchange.Model.Quotes;
 
-@Database(entities = {Country.class}, version = 1, exportSchema = false)
+@Database(entities = {Country.class, Quotes.class}, version = 1, exportSchema = false)
 @TypeConverters(Converters.class)
 public abstract class AppDB extends RoomDatabase {
     private static final String DB_NAME = "app-db";
@@ -24,5 +25,7 @@ public abstract class AppDB extends RoomDatabase {
     }
 
     public abstract CountryDao countryDao();
+
+    public abstract ExchangeRatesDao exchangeRatesDao();
 }
 

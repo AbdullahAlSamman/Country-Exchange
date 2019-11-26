@@ -7,12 +7,15 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.Date;
+
 @Entity(tableName = "rates")
 public class Quotes {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
     private int id;
+    private Date timestamp;
     @SerializedName("USDAED")
     @Expose
     private Double AED;
@@ -27,7 +30,7 @@ public class Quotes {
     private Double AMD;
     @SerializedName("USDANG")
     @Expose
-    private Double uSDANG;
+    private Double ANG;
     @SerializedName("USDAOA")
     @Expose
     private Double AOA;
@@ -518,1348 +521,1364 @@ public class Quotes {
     @Expose
     private Double ZWL;
 
-    public Double getUSDAED() {
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public Double getAED() {
         return AED;
     }
 
-    public void setUSDAED(Double uSDAED) {
-        this.AED = uSDAED;
+    public void setAED(Double AED) {
+        this.AED = AED;
     }
 
-    public Double getUSDAFN() {
+    public Double getAFN() {
         return AFN;
     }
 
-    public void setUSDAFN(Double uSDAFN) {
-        this.AFN = uSDAFN;
+    public void setAFN(Double AFN) {
+        this.AFN = AFN;
     }
 
-    public Double getUSDALL() {
+    public Double getALL() {
         return ALL;
     }
 
-    public void setUSDALL(Double uSDALL) {
-        this.ALL = uSDALL;
+    public void setALL(Double ALL) {
+        this.ALL = ALL;
     }
 
-    public Double getUSDAMD() {
+    public Double getAMD() {
         return AMD;
     }
 
-    public void setUSDAMD(Double uSDAMD) {
-        this.AMD = uSDAMD;
+    public void setAMD(Double AMD) {
+        this.AMD = AMD;
     }
 
-    public Double getUSDANG() {
-        return uSDANG;
+    public Double getANG() {
+        return ANG;
     }
 
-    public void setUSDANG(Double uSDANG) {
-        this.uSDANG = uSDANG;
+    public void setANG(Double ANG) {
+        this.ANG = ANG;
     }
 
-    public Double getUSDAOA() {
+    public Double getAOA() {
         return AOA;
     }
 
-    public void setUSDAOA(Double uSDAOA) {
-        this.AOA = uSDAOA;
+    public void setAOA(Double AOA) {
+        this.AOA = AOA;
     }
 
-    public Double getUSDARS() {
+    public Double getARS() {
         return ARS;
     }
 
-    public void setUSDARS(Double uSDARS) {
-        this.ARS = uSDARS;
+    public void setARS(Double ARS) {
+        this.ARS = ARS;
     }
 
-    public Double getUSDAUD() {
+    public Double getAUD() {
         return AUD;
     }
 
-    public void setUSDAUD(Double uSDAUD) {
-        this.AUD = uSDAUD;
+    public void setAUD(Double AUD) {
+        this.AUD = AUD;
     }
 
-    public Double getUSDAWG() {
+    public Double getAWG() {
         return AWG;
     }
 
-    public void setUSDAWG(Double uSDAWG) {
-        this.AWG = uSDAWG;
+    public void setAWG(Double AWG) {
+        this.AWG = AWG;
     }
 
-    public Double getUSDAZN() {
+    public Double getAZN() {
         return AZN;
     }
 
-    public void setUSDAZN(Double uSDAZN) {
-        this.AZN = uSDAZN;
+    public void setAZN(Double AZN) {
+        this.AZN = AZN;
     }
 
-    public Double getUSDBAM() {
+    public Double getBAM() {
         return BAM;
     }
 
-    public void setUSDBAM(Double uSDBAM) {
-        this.BAM = uSDBAM;
+    public void setBAM(Double BAM) {
+        this.BAM = BAM;
     }
 
-    public Double getUSDBBD() {
+    public Double getBBD() {
         return BBD;
     }
 
-    public void setUSDBBD(Double uSDBBD) {
-        this.BBD = uSDBBD;
+    public void setBBD(Double BBD) {
+        this.BBD = BBD;
     }
 
-    public Double getUSDBDT() {
+    public Double getBDT() {
         return BDT;
     }
 
-    public void setUSDBDT(Double uSDBDT) {
-        this.BDT = uSDBDT;
+    public void setBDT(Double BDT) {
+        this.BDT = BDT;
     }
 
-    public Double getUSDBGN() {
+    public Double getBGN() {
         return BGN;
     }
 
-    public void setUSDBGN(Double uSDBGN) {
-        this.BGN = uSDBGN;
+    public void setBGN(Double BGN) {
+        this.BGN = BGN;
     }
 
-    public Double getUSDBHD() {
+    public Double getBHD() {
         return BHD;
     }
 
-    public void setUSDBHD(Double uSDBHD) {
-        this.BHD = uSDBHD;
+    public void setBHD(Double BHD) {
+        this.BHD = BHD;
     }
 
-    public Double getUSDBIF() {
+    public Double getBIF() {
         return BIF;
     }
 
-    public void setUSDBIF(Double uSDBIF) {
-        this.BIF = uSDBIF;
+    public void setBIF(Double BIF) {
+        this.BIF = BIF;
     }
 
-    public Double getUSDBMD() {
+    public Double getBMD() {
         return BMD;
     }
 
-    public void setUSDBMD(Double uSDBMD) {
-        this.BMD = uSDBMD;
+    public void setBMD(Double BMD) {
+        this.BMD = BMD;
     }
 
-    public Double getUSDBND() {
+    public Double getBND() {
         return BND;
     }
 
-    public void setUSDBND(Double uSDBND) {
-        this.BND = uSDBND;
+    public void setBND(Double BND) {
+        this.BND = BND;
     }
 
-    public Double getUSDBOB() {
+    public Double getBOB() {
         return BOB;
     }
 
-    public void setUSDBOB(Double uSDBOB) {
-        this.BOB = uSDBOB;
+    public void setBOB(Double BOB) {
+        this.BOB = BOB;
     }
 
-    public Double getUSDBRL() {
+    public Double getBRL() {
         return BRL;
     }
 
-    public void setUSDBRL(Double uSDBRL) {
-        this.BRL = uSDBRL;
+    public void setBRL(Double BRL) {
+        this.BRL = BRL;
     }
 
-    public Double getUSDBSD() {
+    public Double getBSD() {
         return BSD;
     }
 
-    public void setUSDBSD(Double uSDBSD) {
-        this.BSD = uSDBSD;
+    public void setBSD(Double BSD) {
+        this.BSD = BSD;
     }
 
-    public Double getUSDBTC() {
+    public Double getBTC() {
         return BTC;
     }
 
-    public void setUSDBTC(Double uSDBTC) {
-        this.BTC = uSDBTC;
+    public void setBTC(Double BTC) {
+        this.BTC = BTC;
     }
 
-    public Double getUSDBTN() {
+    public Double getBTN() {
         return BTN;
     }
 
-    public void setUSDBTN(Double uSDBTN) {
-        this.BTN = uSDBTN;
+    public void setBTN(Double BTN) {
+        this.BTN = BTN;
     }
 
-    public Double getUSDBWP() {
+    public Double getBWP() {
         return BWP;
     }
 
-    public void setUSDBWP(Double uSDBWP) {
-        this.BWP = uSDBWP;
+    public void setBWP(Double BWP) {
+        this.BWP = BWP;
     }
 
-    public Double getUSDBYN() {
+    public Double getBYN() {
         return BYN;
     }
 
-    public void setUSDBYN(Double uSDBYN) {
-        this.BYN = uSDBYN;
+    public void setBYN(Double BYN) {
+        this.BYN = BYN;
     }
 
-    public Double getUSDBYR() {
+    public Double getBYR() {
         return BYR;
     }
 
-    public void setUSDBYR(Double uSDBYR) {
-        this.BYR = uSDBYR;
+    public void setBYR(Double BYR) {
+        this.BYR = BYR;
     }
 
-    public Double getUSDBZD() {
+    public Double getBZD() {
         return BZD;
     }
 
-    public void setUSDBZD(Double uSDBZD) {
-        this.BZD = uSDBZD;
+    public void setBZD(Double BZD) {
+        this.BZD = BZD;
     }
 
-    public Double getUSDCAD() {
+    public Double getCAD() {
         return CAD;
     }
 
-    public void setUSDCAD(Double uSDCAD) {
-        this.CAD = uSDCAD;
+    public void setCAD(Double CAD) {
+        this.CAD = CAD;
     }
 
-    public Double getUSDCDF() {
+    public Double getCDF() {
         return CDF;
     }
 
-    public void setUSDCDF(Double uSDCDF) {
-        this.CDF = uSDCDF;
+    public void setCDF(Double CDF) {
+        this.CDF = CDF;
     }
 
-    public Double getUSDCHF() {
+    public Double getCHF() {
         return CHF;
     }
 
-    public void setUSDCHF(Double uSDCHF) {
-        this.CHF = uSDCHF;
+    public void setCHF(Double CHF) {
+        this.CHF = CHF;
     }
 
-    public Double getUSDCLF() {
+    public Double getCLF() {
         return CLF;
     }
 
-    public void setUSDCLF(Double uSDCLF) {
-        this.CLF = uSDCLF;
+    public void setCLF(Double CLF) {
+        this.CLF = CLF;
     }
 
-    public Double getUSDCLP() {
+    public Double getCLP() {
         return CLP;
     }
 
-    public void setUSDCLP(Double uSDCLP) {
-        this.CLP = uSDCLP;
+    public void setCLP(Double CLP) {
+        this.CLP = CLP;
     }
 
-    public Double getUSDCNY() {
+    public Double getCNY() {
         return CNY;
     }
 
-    public void setUSDCNY(Double uSDCNY) {
-        this.CNY = uSDCNY;
+    public void setCNY(Double CNY) {
+        this.CNY = CNY;
     }
 
-    public Double getUSDCOP() {
+    public Double getCOP() {
         return COP;
     }
 
-    public void setUSDCOP(Double uSDCOP) {
-        this.COP = uSDCOP;
+    public void setCOP(Double COP) {
+        this.COP = COP;
     }
 
-    public Double getUSDCRC() {
+    public Double getCRC() {
         return CRC;
     }
 
-    public void setUSDCRC(Double uSDCRC) {
-        this.CRC = uSDCRC;
+    public void setCRC(Double CRC) {
+        this.CRC = CRC;
     }
 
-    public Double getUSDCUC() {
+    public Double getCUC() {
         return CUC;
     }
 
-    public void setUSDCUC(Double uSDCUC) {
-        this.CUC = uSDCUC;
+    public void setCUC(Double CUC) {
+        this.CUC = CUC;
     }
 
-    public Double getUSDCUP() {
+    public Double getCUP() {
         return CUP;
     }
 
-    public void setUSDCUP(Double uSDCUP) {
-        this.CUP = uSDCUP;
+    public void setCUP(Double CUP) {
+        this.CUP = CUP;
     }
 
-    public Double getUSDCVE() {
+    public Double getCVE() {
         return CVE;
     }
 
-    public void setUSDCVE(Double uSDCVE) {
-        this.CVE = uSDCVE;
+    public void setCVE(Double CVE) {
+        this.CVE = CVE;
     }
 
-    public Double getUSDCZK() {
+    public Double getCZK() {
         return CZK;
     }
 
-    public void setUSDCZK(Double uSDCZK) {
-        this.CZK = uSDCZK;
+    public void setCZK(Double CZK) {
+        this.CZK = CZK;
     }
 
-    public Double getUSDDJF() {
+    public Double getDJF() {
         return DJF;
     }
 
-    public void setUSDDJF(Double uSDDJF) {
-        this.DJF = uSDDJF;
+    public void setDJF(Double DJF) {
+        this.DJF = DJF;
     }
 
-    public Double getUSDDKK() {
+    public Double getDKK() {
         return DKK;
     }
 
-    public void setUSDDKK(Double uSDDKK) {
-        this.DKK = uSDDKK;
+    public void setDKK(Double DKK) {
+        this.DKK = DKK;
     }
 
-    public Double getUSDDOP() {
+    public Double getDOP() {
         return DOP;
     }
 
-    public void setUSDDOP(Double uSDDOP) {
-        this.DOP = uSDDOP;
+    public void setDOP(Double DOP) {
+        this.DOP = DOP;
     }
 
-    public Double getUSDDZD() {
+    public Double getDZD() {
         return DZD;
     }
 
-    public void setUSDDZD(Double uSDDZD) {
-        this.DZD = uSDDZD;
+    public void setDZD(Double DZD) {
+        this.DZD = DZD;
     }
 
-    public Double getUSDEGP() {
+    public Double getEGP() {
         return EGP;
     }
 
-    public void setUSDEGP(Double uSDEGP) {
-        this.EGP = uSDEGP;
+    public void setEGP(Double EGP) {
+        this.EGP = EGP;
     }
 
-    public Double getUSDERN() {
+    public Double getERN() {
         return ERN;
     }
 
-    public void setUSDERN(Double uSDERN) {
-        this.ERN = uSDERN;
+    public void setERN(Double ERN) {
+        this.ERN = ERN;
     }
 
-    public Double getUSDETB() {
+    public Double getETB() {
         return ETB;
     }
 
-    public void setUSDETB(Double uSDETB) {
-        this.ETB = uSDETB;
+    public void setETB(Double ETB) {
+        this.ETB = ETB;
     }
 
-    public Double getUSDEUR() {
+    public Double getEUR() {
         return EUR;
     }
 
-    public void setUSDEUR(Double uSDEUR) {
-        this.EUR = uSDEUR;
+    public void setEUR(Double EUR) {
+        this.EUR = EUR;
     }
 
-    public Double getUSDFJD() {
+    public Double getFJD() {
         return FJD;
     }
 
-    public void setUSDFJD(Double uSDFJD) {
-        this.FJD = uSDFJD;
+    public void setFJD(Double FJD) {
+        this.FJD = FJD;
     }
 
-    public Double getUSDFKP() {
+    public Double getFKP() {
         return FKP;
     }
 
-    public void setUSDFKP(Double uSDFKP) {
-        this.FKP = uSDFKP;
+    public void setFKP(Double FKP) {
+        this.FKP = FKP;
     }
 
-    public Double getUSDGBP() {
+    public Double getGBP() {
         return GBP;
     }
 
-    public void setUSDGBP(Double uSDGBP) {
-        this.GBP = uSDGBP;
+    public void setGBP(Double GBP) {
+        this.GBP = GBP;
     }
 
-    public Double getUSDGEL() {
+    public Double getGEL() {
         return GEL;
     }
 
-    public void setUSDGEL(Double uSDGEL) {
-        this.GEL = uSDGEL;
+    public void setGEL(Double GEL) {
+        this.GEL = GEL;
     }
 
-    public Double getUSDGGP() {
+    public Double getGGP() {
         return GGP;
     }
 
-    public void setUSDGGP(Double uSDGGP) {
-        this.GGP = uSDGGP;
+    public void setGGP(Double GGP) {
+        this.GGP = GGP;
     }
 
-    public Double getUSDGHS() {
+    public Double getGHS() {
         return GHS;
     }
 
-    public void setUSDGHS(Double uSDGHS) {
-        this.GHS = uSDGHS;
+    public void setGHS(Double GHS) {
+        this.GHS = GHS;
     }
 
-    public Double getUSDGIP() {
+    public Double getGIP() {
         return GIP;
     }
 
-    public void setUSDGIP(Double uSDGIP) {
-        this.GIP = uSDGIP;
+    public void setGIP(Double GIP) {
+        this.GIP = GIP;
     }
 
-    public Double getUSDGMD() {
+    public Double getGMD() {
         return GMD;
     }
 
-    public void setUSDGMD(Double uSDGMD) {
-        this.GMD = uSDGMD;
+    public void setGMD(Double GMD) {
+        this.GMD = GMD;
     }
 
-    public Double getUSDGNF() {
+    public Double getGNF() {
         return GNF;
     }
 
-    public void setUSDGNF(Double uSDGNF) {
-        this.GNF = uSDGNF;
+    public void setGNF(Double GNF) {
+        this.GNF = GNF;
     }
 
-    public Double getUSDGTQ() {
+    public Double getGTQ() {
         return GTQ;
     }
 
-    public void setUSDGTQ(Double uSDGTQ) {
-        this.GTQ = uSDGTQ;
+    public void setGTQ(Double GTQ) {
+        this.GTQ = GTQ;
     }
 
-    public Double getUSDGYD() {
+    public Double getGYD() {
         return GYD;
     }
 
-    public void setUSDGYD(Double uSDGYD) {
-        this.GYD = uSDGYD;
+    public void setGYD(Double GYD) {
+        this.GYD = GYD;
     }
 
-    public Double getUSDHKD() {
+    public Double getHKD() {
         return HKD;
     }
 
-    public void setUSDHKD(Double uSDHKD) {
-        this.HKD = uSDHKD;
+    public void setHKD(Double HKD) {
+        this.HKD = HKD;
     }
 
-    public Double getUSDHNL() {
+    public Double getHNL() {
         return HNL;
     }
 
-    public void setUSDHNL(Double uSDHNL) {
-        this.HNL = uSDHNL;
+    public void setHNL(Double HNL) {
+        this.HNL = HNL;
     }
 
-    public Double getUSDHRK() {
+    public Double getHRK() {
         return HRK;
     }
 
-    public void setUSDHRK(Double uSDHRK) {
-        this.HRK = uSDHRK;
+    public void setHRK(Double HRK) {
+        this.HRK = HRK;
     }
 
-    public Double getUSDHTG() {
+    public Double getHTG() {
         return HTG;
     }
 
-    public void setUSDHTG(Double uSDHTG) {
-        this.HTG = uSDHTG;
+    public void setHTG(Double HTG) {
+        this.HTG = HTG;
     }
 
-    public Double getUSDHUF() {
+    public Double getHUF() {
         return HUF;
     }
 
-    public void setUSDHUF(Double uSDHUF) {
-        this.HUF = uSDHUF;
+    public void setHUF(Double HUF) {
+        this.HUF = HUF;
     }
 
-    public Double getUSDIDR() {
+    public Double getIDR() {
         return IDR;
     }
 
-    public void setUSDIDR(Double uSDIDR) {
-        this.IDR = uSDIDR;
+    public void setIDR(Double IDR) {
+        this.IDR = IDR;
     }
 
-    public Double getUSDILS() {
+    public Double getILS() {
         return ILS;
     }
 
-    public void setUSDILS(Double uSDILS) {
-        this.ILS = uSDILS;
+    public void setILS(Double ILS) {
+        this.ILS = ILS;
     }
 
-    public Double getUSDIMP() {
+    public Double getIMP() {
         return IMP;
     }
 
-    public void setUSDIMP(Double uSDIMP) {
-        this.IMP = uSDIMP;
+    public void setIMP(Double IMP) {
+        this.IMP = IMP;
     }
 
-    public Double getUSDINR() {
+    public Double getINR() {
         return INR;
     }
 
-    public void setUSDINR(Double uSDINR) {
-        this.INR = uSDINR;
+    public void setINR(Double INR) {
+        this.INR = INR;
     }
 
-    public Double getUSDIQD() {
+    public Double getIQD() {
         return IQD;
     }
 
-    public void setUSDIQD(Double uSDIQD) {
-        this.IQD = uSDIQD;
+    public void setIQD(Double IQD) {
+        this.IQD = IQD;
     }
 
-    public Double getUSDIRR() {
+    public Double getIRR() {
         return IRR;
     }
 
-    public void setUSDIRR(Double uSDIRR) {
-        this.IRR = uSDIRR;
+    public void setIRR(Double IRR) {
+        this.IRR = IRR;
     }
 
-    public Double getUSDISK() {
+    public Double getISK() {
         return ISK;
     }
 
-    public void setUSDISK(Double uSDISK) {
-        this.ISK = uSDISK;
+    public void setISK(Double ISK) {
+        this.ISK = ISK;
     }
 
-    public Double getUSDJEP() {
+    public Double getJEP() {
         return JEP;
     }
 
-    public void setUSDJEP(Double uSDJEP) {
-        this.JEP = uSDJEP;
+    public void setJEP(Double JEP) {
+        this.JEP = JEP;
     }
 
-    public Double getUSDJMD() {
+    public Double getJMD() {
         return JMD;
     }
 
-    public void setUSDJMD(Double uSDJMD) {
-        this.JMD = uSDJMD;
+    public void setJMD(Double JMD) {
+        this.JMD = JMD;
     }
 
-    public Double getUSDJOD() {
+    public Double getJOD() {
         return JOD;
     }
 
-    public void setUSDJOD(Double uSDJOD) {
-        this.JOD = uSDJOD;
+    public void setJOD(Double JOD) {
+        this.JOD = JOD;
     }
 
-    public Double getUSDJPY() {
+    public Double getJPY() {
         return JPY;
     }
 
-    public void setUSDJPY(Double uSDJPY) {
-        this.JPY = uSDJPY;
+    public void setJPY(Double JPY) {
+        this.JPY = JPY;
     }
 
-    public Double getUSDKES() {
+    public Double getKES() {
         return KES;
     }
 
-    public void setUSDKES(Double uSDKES) {
-        this.KES = uSDKES;
+    public void setKES(Double KES) {
+        this.KES = KES;
     }
 
-    public Double getUSDKGS() {
+    public Double getKGS() {
         return KGS;
     }
 
-    public void setUSDKGS(Double uSDKGS) {
-        this.KGS = uSDKGS;
+    public void setKGS(Double KGS) {
+        this.KGS = KGS;
     }
 
-    public Double getUSDKHR() {
+    public Double getKHR() {
         return KHR;
     }
 
-    public void setUSDKHR(Double uSDKHR) {
-        this.KHR = uSDKHR;
+    public void setKHR(Double KHR) {
+        this.KHR = KHR;
     }
 
-    public Double getUSDKMF() {
+    public Double getKMF() {
         return KMF;
     }
 
-    public void setUSDKMF(Double uSDKMF) {
-        this.KMF = uSDKMF;
+    public void setKMF(Double KMF) {
+        this.KMF = KMF;
     }
 
-    public Double getUSDKPW() {
+    public Double getKPW() {
         return KPW;
     }
 
-    public void setUSDKPW(Double uSDKPW) {
-        this.KPW = uSDKPW;
+    public void setKPW(Double KPW) {
+        this.KPW = KPW;
     }
 
-    public Double getUSDKRW() {
+    public Double getKRW() {
         return KRW;
     }
 
-    public void setUSDKRW(Double uSDKRW) {
-        this.KRW = uSDKRW;
+    public void setKRW(Double KRW) {
+        this.KRW = KRW;
     }
 
-    public Double getUSDKWD() {
+    public Double getKWD() {
         return KWD;
     }
 
-    public void setUSDKWD(Double uSDKWD) {
-        this.KWD = uSDKWD;
+    public void setKWD(Double KWD) {
+        this.KWD = KWD;
     }
 
-    public Double getUSDKYD() {
+    public Double getKYD() {
         return KYD;
     }
 
-    public void setUSDKYD(Double uSDKYD) {
-        this.KYD = uSDKYD;
+    public void setKYD(Double KYD) {
+        this.KYD = KYD;
     }
 
-    public Double getUSDKZT() {
+    public Double getKZT() {
         return KZT;
     }
 
-    public void setUSDKZT(Double uSDKZT) {
-        this.KZT = uSDKZT;
+    public void setKZT(Double KZT) {
+        this.KZT = KZT;
     }
 
-    public Double getUSDLAK() {
+    public Double getLAK() {
         return LAK;
     }
 
-    public void setUSDLAK(Double uSDLAK) {
-        this.LAK = uSDLAK;
+    public void setLAK(Double LAK) {
+        this.LAK = LAK;
     }
 
-    public Double getUSDLBP() {
+    public Double getLBP() {
         return LBP;
     }
 
-    public void setUSDLBP(Double uSDLBP) {
-        this.LBP = uSDLBP;
+    public void setLBP(Double LBP) {
+        this.LBP = LBP;
     }
 
-    public Double getUSDLKR() {
+    public Double getLKR() {
         return LKR;
     }
 
-    public void setUSDLKR(Double uSDLKR) {
-        this.LKR = uSDLKR;
+    public void setLKR(Double LKR) {
+        this.LKR = LKR;
     }
 
-    public Double getUSDLRD() {
+    public Double getLRD() {
         return LRD;
     }
 
-    public void setUSDLRD(Double uSDLRD) {
-        this.LRD = uSDLRD;
+    public void setLRD(Double LRD) {
+        this.LRD = LRD;
     }
 
-    public Double getUSDLSL() {
+    public Double getLSL() {
         return LSL;
     }
 
-    public void setUSDLSL(Double uSDLSL) {
-        this.LSL = uSDLSL;
+    public void setLSL(Double LSL) {
+        this.LSL = LSL;
     }
 
-    public Double getUSDLTL() {
+    public Double getLTL() {
         return LTL;
     }
 
-    public void setUSDLTL(Double uSDLTL) {
-        this.LTL = uSDLTL;
+    public void setLTL(Double LTL) {
+        this.LTL = LTL;
     }
 
-    public Double getUSDLVL() {
+    public Double getLVL() {
         return LVL;
     }
 
-    public void setUSDLVL(Double uSDLVL) {
-        this.LVL = uSDLVL;
+    public void setLVL(Double LVL) {
+        this.LVL = LVL;
     }
 
-    public Double getUSDLYD() {
+    public Double getLYD() {
         return LYD;
     }
 
-    public void setUSDLYD(Double uSDLYD) {
-        this.LYD = uSDLYD;
+    public void setLYD(Double LYD) {
+        this.LYD = LYD;
     }
 
-    public Double getUSDMAD() {
+    public Double getMAD() {
         return MAD;
     }
 
-    public void setUSDMAD(Double uSDMAD) {
-        this.MAD = uSDMAD;
+    public void setMAD(Double MAD) {
+        this.MAD = MAD;
     }
 
-    public Double getUSDMDL() {
+    public Double getMDL() {
         return MDL;
     }
 
-    public void setUSDMDL(Double uSDMDL) {
-        this.MDL = uSDMDL;
+    public void setMDL(Double MDL) {
+        this.MDL = MDL;
     }
 
-    public Double getUSDMGA() {
+    public Double getMGA() {
         return MGA;
     }
 
-    public void setUSDMGA(Double uSDMGA) {
-        this.MGA = uSDMGA;
+    public void setMGA(Double MGA) {
+        this.MGA = MGA;
     }
 
-    public Double getUSDMKD() {
+    public Double getMKD() {
         return MKD;
     }
 
-    public void setUSDMKD(Double uSDMKD) {
-        this.MKD = uSDMKD;
+    public void setMKD(Double MKD) {
+        this.MKD = MKD;
     }
 
-    public Double getUSDMMK() {
+    public Double getMMK() {
         return MMK;
     }
 
-    public void setUSDMMK(Double uSDMMK) {
-        this.MMK = uSDMMK;
+    public void setMMK(Double MMK) {
+        this.MMK = MMK;
     }
 
-    public Double getUSDMNT() {
+    public Double getMNT() {
         return MNT;
     }
 
-    public void setUSDMNT(Double uSDMNT) {
-        this.MNT = uSDMNT;
+    public void setMNT(Double MNT) {
+        this.MNT = MNT;
     }
 
-    public Double getUSDMOP() {
+    public Double getMOP() {
         return MOP;
     }
 
-    public void setUSDMOP(Double uSDMOP) {
-        this.MOP = uSDMOP;
+    public void setMOP(Double MOP) {
+        this.MOP = MOP;
     }
 
-    public Double getUSDMRO() {
+    public Double getMRO() {
         return MRO;
     }
 
-    public void setUSDMRO(Double uSDMRO) {
-        this.MRO = uSDMRO;
+    public void setMRO(Double MRO) {
+        this.MRO = MRO;
     }
 
-    public Double getUSDMUR() {
+    public Double getMUR() {
         return MUR;
     }
 
-    public void setUSDMUR(Double uSDMUR) {
-        this.MUR = uSDMUR;
+    public void setMUR(Double MUR) {
+        this.MUR = MUR;
     }
 
-    public Double getUSDMVR() {
+    public Double getMVR() {
         return MVR;
     }
 
-    public void setUSDMVR(Double uSDMVR) {
-        this.MVR = uSDMVR;
+    public void setMVR(Double MVR) {
+        this.MVR = MVR;
     }
 
-    public Double getUSDMWK() {
+    public Double getMWK() {
         return MWK;
     }
 
-    public void setUSDMWK(Double uSDMWK) {
-        this.MWK = uSDMWK;
+    public void setMWK(Double MWK) {
+        this.MWK = MWK;
     }
 
-    public Double getUSDMXN() {
+    public Double getMXN() {
         return MXN;
     }
 
-    public void setUSDMXN(Double uSDMXN) {
-        this.MXN = uSDMXN;
+    public void setMXN(Double MXN) {
+        this.MXN = MXN;
     }
 
-    public Double getUSDMYR() {
+    public Double getMYR() {
         return MYR;
     }
 
-    public void setUSDMYR(Double uSDMYR) {
-        this.MYR = uSDMYR;
+    public void setMYR(Double MYR) {
+        this.MYR = MYR;
     }
 
-    public Double getUSDMZN() {
+    public Double getMZN() {
         return MZN;
     }
 
-    public void setUSDMZN(Double uSDMZN) {
-        this.MZN = uSDMZN;
+    public void setMZN(Double MZN) {
+        this.MZN = MZN;
     }
 
-    public Double getUSDNAD() {
+    public Double getNAD() {
         return NAD;
     }
 
-    public void setUSDNAD(Double uSDNAD) {
-        this.NAD = uSDNAD;
+    public void setNAD(Double NAD) {
+        this.NAD = NAD;
     }
 
-    public Double getUSDNGN() {
+    public Double getNGN() {
         return NGN;
     }
 
-    public void setUSDNGN(Double uSDNGN) {
-        this.NGN = uSDNGN;
+    public void setNGN(Double NGN) {
+        this.NGN = NGN;
     }
 
-    public Double getUSDNIO() {
+    public Double getNIO() {
         return NIO;
     }
 
-    public void setUSDNIO(Double uSDNIO) {
-        this.NIO = uSDNIO;
+    public void setNIO(Double NIO) {
+        this.NIO = NIO;
     }
 
-    public Double getUSDNOK() {
+    public Double getNOK() {
         return NOK;
     }
 
-    public void setUSDNOK(Double uSDNOK) {
-        this.NOK = uSDNOK;
+    public void setNOK(Double NOK) {
+        this.NOK = NOK;
     }
 
-    public Double getUSDNPR() {
+    public Double getNPR() {
         return NPR;
     }
 
-    public void setUSDNPR(Double uSDNPR) {
-        this.NPR = uSDNPR;
+    public void setNPR(Double NPR) {
+        this.NPR = NPR;
     }
 
-    public Double getUSDNZD() {
+    public Double getNZD() {
         return NZD;
     }
 
-    public void setUSDNZD(Double uSDNZD) {
-        this.NZD = uSDNZD;
+    public void setNZD(Double NZD) {
+        this.NZD = NZD;
     }
 
-    public Double getUSDOMR() {
+    public Double getOMR() {
         return OMR;
     }
 
-    public void setUSDOMR(Double uSDOMR) {
-        this.OMR = uSDOMR;
+    public void setOMR(Double OMR) {
+        this.OMR = OMR;
     }
 
-    public Double getUSDPAB() {
+    public Double getPAB() {
         return PAB;
     }
 
-    public void setUSDPAB(Double uSDPAB) {
-        this.PAB = uSDPAB;
+    public void setPAB(Double PAB) {
+        this.PAB = PAB;
     }
 
-    public Double getUSDPEN() {
+    public Double getPEN() {
         return PEN;
     }
 
-    public void setUSDPEN(Double uSDPEN) {
-        this.PEN = uSDPEN;
+    public void setPEN(Double PEN) {
+        this.PEN = PEN;
     }
 
-    public Double getUSDPGK() {
+    public Double getPGK() {
         return PGK;
     }
 
-    public void setUSDPGK(Double uSDPGK) {
-        this.PGK = uSDPGK;
+    public void setPGK(Double PGK) {
+        this.PGK = PGK;
     }
 
-    public Double getUSDPHP() {
+    public Double getPHP() {
         return PHP;
     }
 
-    public void setUSDPHP(Double uSDPHP) {
-        this.PHP = uSDPHP;
+    public void setPHP(Double PHP) {
+        this.PHP = PHP;
     }
 
-    public Double getUSDPKR() {
+    public Double getPKR() {
         return PKR;
     }
 
-    public void setUSDPKR(Double uSDPKR) {
-        this.PKR = uSDPKR;
+    public void setPKR(Double PKR) {
+        this.PKR = PKR;
     }
 
-    public Double getUSDPLN() {
+    public Double getPLN() {
         return PLN;
     }
 
-    public void setUSDPLN(Double uSDPLN) {
-        this.PLN = uSDPLN;
+    public void setPLN(Double PLN) {
+        this.PLN = PLN;
     }
 
-    public Double getUSDPYG() {
+    public Double getPYG() {
         return PYG;
     }
 
-    public void setUSDPYG(Double uSDPYG) {
-        this.PYG = uSDPYG;
+    public void setPYG(Double PYG) {
+        this.PYG = PYG;
     }
 
-    public Double getUSDQAR() {
+    public Double getQAR() {
         return QAR;
     }
 
-    public void setUSDQAR(Double uSDQAR) {
-        this.QAR = uSDQAR;
+    public void setQAR(Double QAR) {
+        this.QAR = QAR;
     }
 
-    public Double getUSDRON() {
+    public Double getRON() {
         return RON;
     }
 
-    public void setUSDRON(Double uSDRON) {
-        this.RON = uSDRON;
+    public void setRON(Double RON) {
+        this.RON = RON;
     }
 
-    public Double getUSDRSD() {
+    public Double getRSD() {
         return RSD;
     }
 
-    public void setUSDRSD(Double uSDRSD) {
-        this.RSD = uSDRSD;
+    public void setRSD(Double RSD) {
+        this.RSD = RSD;
     }
 
-    public Double getUSDRUB() {
+    public Double getRUB() {
         return RUB;
     }
 
-    public void setUSDRUB(Double uSDRUB) {
-        this.RUB = uSDRUB;
+    public void setRUB(Double RUB) {
+        this.RUB = RUB;
     }
 
-    public Double getUSDRWF() {
+    public Double getRWF() {
         return RWF;
     }
 
-    public void setUSDRWF(Double uSDRWF) {
-        this.RWF = uSDRWF;
+    public void setRWF(Double RWF) {
+        this.RWF = RWF;
     }
 
-    public Double getUSDSAR() {
+    public Double getSAR() {
         return SAR;
     }
 
-    public void setUSDSAR(Double uSDSAR) {
-        this.SAR = uSDSAR;
+    public void setSAR(Double SAR) {
+        this.SAR = SAR;
     }
 
-    public Double getUSDSBD() {
+    public Double getSBD() {
         return SBD;
     }
 
-    public void setUSDSBD(Double uSDSBD) {
-        this.SBD = uSDSBD;
+    public void setSBD(Double SBD) {
+        this.SBD = SBD;
     }
 
-    public Double getUSDSCR() {
+    public Double getSCR() {
         return SCR;
     }
 
-    public void setUSDSCR(Double uSDSCR) {
-        this.SCR = uSDSCR;
+    public void setSCR(Double SCR) {
+        this.SCR = SCR;
     }
 
-    public Double getUSDSDG() {
+    public Double getSDG() {
         return SDG;
     }
 
-    public void setUSDSDG(Double uSDSDG) {
-        this.SDG = uSDSDG;
+    public void setSDG(Double SDG) {
+        this.SDG = SDG;
     }
 
-    public Double getUSDSEK() {
+    public Double getSEK() {
         return SEK;
     }
 
-    public void setUSDSEK(Double uSDSEK) {
-        this.SEK = uSDSEK;
+    public void setSEK(Double SEK) {
+        this.SEK = SEK;
     }
 
-    public Double getUSDSGD() {
+    public Double getSGD() {
         return SGD;
     }
 
-    public void setUSDSGD(Double uSDSGD) {
-        this.SGD = uSDSGD;
+    public void setSGD(Double SGD) {
+        this.SGD = SGD;
     }
 
-    public Double getUSDSHP() {
+    public Double getSHP() {
         return SHP;
     }
 
-    public void setUSDSHP(Double uSDSHP) {
-        this.SHP = uSDSHP;
+    public void setSHP(Double SHP) {
+        this.SHP = SHP;
     }
 
-    public Double getUSDSLL() {
+    public Double getSLL() {
         return SLL;
     }
 
-    public void setUSDSLL(Double uSDSLL) {
-        this.SLL = uSDSLL;
+    public void setSLL(Double SLL) {
+        this.SLL = SLL;
     }
 
-    public Double getUSDSOS() {
+    public Double getSOS() {
         return SOS;
     }
 
-    public void setUSDSOS(Double uSDSOS) {
-        this.SOS = uSDSOS;
+    public void setSOS(Double SOS) {
+        this.SOS = SOS;
     }
 
-    public Double getUSDSRD() {
+    public Double getSRD() {
         return SRD;
     }
 
-    public void setUSDSRD(Double uSDSRD) {
-        this.SRD = uSDSRD;
+    public void setSRD(Double SRD) {
+        this.SRD = SRD;
     }
 
-    public Double getUSDSTD() {
+    public Double getSTD() {
         return STD;
     }
 
-    public void setUSDSTD(Double uSDSTD) {
-        this.STD = uSDSTD;
+    public void setSTD(Double STD) {
+        this.STD = STD;
     }
 
-    public Double getUSDSVC() {
+    public Double getSVC() {
         return SVC;
     }
 
-    public void setUSDSVC(Double uSDSVC) {
-        this.SVC = uSDSVC;
+    public void setSVC(Double SVC) {
+        this.SVC = SVC;
     }
 
-    public Double getUSDSYP() {
+    public Double getSYP() {
         return SYP;
     }
 
-    public void setUSDSYP(Double uSDSYP) {
-        this.SYP = uSDSYP;
+    public void setSYP(Double SYP) {
+        this.SYP = SYP;
     }
 
-    public Double getUSDSZL() {
+    public Double getSZL() {
         return SZL;
     }
 
-    public void setUSDSZL(Double uSDSZL) {
-        this.SZL = uSDSZL;
+    public void setSZL(Double SZL) {
+        this.SZL = SZL;
     }
 
-    public Double getUSDTHB() {
+    public Double getTHB() {
         return THB;
     }
 
-    public void setUSDTHB(Double uSDTHB) {
-        this.THB = uSDTHB;
+    public void setTHB(Double THB) {
+        this.THB = THB;
     }
 
-    public Double getUSDTJS() {
+    public Double getTJS() {
         return TJS;
     }
 
-    public void setUSDTJS(Double uSDTJS) {
-        this.TJS = uSDTJS;
+    public void setTJS(Double TJS) {
+        this.TJS = TJS;
     }
 
-    public Double getUSDTMT() {
+    public Double getTMT() {
         return TMT;
     }
 
-    public void setUSDTMT(Double uSDTMT) {
-        this.TMT = uSDTMT;
+    public void setTMT(Double TMT) {
+        this.TMT = TMT;
     }
 
-    public Double getUSDTND() {
+    public Double getTND() {
         return TND;
     }
 
-    public void setUSDTND(Double uSDTND) {
-        this.TND = uSDTND;
+    public void setTND(Double TND) {
+        this.TND = TND;
     }
 
-    public Double getUSDTOP() {
+    public Double getTOP() {
         return TOP;
     }
 
-    public void setUSDTOP(Double uSDTOP) {
-        this.TOP = uSDTOP;
+    public void setTOP(Double TOP) {
+        this.TOP = TOP;
     }
 
-    public Double getUSDTRY() {
+    public Double getTRY() {
         return TRY;
     }
 
-    public void setUSDTRY(Double uSDTRY) {
-        this.TRY = uSDTRY;
+    public void setTRY(Double TRY) {
+        this.TRY = TRY;
     }
 
-    public Double getUSDTTD() {
+    public Double getTTD() {
         return TTD;
     }
 
-    public void setUSDTTD(Double uSDTTD) {
-        this.TTD = uSDTTD;
+    public void setTTD(Double TTD) {
+        this.TTD = TTD;
     }
 
-    public Double getUSDTWD() {
+    public Double getTWD() {
         return TWD;
     }
 
-    public void setUSDTWD(Double uSDTWD) {
-        this.TWD = uSDTWD;
+    public void setTWD(Double TWD) {
+        this.TWD = TWD;
     }
 
-    public Double getUSDTZS() {
+    public Double getTZS() {
         return TZS;
     }
 
-    public void setUSDTZS(Double uSDTZS) {
-        this.TZS = uSDTZS;
+    public void setTZS(Double TZS) {
+        this.TZS = TZS;
     }
 
-    public Double getUSDUAH() {
+    public Double getUAH() {
         return UAH;
     }
 
-    public void setUSDUAH(Double uSDUAH) {
-        this.UAH = uSDUAH;
+    public void setUAH(Double UAH) {
+        this.UAH = UAH;
     }
 
-    public Double getUSDUGX() {
+    public Double getUGX() {
         return UGX;
     }
 
-    public void setUSDUGX(Double uSDUGX) {
-        this.UGX = uSDUGX;
+    public void setUGX(Double UGX) {
+        this.UGX = UGX;
     }
 
-    public Double getUSDUSD() {
+    public Double getUSD() {
         return USD;
     }
 
-    public void setUSDUSD(Double uSDUSD) {
-        this.USD = uSDUSD;
+    public void setUSD(Double USD) {
+        this.USD = USD;
     }
 
-    public Double getUSDUYU() {
+    public Double getUYU() {
         return UYU;
     }
 
-    public void setUSDUYU(Double uSDUYU) {
-        this.UYU = uSDUYU;
+    public void setUYU(Double UYU) {
+        this.UYU = UYU;
     }
 
-    public Double getUSDUZS() {
+    public Double getUZS() {
         return UZS;
     }
 
-    public void setUSDUZS(Double uSDUZS) {
-        this.UZS = uSDUZS;
+    public void setUZS(Double UZS) {
+        this.UZS = UZS;
     }
 
-    public Double getUSDVEF() {
+    public Double getVEF() {
         return VEF;
     }
 
-    public void setUSDVEF(Double uSDVEF) {
-        this.VEF = uSDVEF;
+    public void setVEF(Double VEF) {
+        this.VEF = VEF;
     }
 
-    public Double getUSDVND() {
+    public Double getVND() {
         return VND;
     }
 
-    public void setUSDVND(Double uSDVND) {
-        this.VND = uSDVND;
+    public void setVND(Double VND) {
+        this.VND = VND;
     }
 
-    public Double getUSDVUV() {
+    public Double getVUV() {
         return VUV;
     }
 
-    public void setUSDVUV(Double uSDVUV) {
-        this.VUV = uSDVUV;
+    public void setVUV(Double VUV) {
+        this.VUV = VUV;
     }
 
-    public Double getUSDWST() {
+    public Double getWST() {
         return WST;
     }
 
-    public void setUSDWST(Double uSDWST) {
-        this.WST = uSDWST;
+    public void setWST(Double WST) {
+        this.WST = WST;
     }
 
-    public Double getUSDXAF() {
+    public Double getXAF() {
         return XAF;
     }
 
-    public void setUSDXAF(Double uSDXAF) {
-        this.XAF = uSDXAF;
+    public void setXAF(Double XAF) {
+        this.XAF = XAF;
     }
 
-    public Double getUSDXAG() {
+    public Double getXAG() {
         return XAG;
     }
 
-    public void setUSDXAG(Double uSDXAG) {
-        this.XAG = uSDXAG;
+    public void setXAG(Double XAG) {
+        this.XAG = XAG;
     }
 
-    public Double getUSDXAU() {
+    public Double getXAU() {
         return XAU;
     }
 
-    public void setUSDXAU(Double uSDXAU) {
-        this.XAU = uSDXAU;
+    public void setXAU(Double XAU) {
+        this.XAU = XAU;
     }
 
-    public Double getUSDXCD() {
+    public Double getXCD() {
         return XCD;
     }
 
-    public void setUSDXCD(Double uSDXCD) {
-        this.XCD = uSDXCD;
+    public void setXCD(Double XCD) {
+        this.XCD = XCD;
     }
 
-    public Double getUSDXDR() {
+    public Double getXDR() {
         return XDR;
     }
 
-    public void setUSDXDR(Double uSDXDR) {
-        this.XDR = uSDXDR;
+    public void setXDR(Double XDR) {
+        this.XDR = XDR;
     }
 
-    public Double getUSDXOF() {
+    public Double getXOF() {
         return XOF;
     }
 
-    public void setUSDXOF(Double uSDXOF) {
-        this.XOF = uSDXOF;
+    public void setXOF(Double XOF) {
+        this.XOF = XOF;
     }
 
-    public Double getUSDXPF() {
+    public Double getXPF() {
         return XPF;
     }
 
-    public void setUSDXPF(Double uSDXPF) {
-        this.XPF = uSDXPF;
+    public void setXPF(Double XPF) {
+        this.XPF = XPF;
     }
 
-    public Double getUSDYER() {
+    public Double getYER() {
         return YER;
     }
 
-    public void setUSDYER(Double uSDYER) {
-        this.YER = uSDYER;
+    public void setYER(Double YER) {
+        this.YER = YER;
     }
 
-    public Double getUSDZAR() {
+    public Double getZAR() {
         return ZAR;
     }
 
-    public void setUSDZAR(Double uSDZAR) {
-        this.ZAR = uSDZAR;
+    public void setZAR(Double ZAR) {
+        this.ZAR = ZAR;
     }
 
-    public Double getUSDZMK() {
+    public Double getZMK() {
         return ZMK;
     }
 
-    public void setUSDZMK(Double uSDZMK) {
-        this.ZMK = uSDZMK;
+    public void setZMK(Double ZMK) {
+        this.ZMK = ZMK;
     }
 
-    public Double getUSDZMW() {
+    public Double getZMW() {
         return ZMW;
     }
 
-    public void setUSDZMW(Double uSDZMW) {
-        this.ZMW = uSDZMW;
+    public void setZMW(Double ZMW) {
+        this.ZMW = ZMW;
     }
 
-    public Double getUSDZWL() {
+    public Double getZWL() {
         return ZWL;
     }
 
-    public void setUSDZWL(Double uSDZWL) {
-        this.ZWL = uSDZWL;
+    public void setZWL(Double ZWL) {
+        this.ZWL = ZWL;
     }
 
 }

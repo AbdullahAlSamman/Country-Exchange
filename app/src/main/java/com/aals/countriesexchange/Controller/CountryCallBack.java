@@ -8,10 +8,7 @@ import android.util.Log;
 import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.CountryODS;
-import com.aals.countriesexchange.Model.ODSAPI;
 import com.aals.countriesexchange.UI.MainActivity;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
@@ -23,21 +20,24 @@ import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ODSManager implements Callback<List<CountryODS>> {
+public class CountryCallBack implements Callback<List<CountryODS>> {
 
-    private static Gson gson;
-    private static OkHttpClient httpClient;
-    private static String url;
     private static Context baseContext;
     private static List<Country> countries = new ArrayList<Country>();
+    private static OkHttpClient httpClient;
     private List<CountryODS> countryOdsList = new ArrayList<CountryODS>();
 
+    public static byte[] toByteArray(InputStream bitmap) throws Exception {
+        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
+        int nRead;
+        byte[] data = new byte[16384];
 
-    public ODSManager(String url) {
-        this.url = url;
+        while ((nRead = bitmap.read(data, 0, data.length)) != -1) {
+            byteArray.write(data, 0, nRead);
+        }
+
+        return byteArray.toByteArray();
     }
 
     public static void fetchSvg(final int index, String flagUrl) throws Exception {
@@ -59,49 +59,8 @@ public class ODSManager implements Callback<List<CountryODS>> {
         }
     }
 
-    public static byte[] toByteArray(InputStream bitmap) throws Exception {
-        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-        int nRead;
-        byte[] data = new byte[16384];
-
-        while ((nRead = bitmap.read(data, 0, data.length)) != -1) {
-            byteArray.write(data, 0, nRead);
-        }
-
-        return byteArray.toByteArray();
-    }
-
-    public Context getBaseContext() {
-        return baseContext;
-    }
-
     public void setBaseContext(Context baseContext) {
-        this.baseContext = baseContext;
-    }
-
-    public List<Country> getCountries() {
-        return countries;
-    }
-
-    public void setCountries(ArrayList<Country> countries) {
-        this.countries = countries;
-    }
-
-    public void start() {
-
-        gson = new GsonBuilder()
-                .setLenient()
-                .create();
-
-        Retrofit querry = new Retrofit.Builder()
-                .baseUrl(url)
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .build();
-
-        ODSAPI odsapi = querry.create(ODSAPI.class);
-
-        Call<List<CountryODS>> call = odsapi.getCountries();
-        call.enqueue(this);
+        CountryCallBack.baseContext = baseContext;
     }
 
     @Override
@@ -113,7 +72,7 @@ public class ODSManager implements Callback<List<CountryODS>> {
 
             countries = countryOdsList.get(0).getData();
 
-            new dbInsertAll().execute(null, null, null);
+            new DBInsertAll().execute(null, null, null);
 
         } else {
             //TODO:Handle error or internet
@@ -126,7 +85,7 @@ public class ODSManager implements Callback<List<CountryODS>> {
     public void onFailure(Call<List<CountryODS>> call, Throwable t) {
         //TODO:send message to user
         // TODS:Testing
-        Log.e("ODSManager Error", t.getMessage());
+        Log.e("DataManager Error", t.getMessage());
     }
 
     public void logging() {
@@ -139,7 +98,7 @@ public class ODSManager implements Callback<List<CountryODS>> {
         Log.i("ODSObject", "ExchangeRates Array Size: " + countryOdsList.get(0).getData().size() + "");
     }
 
-    public class dbInsertAll extends AsyncTask<Void, Void, Void> {
+    public static class DBInsertAll extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -158,11 +117,10 @@ public class ODSManager implements Callback<List<CountryODS>> {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            Intent startMain = new Intent(getBaseContext(), MainActivity.class);
-            startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            baseContext.startActivity(startMain);
+            Intent intent = new Intent(baseContext, MainActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            baseContext.startActivity(intent);
         }
     }
 
 }
-
