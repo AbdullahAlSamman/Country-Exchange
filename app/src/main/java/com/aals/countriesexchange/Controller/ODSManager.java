@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.Model.Country;
-import com.aals.countriesexchange.Model.ODS;
+import com.aals.countriesexchange.Model.CountryODS;
 import com.aals.countriesexchange.Model.ODSAPI;
 import com.aals.countriesexchange.UI.MainActivity;
 import com.google.gson.Gson;
@@ -26,14 +26,14 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ODSManager implements Callback<List<ODS>> {
+public class ODSManager implements Callback<List<CountryODS>> {
 
     private static Gson gson;
     private static OkHttpClient httpClient;
     private static String url;
     private static Context baseContext;
     private static List<Country> countries = new ArrayList<Country>();
-    private List<ODS> odsList = new ArrayList<ODS>();
+    private List<CountryODS> countryOdsList = new ArrayList<CountryODS>();
 
 
     public ODSManager(String url) {
@@ -100,18 +100,18 @@ public class ODSManager implements Callback<List<ODS>> {
 
         ODSAPI odsapi = querry.create(ODSAPI.class);
 
-        Call<List<ODS>> call = odsapi.getCountries();
+        Call<List<CountryODS>> call = odsapi.getCountries();
         call.enqueue(this);
     }
 
     @Override
-    public void onResponse(Call<List<ODS>> call, Response<List<ODS>> response) {
+    public void onResponse(Call<List<CountryODS>> call, Response<List<CountryODS>> response) {
         if (response.isSuccessful()) {
-            odsList = response.body();
+            countryOdsList = response.body();
 
             logging();
 
-            countries = odsList.get(0).getData();
+            countries = countryOdsList.get(0).getData();
 
             new dbInsertAll().execute(null, null, null);
 
@@ -123,20 +123,20 @@ public class ODSManager implements Callback<List<ODS>> {
     }
 
     @Override
-    public void onFailure(Call<List<ODS>> call, Throwable t) {
+    public void onFailure(Call<List<CountryODS>> call, Throwable t) {
         //TODO:send message to user
         // TODS:Testing
         Log.e("ODSManager Error", t.getMessage());
     }
 
     public void logging() {
-        //Log Data
-        Log.i("ODSObject", "Size: " + odsList.size() + "");
-        Log.i("ODSObject", "ID: " + odsList.get(0).getId() + "");
-        Log.i("ODSObject", "License: " + odsList.get(0).getLicense() + "");
-        Log.i("ODSObject", "TimeStamp: " + odsList.get(0).getTimestamp() + "");
-        Log.i("ODSObject", "Origin: " + odsList.get(0).getOrigin() + "");
-        Log.i("ODSObject", "Data Array Size: " + odsList.get(0).getData().size() + "");
+        //Log ExchangeRates
+        Log.i("ODSObject", "Size: " + countryOdsList.size() + "");
+        Log.i("ODSObject", "ID: " + countryOdsList.get(0).getId() + "");
+        Log.i("ODSObject", "License: " + countryOdsList.get(0).getLicense() + "");
+        Log.i("ODSObject", "TimeStamp: " + countryOdsList.get(0).getTimestamp() + "");
+        Log.i("ODSObject", "Origin: " + countryOdsList.get(0).getOrigin() + "");
+        Log.i("ODSObject", "ExchangeRates Array Size: " + countryOdsList.get(0).getData().size() + "");
     }
 
     public class dbInsertAll extends AsyncTask<Void, Void, Void> {
@@ -148,7 +148,7 @@ public class ODSManager implements Callback<List<ODS>> {
                 for (int i = 0; i < countries.size(); i++) {
                     fetchSvg(i, countries.get(i).getFlag());
                 }
-                AppDB.getInstance(baseContext).userDao().insertAll(countries);
+                AppDB.getInstance(baseContext).countryDao().insertAllCountries(countries);
             } catch (Exception e) {
                 e.printStackTrace();
             }

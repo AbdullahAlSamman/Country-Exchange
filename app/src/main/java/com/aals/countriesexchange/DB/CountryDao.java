@@ -14,7 +14,7 @@ import java.util.List;
 public interface CountryDao {
 
     @Query("SELECT * FROM countries")
-    List<Country> getAll();
+    List<Country> getAllCountries();
 
     @Query("SELECT * FROM countries WHERE alpha3Code IN (:countryIds)")
     List<Country> loadAllByIds(int[] countryIds);
@@ -22,8 +22,8 @@ public interface CountryDao {
     @Query("SELECT * FROM countries WHERE name LIKE :name  LIMIT 1")
     Country findByName(String name);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Country> countries);
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertAllCountries(List<Country> countries);
 
     @Delete
     void delete(Country country);

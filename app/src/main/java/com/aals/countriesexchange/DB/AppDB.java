@@ -23,6 +23,6 @@ public abstract class AppDB extends RoomDatabase {
         return instance;
     }
 
-    public abstract CountryDao userDao();
+    public abstract CountryDao countryDao();
 }
 

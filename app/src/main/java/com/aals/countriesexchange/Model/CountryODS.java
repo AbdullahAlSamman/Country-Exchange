@@ -5,14 +5,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ODS {
+public class CountryODS {
 
     @SerializedName("id")
     @Expose
     private Integer id;
     @SerializedName("data")
     @Expose
-    private List<Country> data = null;
+    private List<Country> data;
     @SerializedName("timestamp")
     @Expose
     private String timestamp;
@@ -25,6 +25,10 @@ public class ODS {
     @SerializedName("pipelineId")
     @Expose
     private String pipelineId;
+
+    public CountryODS() {
+        data = null;
+    }
 
     public Integer getId() {
         return id;

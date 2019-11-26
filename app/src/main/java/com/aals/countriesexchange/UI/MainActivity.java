@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected String doInBackground(Context... contexts) {
-            countries = AppDB.getInstance(getApplicationContext()).userDao().getAll();
+            countries = AppDB.getInstance(getApplicationContext()).countryDao().getAllCountries();
             return null;
         }
 
