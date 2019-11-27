@@ -28,11 +28,11 @@ public class MainActivity extends AppCompatActivity {
 
         rvCoutries = findViewById(R.id.rv_countries);
 
-        new getDataFromDB().execute(getApplicationContext());
+        new GetDataFromDB().execute(getApplicationContext());
 
     }
 
-    public class getDataFromDB extends AsyncTask<Context, String, String> {
+    public class GetDataFromDB extends AsyncTask<Context, String, String> {
 
         @Override
         protected String doInBackground(Context... contexts) {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,6 +22,7 @@ import java.util.List;
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> {
 
     private List<Country> mCountries;
+    private Context context;
 
     public CountriesAdapter(List<Country> countries) {
         this.mCountries = countries;
@@ -29,7 +31,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context = parent.getContext();
+        context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
         View contactView = inflater.inflate(R.layout.item_country, parent, false);
@@ -63,19 +65,25 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     }
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         public TextView nameTV;
         public TextView languageTV;
         public TextView callingCodeTV;
         public ImageView flagIV;
 
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             nameTV = itemView.findViewById(R.id.country_name);
             languageTV = itemView.findViewById(R.id.country_language);
             callingCodeTV = itemView.findViewById(R.id.country_calling_code);
             flagIV = itemView.findViewById(R.id.country_flag);
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v) {
+            Toast.makeText(context.getApplicationContext(), getAdapterPosition() + "", Toast.LENGTH_SHORT).show();
         }
     }
 }
