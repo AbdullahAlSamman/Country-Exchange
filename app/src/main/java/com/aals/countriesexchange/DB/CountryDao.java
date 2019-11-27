@@ -22,6 +22,9 @@ public interface CountryDao {
     @Query("SELECT * FROM countries WHERE name LIKE :name  LIMIT 1")
     Country findByName(String name);
 
+    @Query("SELECT count(name) FROM countries")
+    int getCountriesCount();
+
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertAllCountries(List<Country> countries);
 

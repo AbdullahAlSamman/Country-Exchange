@@ -104,9 +104,11 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         protected Void doInBackground(Void... voids) {
 
             try {
-                for (int i = 0; i < countries.size(); i++) {
-                    fetchSvg(i, countries.get(i).getFlag());
-                }
+                //TODO: Check if data exists skip downloading flags check data id
+                if (countries.size() != AppDB.getInstance(baseContext).countryDao().getCountriesCount())
+                    for (int i = 0; i < countries.size(); i++) {
+                        fetchSvg(i, countries.get(i).getFlag());
+                    }
                 AppDB.getInstance(baseContext).countryDao().insertAllCountries(countries);
             } catch (Exception e) {
                 e.printStackTrace();
