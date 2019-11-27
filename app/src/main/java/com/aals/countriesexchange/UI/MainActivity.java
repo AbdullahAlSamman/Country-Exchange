@@ -1,9 +1,9 @@
 package com.aals.countriesexchange.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,14 +30,16 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         rvCoutries = findViewById(R.id.rv_countries);
 
         new GetDataFromDB().execute(getApplicationContext());
-
     }
 
     @Override
     public void onCountryClick(int position) {
         countries.get(position);
         //start other intents CountryView here
-        Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(this, CountryView.class);
+        intent.putExtra("country", countries.get(position));
+        startActivity(intent);
     }
 
     public void iniRecyclerView() {
