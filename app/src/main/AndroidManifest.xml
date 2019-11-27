@@ -14,9 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".UI.CountryView"></activity>
+        <activity
+            android:name=".UI.CountryView"
+            android:parentActivityName=".UI.MainActivity"></activity>
         <activity
             android:name=".UI.SplashScreen"
+            android:noHistory="true"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

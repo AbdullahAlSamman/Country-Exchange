@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:text="@string/country_name"></TextView>
+        android:text="@string/country_name"
+        android:textSize="26sp"></TextView>
 
 </RelativeLayout>
