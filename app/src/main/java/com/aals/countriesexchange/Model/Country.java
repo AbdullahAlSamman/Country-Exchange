@@ -330,9 +330,9 @@ public class Country implements Serializable {
         String result = "";
         for (int i = 0; i < callingCodes.size(); i++) {
             if (i == callingCodes.size() - 1)
-                result += callingCodes.get(i).toString();
+                result += "+" + callingCodes.get(i).toString();
             else
-                result += callingCodes.get(i).toString() + ", ";
+                result += "+" + callingCodes.get(i).toString() + ", ";
         }
         return result;
     }

@@ -1,17 +1,275 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".UI.CountryView">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_cs_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="@string/country_name"
-        android:textSize="26sp"></TextView>
+    <RelativeLayout xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        tools:context=".UI.CountryView">
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/iv_cs_image"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_margin="5dp"
+            android:contentDescription="@string/description"></ImageView>
+
+        <TextView
+            android:id="@+id/tv_cs_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_cs_image"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="5dp"
+            android:text="@string/country_name"
+            android:textSize="26sp"></TextView>
+
+        <LinearLayout
+            android:id="@+id/ll_native_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_cs_name"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_nativename"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_nativename"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_region"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_native_name"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_region"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_region"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_callingCodes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_region"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_callingcodes"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_callingcodes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_alphacodes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_callingCodes"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_alphacodes"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_alpah2code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:layout_marginEnd="3dp"
+                android:text="@string/country_coma"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_alpah3code"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_languages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_alphacodes"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_language"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_languages"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_capital"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_languages"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_capital"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_capital"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_population"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_capital"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_population"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_population"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_timezone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_population"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_timezones"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_timezones"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_borders"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_timezone"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_borders"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_borders"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_currencies"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_borders"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_currencies"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_currencies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

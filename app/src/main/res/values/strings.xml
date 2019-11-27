@@ -2,7 +2,16 @@
     <string name="app_name">Countries&amp;Exchange</string>
     <string name="title_1">Data from Server:</string>
     <string name="description">nothing to see here</string>
-    <string name="country_language">Language:</string>
+    <string name="country_language">Languages:</string>
     <string name="country_name">Country</string>
     <string name="country_callingcodes">Calling Codes:</string>
+    <string name="country_population">Population:</string>
+    <string name="country_timezones">Time Zones:</string>
+    <string name="country_capital">Capital</string>
+    <string name="country_borders">Borders:</string>
+    <string name="country_alphacodes">Alphabetical Codes</string>
+    <string name="country_nativename">Native Name:</string>
+    <string name="country_region">Continent:</string>
+    <string name="country_currencies">Currencies:</string>
+    <string name="country_coma"> , </string>
 </resources>
