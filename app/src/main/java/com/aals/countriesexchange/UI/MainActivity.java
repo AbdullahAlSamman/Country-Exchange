@@ -3,6 +3,7 @@ package com.aals.countriesexchange.UI;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +16,7 @@ import com.aals.countriesexchange.R;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements CountriesAdapter.OnCountryListener {
 
     private RecyclerView rvCoutries;
     private List<Country> countries;
@@ -32,7 +33,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public class GetDataFromDB extends AsyncTask<Context, String, String> {
+    @Override
+    public void onCountryClick(int position) {
+        countries.get(position);
+        //start other intents CountryView here
+        Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
+    }
+
+    public void iniRecyclerView() {
+        countriesAdapter = new CountriesAdapter(countries, this);
+        rvCoutries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvCoutries.setAdapter(countriesAdapter);
+    }
+
+    public class GetDataFromDB extends AsyncTask<Context, CountriesAdapter.OnCountryListener, String> {
 
         @Override
         protected String doInBackground(Context... contexts) {
@@ -43,9 +57,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            countriesAdapter = new CountriesAdapter(countries);
-            rvCoutries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-            rvCoutries.setAdapter(countriesAdapter);
+            iniRecyclerView();
         }
     }
 }
