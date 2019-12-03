@@ -1,6 +1,8 @@
 package com.aals.countriesexchange.UI;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.R;
 import com.pixplicity.sharp.Sharp;
+
+import org.osmdroid.api.IMapController;
+import org.osmdroid.config.Configuration;
+import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
+import org.osmdroid.util.GeoPoint;
+import org.osmdroid.views.MapView;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -30,11 +38,16 @@ public class CountryView extends AppCompatActivity {
     private TextView tvCountryNativeName;
     private TextView tvCountryRegion;
     private ActionBar toolbar;
+    private MapView countryMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Veiw Map configuration to Local storage and App Context
+        Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
+
         setContentView(R.layout.activity_country_view);
+
         toolbar = getSupportActionBar();
         toolbar.setDisplayHomeAsUpEnabled(true);
         toolbar.setDisplayShowHomeEnabled(true);
@@ -50,6 +63,7 @@ public class CountryView extends AppCompatActivity {
         tvCountryTimeZones = findViewById(R.id.tv_cs_timezones);
         tvCountryNativeName = findViewById(R.id.tv_cs_nativename);
         tvCountryRegion = findViewById(R.id.tv_cs_region);
+        countryMap = findViewById(R.id.country_map);
 
         country = (Country) getIntent().getSerializableExtra("country");
         tvCountryName.setText(country.getName());
@@ -69,5 +83,25 @@ public class CountryView extends AppCompatActivity {
         tvCountryNativeName.setText(country.getNativeName());
         tvCountryRegion.setText(country.getRegion());
 
+        countryMap.setTileSource(TileSourceFactory.MAPNIK);
+        countryMap.setMultiTouchControls(true);
+
+        //Go to country location , enable multitouch
+        IMapController mapController = countryMap.getController();
+        mapController.setZoom(7.5);
+        GeoPoint geoPoint = new GeoPoint(country.getLatlng().get(0), country.getLatlng().get(1));
+        mapController.setCenter(geoPoint);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        countryMap.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        countryMap.onPause();
     }
 }

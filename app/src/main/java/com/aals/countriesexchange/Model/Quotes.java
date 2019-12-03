@@ -16,6 +16,7 @@ public class Quotes {
     @NonNull
     private int id;
     private Date timestamp;
+    private String base;
     @SerializedName("USDAED")
     @Expose
     private Double AED;
@@ -520,6 +521,14 @@ public class Quotes {
     @SerializedName("USDZWL")
     @Expose
     private Double ZWL;
+
+    public String getBase() {
+        return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
+    }
 
     public Date getTimestamp() {
         return timestamp;

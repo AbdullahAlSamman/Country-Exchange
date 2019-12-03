@@ -203,10 +203,40 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/ll_timezone"
+            android:id="@+id/ll_area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_population"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:text="@string/country_area"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:id="@+id/tv_cs_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:text="@string/country_area_km"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_timezone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_area"
             android:layout_margin="5dp"
             android:orientation="horizontal">
 
@@ -270,6 +300,36 @@
                 android:textSize="14dp"></TextView>
 
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_exchange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ll_currencies"
+            android:layout_margin="5dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <Spinner
+                android:id="@+id/sp_country_exchange"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:textSize="14dp"></Spinner>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="14dp"></TextView>
+
+        </LinearLayout>
+
+        <org.osmdroid.views.MapView
+            android:id="@+id/country_map"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@+id/ll_exchange"
+            android:layout_margin="5dp"></org.osmdroid.views.MapView>
 
     </RelativeLayout>
 </ScrollView>

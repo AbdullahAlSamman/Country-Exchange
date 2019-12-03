@@ -35,6 +35,7 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
 
             quotes = exchangeOdsList.get(0).getExchangeRates().getQuotes();
             quotes.setTimestamp(new Date(exchangeOdsList.get(0).getExchangeRates().getTimestamp()));
+            quotes.setBase(exchangeOdsList.get(0).getExchangeRates().getSource());
 
             new DBInsert().execute(null, null, null);
 
@@ -57,6 +58,7 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
         protected Void doInBackground(Void... voids) {
 
             try {
+                //TODO:Check For time stamp if the same as last record don't save the data on db
                 AppDB.getInstance(baseContext).exchangeRatesDao().insertRates(quotes);
             } catch (Exception e) {
                 //TODO: handel exceptions
