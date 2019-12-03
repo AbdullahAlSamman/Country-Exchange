@@ -312,14 +312,25 @@
 
             <Spinner
                 android:id="@+id/sp_cs_exchange"
-                android:layout_width="wrap_content"
+                android:layout_width="110dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
+                android:textAlignment="center"
                 android:textSize="14dp"></Spinner>
 
-            <TextView
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:src="@drawable/ic_swap_horiz_24px"
+                android:textSize="14dp"></ImageView>
+
+            <TextView
+                android:id="@+id/tv_cs_currency_exchange_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="@string/country_currencies"
                 android:textSize="14dp"></TextView>
 
         </LinearLayout>

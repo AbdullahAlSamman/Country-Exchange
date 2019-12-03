@@ -7,10 +7,11 @@ import androidx.room.PrimaryKey;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Entity(tableName = "rates")
-public class Quotes {
+public class Quotes implements Serializable {
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -1890,4 +1891,9 @@ public class Quotes {
         this.ZWL = ZWL;
     }
 
+    @Deprecated
+    public double getCurrencyByName(String currency) {
+
+        return 0.0;
+    }
 }

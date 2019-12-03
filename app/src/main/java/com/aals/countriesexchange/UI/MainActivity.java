@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aals.countriesexchange.Adapter.CountriesAdapter;
 import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.Model.Country;
+import com.aals.countriesexchange.Model.Quotes;
 import com.aals.countriesexchange.R;
 
 import java.util.List;
@@ -20,6 +21,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
 
     private RecyclerView rvCoutries;
     private List<Country> countries;
+    private Quotes rates;
     private CountriesAdapter countriesAdapter;
 
     @Override
@@ -39,6 +41,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
 //        Toast.makeText(getApplicationContext(), position + "", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, CountryView.class);
         intent.putExtra("country", countries.get(position));
+        intent.putExtra("rates", rates);
         startActivity(intent);
     }
 
@@ -53,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         @Override
         protected String doInBackground(Context... contexts) {
             countries = AppDB.getInstance(getApplicationContext()).countryDao().getAllCountries();
+            rates = AppDB.getInstance(getApplicationContext()).exchangeRatesDao().getLastRate();
             return null;
         }
 

@@ -16,7 +16,7 @@
     <string name="country_coma"> , </string>
     <string name="country_area">Area:</string>
     <string name="country_area_km">KM</string>
-    <string-array name="exchange_currencies">
+    <string-array name="base_exchange_currencies">
         <item>USD</item>
         <item>EUR</item>
         <item>GBP</item>
