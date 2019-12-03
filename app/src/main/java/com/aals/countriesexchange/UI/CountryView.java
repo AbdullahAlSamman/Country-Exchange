@@ -1,6 +1,5 @@
 package com.aals.countriesexchange.UI;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.ImageView;
@@ -37,6 +36,7 @@ public class CountryView extends AppCompatActivity {
     private TextView tvCountryAlpah3Codes;
     private TextView tvCountryNativeName;
     private TextView tvCountryRegion;
+    private TextView tvCountryArea;
     private ActionBar toolbar;
     private MapView countryMap;
 
@@ -63,7 +63,8 @@ public class CountryView extends AppCompatActivity {
         tvCountryTimeZones = findViewById(R.id.tv_cs_timezones);
         tvCountryNativeName = findViewById(R.id.tv_cs_nativename);
         tvCountryRegion = findViewById(R.id.tv_cs_region);
-        countryMap = findViewById(R.id.country_map);
+        tvCountryArea = findViewById(R.id.tv_cs_area);
+        countryMap = findViewById(R.id.osm_cs_map);
 
         country = (Country) getIntent().getSerializableExtra("country");
         tvCountryName.setText(country.getName());
@@ -73,6 +74,7 @@ public class CountryView extends AppCompatActivity {
         Sharp.loadInputStream(targetStream).into(ivCountryFlag);
 
         tvCountryPopulation.setText(country.getPopulation().toString());
+        tvCountryArea.setText(Double.toString(country.getArea()));
         tvCountryCapital.setText(country.getCapital());
         tvCountryCallingCodes.setText(country.callingCodesToString());
         tvCountryLanguages.setText(country.languagesToString());
@@ -82,6 +84,7 @@ public class CountryView extends AppCompatActivity {
         tvCountryBorders.setText(country.getBorders().toString());
         tvCountryNativeName.setText(country.getNativeName());
         tvCountryRegion.setText(country.getRegion());
+
 
         countryMap.setTileSource(TileSourceFactory.MAPNIK);
         countryMap.setMultiTouchControls(true);

@@ -311,7 +311,7 @@
             android:orientation="horizontal">
 
             <Spinner
-                android:id="@+id/sp_country_exchange"
+                android:id="@+id/sp_cs_exchange"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
@@ -325,7 +325,7 @@
         </LinearLayout>
 
         <org.osmdroid.views.MapView
-            android:id="@+id/country_map"
+            android:id="@+id/osm_cs_map"
             android:layout_width="match_parent"
             android:layout_height="400dp"
             android:layout_below="@+id/ll_exchange"
