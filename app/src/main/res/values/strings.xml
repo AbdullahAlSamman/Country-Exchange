@@ -9,13 +9,16 @@
     <string name="country_timezones">Time Zones:</string>
     <string name="country_capital">Capital:</string>
     <string name="country_borders">Borders:</string>
-    <string name="country_alphacodes">Alphabetical Codes</string>
+    <string name="country_alphacodes">Alphabetical Codes:</string>
     <string name="country_nativename">Native Name:</string>
     <string name="country_region">Continent:</string>
     <string name="country_currencies">Currencies:</string>
     <string name="country_coma"> , </string>
     <string name="country_area">Area:</string>
     <string name="country_area_km">KM</string>
+    <string name="currency_name">Name</string>
+    <string name="currency_symbol">Symbol</string>
+    <string name="currency_code">Code</string>
     <string-array name="base_exchange_currencies">
         <item>USD</item>
         <item>EUR</item>

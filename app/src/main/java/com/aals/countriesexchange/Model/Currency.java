@@ -12,10 +12,10 @@ public class Currency implements Serializable {
     private String code;
     @SerializedName("name")
     @Expose
-    private Object name;
+    private String name;
     @SerializedName("symbol")
     @Expose
-    private Object symbol;
+    private String symbol;
 
     public String getCode() {
         return code;
@@ -25,19 +25,19 @@ public class Currency implements Serializable {
         this.code = code;
     }
 
-    public Object getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(Object name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public Object getSymbol() {
+    public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(Object symbol) {
+    public void setSymbol(String symbol) {
         this.symbol = symbol;
     }
 

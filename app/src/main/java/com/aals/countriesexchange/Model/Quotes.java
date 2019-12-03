@@ -8,6 +8,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
 import java.util.Date;
 
 @Entity(tableName = "rates")
@@ -1891,9 +1892,17 @@ public class Quotes implements Serializable {
         this.ZWL = ZWL;
     }
 
-    @Deprecated
     public double getCurrencyByName(String currency) {
 
         return 0.0;
+    }
+
+    public boolean checkCurrency(String currency) {
+        Field[] fields = getClass().getFields();
+        for (Field field : fields) {
+            if (field.getName().equals(currency))
+                return true;
+        }
+        return false;
     }
 }

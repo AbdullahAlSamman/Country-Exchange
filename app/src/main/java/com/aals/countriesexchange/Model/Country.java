@@ -337,4 +337,41 @@ public class Country implements Serializable {
         return result;
     }
 
+    public String currenciesToString() {
+        String result = "";
+        for (int i = 0; i < currencies.size(); i++) {
+            if (i == currencies.size() - 1)
+                result += currencies.get(i).getName() + ", Symbol: " + currencies.get(i).getSymbol() + "\n";
+            else
+                result += currencies.get(i).getName() + ", Symbol: " + currencies.get(i).getSymbol() + "\n";
+        }
+        return result;
+    }
+
+    public String bordersToString() {
+        String result = "";
+        if (borders.size() == 0)
+            return "Island no Borders";
+        for (int i = 0; i < borders.size(); i++) {
+            if (i == borders.size() - 1)
+                result += borders.get(i).toString();
+            else
+                result += borders.get(i).toString() + ", ";
+        }
+        return result;
+    }
+
+    public String timezoneToString() {
+        String result = "";
+        if (timezones.size() == 0)
+            return "No Times Zones";
+        for (int i = 0; i < timezones.size(); i++) {
+            if (i == timezones.size() - 1)
+                result += timezones.get(i);
+            else
+                result += timezones.get(i) + ", ";
+        }
+        return result;
+    }
+
 }

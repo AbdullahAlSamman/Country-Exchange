@@ -1,18 +1,23 @@
 package com.aals.countriesexchange.UI;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.aals.countriesexchange.Model.Country;
+import com.aals.countriesexchange.Model.Currency;
 import com.aals.countriesexchange.Model.Quotes;
 import com.aals.countriesexchange.R;
 import com.pixplicity.sharp.Sharp;
@@ -26,7 +31,7 @@ import org.osmdroid.views.MapView;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 
-public class CountryView extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class CountryView extends AppCompatActivity {
 
     private Country country;
     private Quotes rate;
@@ -43,17 +48,22 @@ public class CountryView extends AppCompatActivity implements AdapterView.OnItem
     private TextView tvCountryNativeName;
     private TextView tvCountryRegion;
     private TextView tvCountryArea;
+    private TextView tvCountryCurrencies;
+    private LinearLayout llCurrency;
     private Spinner spBaseCurrency;
     private TextView tvExchangeValue;
     private ActionBar toolbar;
     private MapView countryMap;
+    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        context = getApplicationContext();
+
         //View Map configuration to Local storage and App Context
-        Configuration.getInstance().load(getApplicationContext(), PreferenceManager.getDefaultSharedPreferences(getApplicationContext()));
+        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
 
         setContentView(R.layout.activity_country_view);
 
@@ -75,8 +85,10 @@ public class CountryView extends AppCompatActivity implements AdapterView.OnItem
         tvCountryNativeName = findViewById(R.id.tv_cs_nativename);
         tvCountryRegion = findViewById(R.id.tv_cs_region);
         tvCountryArea = findViewById(R.id.tv_cs_area);
+        tvCountryCurrencies = findViewById(R.id.tv_cs_currencies);
+        llCurrency = findViewById(R.id.ll_currencies_list);
         tvExchangeValue = findViewById(R.id.tv_cs_currency_exchange_value);
-        spBaseCurrency = findViewById(R.id.sp_cs_exchange);
+        spBaseCurrency = findViewById(R.id.sp_cs_base_exchange);
         countryMap = findViewById(R.id.osm_cs_map);
 
         //Get country & rates from intent set Name Title
@@ -96,17 +108,65 @@ public class CountryView extends AppCompatActivity implements AdapterView.OnItem
         tvCountryLanguages.setText(country.languagesToString());
         tvCountryAlpah3Codes.setText(country.getAlpha3Code());
         tvCountryAlpah2Codes.setText(country.getAlpha2Code());
-        tvCountryTimeZones.setText(country.getTimezones().toString());
-        tvCountryBorders.setText(country.getBorders().toString());
+        tvCountryTimeZones.setText(country.timezoneToString());
+        tvCountryBorders.setText(country.bordersToString());
         tvCountryNativeName.setText(country.getNativeName());
         tvCountryRegion.setText(country.getRegion());
 
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+        for (Currency currency : country.getCurrencies()) {
+            //children of parent linearlayout
+
+            LinearLayout innerLinearlayout = new LinearLayout(context);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(5, 5, 5, 5);
+            innerLinearlayout.setLayoutParams(layoutParams);
+            innerLinearlayout.setOrientation(LinearLayout.HORIZONTAL);
+
+            llCurrency.addView(innerLinearlayout);
+
+            //children of innerLinearlayout LinearLayout
+
+            TextView currencyName = new TextView(context);
+            currencyName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            currencyName.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+
+            TextView currencyCode = new TextView(context);
+            currencyCode.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            currencyCode.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+
+            TextView currencySymbol = new TextView(context);
+            currencySymbol.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+            currencySymbol.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+
+            currencyName.setText(currency.getName());
+            currencyCode.setText(currency.getCode());
+            currencySymbol.setText(currency.getSymbol());
+
+
+            innerLinearlayout.addView(currencyName);
+            innerLinearlayout.addView(currencyCode);
+            innerLinearlayout.addView(currencySymbol);
+        }
+
+
+        ArrayAdapter<CharSequence> baseCurrencyAdapter = ArrayAdapter.createFromResource(this,
                 R.array.base_exchange_currencies, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(R.layout.spinner_item_base_exchange);
-        spBaseCurrency.setOnItemSelectedListener(this);
-        spBaseCurrency.setAdapter(adapter);
+        baseCurrencyAdapter.setDropDownViewResource(R.layout.spinner_item_base_exchange);
+        spBaseCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                //TODO:Get exchange prices
+                parent.getItemAtPosition(position).toString();
+                tvExchangeValue.setText(rate.getEUR().toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        spBaseCurrency.setAdapter(baseCurrencyAdapter);
 
         //Map config
         countryMap.setTileSource(TileSourceFactory.MAPNIK);
@@ -131,16 +191,4 @@ public class CountryView extends AppCompatActivity implements AdapterView.OnItem
         countryMap.onPause();
     }
 
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // An item was selected. You can retrieve the selected item using
-        parent.getItemAtPosition(position).toString();
-        tvExchangeValue.setText(rate.getEUR().toString());
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
 }

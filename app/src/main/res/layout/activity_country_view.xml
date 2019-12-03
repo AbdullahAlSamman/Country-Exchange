@@ -40,13 +40,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_nativename"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_nativename"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -63,13 +63,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_region"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_region"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -86,13 +86,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_callingcodes"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_callingcodes"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -109,13 +109,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_alphacodes"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_alpah2code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,13 +123,13 @@
                 android:layout_marginStart="3dp"
                 android:layout_marginEnd="3dp"
                 android:text="@string/country_coma"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_alpah3code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -146,13 +146,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_language"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_languages"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -169,13 +169,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_capital"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_capital"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -192,13 +192,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_population"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_population"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -215,20 +215,20 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_area"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_area"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:text="@string/country_area_km"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -245,13 +245,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_timezones"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_timezones"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -268,13 +268,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_borders"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_borders"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
@@ -291,13 +291,53 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:text="@string/country_currencies"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
             <TextView
                 android:id="@+id/tv_cs_currencies"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_currencies_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/ll_currencies"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/currency_name"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CountryViewTextStyle"></TextView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/currency_code"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CountryViewTextStyle"></TextView>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/currency_symbol"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/CountryViewTextStyle"></TextView>
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -305,25 +345,34 @@
             android:id="@+id/ll_exchange"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ll_currencies"
+            android:layout_below="@id/ll_currencies_list"
             android:layout_margin="5dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <Spinner
-                android:id="@+id/sp_cs_exchange"
-                android:layout_width="110dp"
+                android:id="@+id/sp_cs_base_exchange"
+                android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:textAlignment="center"
-                android:textSize="14dp"></Spinner>
+                android:textAppearance="@style/CountryViewTextStyle"></Spinner>
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
                 android:src="@drawable/ic_swap_horiz_24px"
-                android:textSize="14dp"></ImageView>
+                android:textAppearance="@style/CountryViewTextStyle"></ImageView>
+
+            <Spinner
+                android:id="@+id/sp_cs_country_exchange"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/CountryViewTextStyle"></Spinner>
 
             <TextView
                 android:id="@+id/tv_cs_currency_exchange_value"
@@ -331,7 +380,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:text="@string/country_currencies"
-                android:textSize="14dp"></TextView>
+                android:textAppearance="@style/CountryViewTextStyle"></TextView>
 
         </LinearLayout>
 
