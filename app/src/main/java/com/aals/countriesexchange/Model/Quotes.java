@@ -1,9 +1,8 @@
 package com.aals.countriesexchange.Model;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import com.google.gson.annotations.Expose;
@@ -12,6 +11,8 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity(tableName = "rates")
 public class Quotes implements Serializable {
@@ -21,510 +22,515 @@ public class Quotes implements Serializable {
     private int id;
     private Date timestamp;
     private String base;
+    @Ignore
+    private Map<String, Double> currenciesList;
     @SerializedName("USDAED")
     @Expose
-    private Double AED;
+    private double AED;
     @SerializedName("USDAFN")
     @Expose
-    private Double AFN;
+    private double AFN;
     @SerializedName("USDALL")
     @Expose
-    private Double ALL;
+    private double ALL;
     @SerializedName("USDAMD")
     @Expose
-    private Double AMD;
+    private double AMD;
     @SerializedName("USDANG")
     @Expose
-    private Double ANG;
+    private double ANG;
     @SerializedName("USDAOA")
     @Expose
-    private Double AOA;
+    private double AOA;
     @SerializedName("USDARS")
     @Expose
-    private Double ARS;
+    private double ARS;
     @SerializedName("USDAUD")
     @Expose
-    private Double AUD;
+    private double AUD;
     @SerializedName("USDAWG")
     @Expose
-    private Double AWG;
+    private double AWG;
     @SerializedName("USDAZN")
     @Expose
-    private Double AZN;
+    private double AZN;
     @SerializedName("USDBAM")
     @Expose
-    private Double BAM;
+    private double BAM;
     @SerializedName("USDBBD")
     @Expose
-    private Double BBD;
+    private double BBD;
     @SerializedName("USDBDT")
     @Expose
-    private Double BDT;
+    private double BDT;
     @SerializedName("USDBGN")
     @Expose
-    private Double BGN;
+    private double BGN;
     @SerializedName("USDBHD")
     @Expose
-    private Double BHD;
+    private double BHD;
     @SerializedName("USDBIF")
     @Expose
-    private Double BIF;
+    private double BIF;
     @SerializedName("USDBMD")
     @Expose
-    private Double BMD;
+    private double BMD;
     @SerializedName("USDBND")
     @Expose
-    private Double BND;
+    private double BND;
     @SerializedName("USDBOB")
     @Expose
-    private Double BOB;
+    private double BOB;
     @SerializedName("USDBRL")
     @Expose
-    private Double BRL;
+    private double BRL;
     @SerializedName("USDBSD")
     @Expose
-    private Double BSD;
+    private double BSD;
     @SerializedName("USDBTC")
     @Expose
-    private Double BTC;
+    private double BTC;
     @SerializedName("USDBTN")
     @Expose
-    private Double BTN;
+    private double BTN;
     @SerializedName("USDBWP")
     @Expose
-    private Double BWP;
+    private double BWP;
     @SerializedName("USDBYN")
     @Expose
-    private Double BYN;
+    private double BYN;
     @SerializedName("USDBYR")
     @Expose
-    private Double BYR;
+    private double BYR;
     @SerializedName("USDBZD")
     @Expose
-    private Double BZD;
+    private double BZD;
     @SerializedName("USDCAD")
     @Expose
-    private Double CAD;
+    private double CAD;
     @SerializedName("USDCDF")
     @Expose
-    private Double CDF;
+    private double CDF;
     @SerializedName("USDCHF")
     @Expose
-    private Double CHF;
+    private double CHF;
     @SerializedName("USDCLF")
     @Expose
-    private Double CLF;
+    private double CLF;
     @SerializedName("USDCLP")
     @Expose
-    private Double CLP;
+    private double CLP;
     @SerializedName("USDCNY")
     @Expose
-    private Double CNY;
+    private double CNY;
     @SerializedName("USDCOP")
     @Expose
-    private Double COP;
+    private double COP;
     @SerializedName("USDCRC")
     @Expose
-    private Double CRC;
+    private double CRC;
     @SerializedName("USDCUC")
     @Expose
-    private Double CUC;
+    private double CUC;
     @SerializedName("USDCUP")
     @Expose
-    private Double CUP;
+    private double CUP;
     @SerializedName("USDCVE")
     @Expose
-    private Double CVE;
+    private double CVE;
     @SerializedName("USDCZK")
     @Expose
-    private Double CZK;
+    private double CZK;
     @SerializedName("USDDJF")
     @Expose
-    private Double DJF;
+    private double DJF;
     @SerializedName("USDDKK")
     @Expose
-    private Double DKK;
+    private double DKK;
     @SerializedName("USDDOP")
     @Expose
-    private Double DOP;
+    private double DOP;
     @SerializedName("USDDZD")
     @Expose
-    private Double DZD;
+    private double DZD;
     @SerializedName("USDEGP")
     @Expose
-    private Double EGP;
+    private double EGP;
     @SerializedName("USDERN")
     @Expose
-    private Double ERN;
+    private double ERN;
     @SerializedName("USDETB")
     @Expose
-    private Double ETB;
+    private double ETB;
     @SerializedName("USDEUR")
     @Expose
-    private Double EUR;
+    private double EUR;
     @SerializedName("USDFJD")
     @Expose
-    private Double FJD;
+    private double FJD;
     @SerializedName("USDFKP")
     @Expose
-    private Double FKP;
+    private double FKP;
     @SerializedName("USDGBP")
     @Expose
-    private Double GBP;
+    private double GBP;
     @SerializedName("USDGEL")
     @Expose
-    private Double GEL;
+    private double GEL;
     @SerializedName("USDGGP")
     @Expose
-    private Double GGP;
+    private double GGP;
     @SerializedName("USDGHS")
     @Expose
-    private Double GHS;
+    private double GHS;
     @SerializedName("USDGIP")
     @Expose
-    private Double GIP;
+    private double GIP;
     @SerializedName("USDGMD")
     @Expose
-    private Double GMD;
+    private double GMD;
     @SerializedName("USDGNF")
     @Expose
-    private Double GNF;
+    private double GNF;
     @SerializedName("USDGTQ")
     @Expose
-    private Double GTQ;
+    private double GTQ;
     @SerializedName("USDGYD")
     @Expose
-    private Double GYD;
+    private double GYD;
     @SerializedName("USDHKD")
     @Expose
-    private Double HKD;
+    private double HKD;
     @SerializedName("USDHNL")
     @Expose
-    private Double HNL;
+    private double HNL;
     @SerializedName("USDHRK")
     @Expose
-    private Double HRK;
+    private double HRK;
     @SerializedName("USDHTG")
     @Expose
-    private Double HTG;
+    private double HTG;
     @SerializedName("USDHUF")
     @Expose
-    private Double HUF;
+    private double HUF;
     @SerializedName("USDIDR")
     @Expose
-    private Double IDR;
+    private double IDR;
     @SerializedName("USDILS")
     @Expose
-    private Double ILS;
+    private double ILS;
     @SerializedName("USDIMP")
     @Expose
-    private Double IMP;
+    private double IMP;
     @SerializedName("USDINR")
     @Expose
-    private Double INR;
+    private double INR;
     @SerializedName("USDIQD")
     @Expose
-    private Double IQD;
+    private double IQD;
     @SerializedName("USDIRR")
     @Expose
-    private Double IRR;
+    private double IRR;
     @SerializedName("USDISK")
     @Expose
-    private Double ISK;
+    private double ISK;
     @SerializedName("USDJEP")
     @Expose
-    private Double JEP;
+    private double JEP;
     @SerializedName("USDJMD")
     @Expose
-    private Double JMD;
+    private double JMD;
     @SerializedName("USDJOD")
     @Expose
-    private Double JOD;
+    private double JOD;
     @SerializedName("USDJPY")
     @Expose
-    private Double JPY;
+    private double JPY;
     @SerializedName("USDKES")
     @Expose
-    private Double KES;
+    private double KES;
     @SerializedName("USDKGS")
     @Expose
-    private Double KGS;
+    private double KGS;
     @SerializedName("USDKHR")
     @Expose
-    private Double KHR;
+    private double KHR;
     @SerializedName("USDKMF")
     @Expose
-    private Double KMF;
+    private double KMF;
     @SerializedName("USDKPW")
     @Expose
-    private Double KPW;
+    private double KPW;
     @SerializedName("USDKRW")
     @Expose
-    private Double KRW;
+    private double KRW;
     @SerializedName("USDKWD")
     @Expose
-    private Double KWD;
+    private double KWD;
     @SerializedName("USDKYD")
     @Expose
-    private Double KYD;
+    private double KYD;
     @SerializedName("USDKZT")
     @Expose
-    private Double KZT;
+    private double KZT;
     @SerializedName("USDLAK")
     @Expose
-    private Double LAK;
+    private double LAK;
     @SerializedName("USDLBP")
     @Expose
-    private Double LBP;
+    private double LBP;
     @SerializedName("USDLKR")
     @Expose
-    private Double LKR;
+    private double LKR;
     @SerializedName("USDLRD")
     @Expose
-    private Double LRD;
+    private double LRD;
     @SerializedName("USDLSL")
     @Expose
-    private Double LSL;
+    private double LSL;
     @SerializedName("USDLTL")
     @Expose
-    private Double LTL;
+    private double LTL;
     @SerializedName("USDLVL")
     @Expose
-    private Double LVL;
+    private double LVL;
     @SerializedName("USDLYD")
     @Expose
-    private Double LYD;
+    private double LYD;
     @SerializedName("USDMAD")
     @Expose
-    private Double MAD;
+    private double MAD;
     @SerializedName("USDMDL")
     @Expose
-    private Double MDL;
+    private double MDL;
     @SerializedName("USDMGA")
     @Expose
-    private Double MGA;
+    private double MGA;
     @SerializedName("USDMKD")
     @Expose
-    private Double MKD;
+    private double MKD;
     @SerializedName("USDMMK")
     @Expose
-    private Double MMK;
+    private double MMK;
     @SerializedName("USDMNT")
     @Expose
-    private Double MNT;
+    private double MNT;
     @SerializedName("USDMOP")
     @Expose
-    private Double MOP;
+    private double MOP;
     @SerializedName("USDMRO")
     @Expose
-    private Double MRO;
+    private double MRO;
     @SerializedName("USDMUR")
     @Expose
-    private Double MUR;
+    private double MUR;
     @SerializedName("USDMVR")
     @Expose
-    private Double MVR;
+    private double MVR;
     @SerializedName("USDMWK")
     @Expose
-    private Double MWK;
+    private double MWK;
     @SerializedName("USDMXN")
     @Expose
-    private Double MXN;
+    private double MXN;
     @SerializedName("USDMYR")
     @Expose
-    private Double MYR;
+    private double MYR;
     @SerializedName("USDMZN")
     @Expose
-    private Double MZN;
+    private double MZN;
     @SerializedName("USDNAD")
     @Expose
-    private Double NAD;
+    private double NAD;
     @SerializedName("USDNGN")
     @Expose
-    private Double NGN;
+    private double NGN;
     @SerializedName("USDNIO")
     @Expose
-    private Double NIO;
+    private double NIO;
     @SerializedName("USDNOK")
     @Expose
-    private Double NOK;
+    private double NOK;
     @SerializedName("USDNPR")
     @Expose
-    private Double NPR;
+    private double NPR;
     @SerializedName("USDNZD")
     @Expose
-    private Double NZD;
+    private double NZD;
     @SerializedName("USDOMR")
     @Expose
-    private Double OMR;
+    private double OMR;
     @SerializedName("USDPAB")
     @Expose
-    private Double PAB;
+    private double PAB;
     @SerializedName("USDPEN")
     @Expose
-    private Double PEN;
+    private double PEN;
     @SerializedName("USDPGK")
     @Expose
-    private Double PGK;
+    private double PGK;
     @SerializedName("USDPHP")
     @Expose
-    private Double PHP;
+    private double PHP;
     @SerializedName("USDPKR")
     @Expose
-    private Double PKR;
+    private double PKR;
     @SerializedName("USDPLN")
     @Expose
-    private Double PLN;
+    private double PLN;
     @SerializedName("USDPYG")
     @Expose
-    private Double PYG;
+    private double PYG;
     @SerializedName("USDQAR")
     @Expose
-    private Double QAR;
+    private double QAR;
     @SerializedName("USDRON")
     @Expose
-    private Double RON;
+    private double RON;
     @SerializedName("USDRSD")
     @Expose
-    private Double RSD;
+    private double RSD;
     @SerializedName("USDRUB")
     @Expose
-    private Double RUB;
+    private double RUB;
     @SerializedName("USDRWF")
     @Expose
-    private Double RWF;
+    private double RWF;
     @SerializedName("USDSAR")
     @Expose
-    private Double SAR;
+    private double SAR;
     @SerializedName("USDSBD")
     @Expose
-    private Double SBD;
+    private double SBD;
     @SerializedName("USDSCR")
     @Expose
-    private Double SCR;
+    private double SCR;
     @SerializedName("USDSDG")
     @Expose
-    private Double SDG;
+    private double SDG;
     @SerializedName("USDSEK")
     @Expose
-    private Double SEK;
+    private double SEK;
     @SerializedName("USDSGD")
     @Expose
-    private Double SGD;
+    private double SGD;
     @SerializedName("USDSHP")
     @Expose
-    private Double SHP;
+    private double SHP;
     @SerializedName("USDSLL")
     @Expose
-    private Double SLL;
+    private double SLL;
     @SerializedName("USDSOS")
     @Expose
-    private Double SOS;
+    private double SOS;
     @SerializedName("USDSRD")
     @Expose
-    private Double SRD;
+    private double SRD;
     @SerializedName("USDSTD")
     @Expose
-    private Double STD;
+    private double STD;
     @SerializedName("USDSVC")
     @Expose
-    private Double SVC;
+    private double SVC;
     @SerializedName("USDSYP")
     @Expose
-    private Double SYP;
+    private double SYP;
     @SerializedName("USDSZL")
     @Expose
-    private Double SZL;
+    private double SZL;
     @SerializedName("USDTHB")
     @Expose
-    private Double THB;
+    private double THB;
     @SerializedName("USDTJS")
     @Expose
-    private Double TJS;
+    private double TJS;
     @SerializedName("USDTMT")
     @Expose
-    private Double TMT;
+    private double TMT;
     @SerializedName("USDTND")
     @Expose
-    private Double TND;
+    private double TND;
     @SerializedName("USDTOP")
     @Expose
-    private Double TOP;
+    private double TOP;
     @SerializedName("USDTRY")
     @Expose
-    private Double TRY;
+    private double TRY;
     @SerializedName("USDTTD")
     @Expose
-    private Double TTD;
+    private double TTD;
     @SerializedName("USDTWD")
     @Expose
-    private Double TWD;
+    private double TWD;
     @SerializedName("USDTZS")
     @Expose
-    private Double TZS;
+    private double TZS;
     @SerializedName("USDUAH")
     @Expose
-    private Double UAH;
+    private double UAH;
     @SerializedName("USDUGX")
     @Expose
-    private Double UGX;
+    private double UGX;
     @SerializedName("USDUSD")
     @Expose
-    private Double USD;
+    private double USD;
     @SerializedName("USDUYU")
     @Expose
-    private Double UYU;
+    private double UYU;
     @SerializedName("USDUZS")
     @Expose
-    private Double UZS;
+    private double UZS;
     @SerializedName("USDVEF")
     @Expose
-    private Double VEF;
+    private double VEF;
     @SerializedName("USDVND")
     @Expose
-    private Double VND;
+    private double VND;
     @SerializedName("USDVUV")
     @Expose
-    private Double VUV;
+    private double VUV;
     @SerializedName("USDWST")
     @Expose
-    private Double WST;
+    private double WST;
     @SerializedName("USDXAF")
     @Expose
-    private Double XAF;
+    private double XAF;
     @SerializedName("USDXAG")
     @Expose
-    private Double XAG;
+    private double XAG;
     @SerializedName("USDXAU")
     @Expose
-    private Double XAU;
+    private double XAU;
     @SerializedName("USDXCD")
     @Expose
-    private Double XCD;
+    private double XCD;
     @SerializedName("USDXDR")
     @Expose
-    private Double XDR;
+    private double XDR;
     @SerializedName("USDXOF")
     @Expose
-    private Double XOF;
+    private double XOF;
     @SerializedName("USDXPF")
     @Expose
-    private Double XPF;
+    private double XPF;
     @SerializedName("USDYER")
     @Expose
-    private Double YER;
+    private double YER;
     @SerializedName("USDZAR")
     @Expose
-    private Double ZAR;
+    private double ZAR;
     @SerializedName("USDZMK")
     @Expose
-    private Double ZMK;
+    private double ZMK;
     @SerializedName("USDZMW")
     @Expose
-    private Double ZMW;
+    private double ZMW;
     @SerializedName("USDZWL")
     @Expose
-    private Double ZWL;
+    private double ZWL;
+
+    public Quotes() {
+    }
 
     public String getBase() {
         return base;
@@ -550,1362 +556,1381 @@ public class Quotes implements Serializable {
         this.id = id;
     }
 
-    public Double getAED() {
+    public double getAED() {
         return AED;
     }
 
-    public void setAED(Double AED) {
+    public void setAED(double AED) {
         this.AED = AED;
     }
 
-    public Double getAFN() {
+    public double getAFN() {
         return AFN;
     }
 
-    public void setAFN(Double AFN) {
+    public void setAFN(double AFN) {
         this.AFN = AFN;
     }
 
-    public Double getALL() {
+    public double getALL() {
         return ALL;
     }
 
-    public void setALL(Double ALL) {
+    public void setALL(double ALL) {
         this.ALL = ALL;
     }
 
-    public Double getAMD() {
+    public double getAMD() {
         return AMD;
     }
 
-    public void setAMD(Double AMD) {
+    public void setAMD(double AMD) {
         this.AMD = AMD;
     }
 
-    public Double getANG() {
+    public double getANG() {
         return ANG;
     }
 
-    public void setANG(Double ANG) {
+    public void setANG(double ANG) {
         this.ANG = ANG;
     }
 
-    public Double getAOA() {
+    public double getAOA() {
         return AOA;
     }
 
-    public void setAOA(Double AOA) {
+    public void setAOA(double AOA) {
         this.AOA = AOA;
     }
 
-    public Double getARS() {
+    public double getARS() {
         return ARS;
     }
 
-    public void setARS(Double ARS) {
+    public void setARS(double ARS) {
         this.ARS = ARS;
     }
 
-    public Double getAUD() {
+    public double getAUD() {
         return AUD;
     }
 
-    public void setAUD(Double AUD) {
+    public void setAUD(double AUD) {
         this.AUD = AUD;
     }
 
-    public Double getAWG() {
+    public double getAWG() {
         return AWG;
     }
 
-    public void setAWG(Double AWG) {
+    public void setAWG(double AWG) {
         this.AWG = AWG;
     }
 
-    public Double getAZN() {
+    public double getAZN() {
         return AZN;
     }
 
-    public void setAZN(Double AZN) {
+    public void setAZN(double AZN) {
         this.AZN = AZN;
     }
 
-    public Double getBAM() {
+    public double getBAM() {
         return BAM;
     }
 
-    public void setBAM(Double BAM) {
+    public void setBAM(double BAM) {
         this.BAM = BAM;
     }
 
-    public Double getBBD() {
+    public double getBBD() {
         return BBD;
     }
 
-    public void setBBD(Double BBD) {
+    public void setBBD(double BBD) {
         this.BBD = BBD;
     }
 
-    public Double getBDT() {
+    public double getBDT() {
         return BDT;
     }
 
-    public void setBDT(Double BDT) {
+    public void setBDT(double BDT) {
         this.BDT = BDT;
     }
 
-    public Double getBGN() {
+    public double getBGN() {
         return BGN;
     }
 
-    public void setBGN(Double BGN) {
+    public void setBGN(double BGN) {
         this.BGN = BGN;
     }
 
-    public Double getBHD() {
+    public double getBHD() {
         return BHD;
     }
 
-    public void setBHD(Double BHD) {
+    public void setBHD(double BHD) {
         this.BHD = BHD;
     }
 
-    public Double getBIF() {
+    public double getBIF() {
         return BIF;
     }
 
-    public void setBIF(Double BIF) {
+    public void setBIF(double BIF) {
         this.BIF = BIF;
     }
 
-    public Double getBMD() {
+    public double getBMD() {
         return BMD;
     }
 
-    public void setBMD(Double BMD) {
+    public void setBMD(double BMD) {
         this.BMD = BMD;
     }
 
-    public Double getBND() {
+    public double getBND() {
         return BND;
     }
 
-    public void setBND(Double BND) {
+    public void setBND(double BND) {
         this.BND = BND;
     }
 
-    public Double getBOB() {
+    public double getBOB() {
         return BOB;
     }
 
-    public void setBOB(Double BOB) {
+    public void setBOB(double BOB) {
         this.BOB = BOB;
     }
 
-    public Double getBRL() {
+    public double getBRL() {
         return BRL;
     }
 
-    public void setBRL(Double BRL) {
+    public void setBRL(double BRL) {
         this.BRL = BRL;
     }
 
-    public Double getBSD() {
+    public double getBSD() {
         return BSD;
     }
 
-    public void setBSD(Double BSD) {
+    public void setBSD(double BSD) {
         this.BSD = BSD;
     }
 
-    public Double getBTC() {
+    public double getBTC() {
         return BTC;
     }
 
-    public void setBTC(Double BTC) {
+    public void setBTC(double BTC) {
         this.BTC = BTC;
     }
 
-    public Double getBTN() {
+    public double getBTN() {
         return BTN;
     }
 
-    public void setBTN(Double BTN) {
+    public void setBTN(double BTN) {
         this.BTN = BTN;
     }
 
-    public Double getBWP() {
+    public double getBWP() {
         return BWP;
     }
 
-    public void setBWP(Double BWP) {
+    public void setBWP(double BWP) {
         this.BWP = BWP;
     }
 
-    public Double getBYN() {
+    public double getBYN() {
         return BYN;
     }
 
-    public void setBYN(Double BYN) {
+    public void setBYN(double BYN) {
         this.BYN = BYN;
     }
 
-    public Double getBYR() {
+    public double getBYR() {
         return BYR;
     }
 
-    public void setBYR(Double BYR) {
+    public void setBYR(double BYR) {
         this.BYR = BYR;
     }
 
-    public Double getBZD() {
+    public double getBZD() {
         return BZD;
     }
 
-    public void setBZD(Double BZD) {
+    public void setBZD(double BZD) {
         this.BZD = BZD;
     }
 
-    public Double getCAD() {
+    public double getCAD() {
         return CAD;
     }
 
-    public void setCAD(Double CAD) {
+    public void setCAD(double CAD) {
         this.CAD = CAD;
     }
 
-    public Double getCDF() {
+    public double getCDF() {
         return CDF;
     }
 
-    public void setCDF(Double CDF) {
+    public void setCDF(double CDF) {
         this.CDF = CDF;
     }
 
-    public Double getCHF() {
+    public double getCHF() {
         return CHF;
     }
 
-    public void setCHF(Double CHF) {
+    public void setCHF(double CHF) {
         this.CHF = CHF;
     }
 
-    public Double getCLF() {
+    public double getCLF() {
         return CLF;
     }
 
-    public void setCLF(Double CLF) {
+    public void setCLF(double CLF) {
         this.CLF = CLF;
     }
 
-    public Double getCLP() {
+    public double getCLP() {
         return CLP;
     }
 
-    public void setCLP(Double CLP) {
+    public void setCLP(double CLP) {
         this.CLP = CLP;
     }
 
-    public Double getCNY() {
+    public double getCNY() {
         return CNY;
     }
 
-    public void setCNY(Double CNY) {
+    public void setCNY(double CNY) {
         this.CNY = CNY;
     }
 
-    public Double getCOP() {
+    public double getCOP() {
         return COP;
     }
 
-    public void setCOP(Double COP) {
+    public void setCOP(double COP) {
         this.COP = COP;
     }
 
-    public Double getCRC() {
+    public double getCRC() {
         return CRC;
     }
 
-    public void setCRC(Double CRC) {
+    public void setCRC(double CRC) {
         this.CRC = CRC;
     }
 
-    public Double getCUC() {
+    public double getCUC() {
         return CUC;
     }
 
-    public void setCUC(Double CUC) {
+    public void setCUC(double CUC) {
         this.CUC = CUC;
     }
 
-    public Double getCUP() {
+    public double getCUP() {
         return CUP;
     }
 
-    public void setCUP(Double CUP) {
+    public void setCUP(double CUP) {
         this.CUP = CUP;
     }
 
-    public Double getCVE() {
+    public double getCVE() {
         return CVE;
     }
 
-    public void setCVE(Double CVE) {
+    public void setCVE(double CVE) {
         this.CVE = CVE;
     }
 
-    public Double getCZK() {
+    public double getCZK() {
         return CZK;
     }
 
-    public void setCZK(Double CZK) {
+    public void setCZK(double CZK) {
         this.CZK = CZK;
     }
 
-    public Double getDJF() {
+    public double getDJF() {
         return DJF;
     }
 
-    public void setDJF(Double DJF) {
+    public void setDJF(double DJF) {
         this.DJF = DJF;
     }
 
-    public Double getDKK() {
+    public double getDKK() {
         return DKK;
     }
 
-    public void setDKK(Double DKK) {
+    public void setDKK(double DKK) {
         this.DKK = DKK;
     }
 
-    public Double getDOP() {
+    public double getDOP() {
         return DOP;
     }
 
-    public void setDOP(Double DOP) {
+    public void setDOP(double DOP) {
         this.DOP = DOP;
     }
 
-    public Double getDZD() {
+    public double getDZD() {
         return DZD;
     }
 
-    public void setDZD(Double DZD) {
+    public void setDZD(double DZD) {
         this.DZD = DZD;
     }
 
-    public Double getEGP() {
+    public double getEGP() {
         return EGP;
     }
 
-    public void setEGP(Double EGP) {
+    public void setEGP(double EGP) {
         this.EGP = EGP;
     }
 
-    public Double getERN() {
+    public double getERN() {
         return ERN;
     }
 
-    public void setERN(Double ERN) {
+    public void setERN(double ERN) {
         this.ERN = ERN;
     }
 
-    public Double getETB() {
+    public double getETB() {
         return ETB;
     }
 
-    public void setETB(Double ETB) {
+    public void setETB(double ETB) {
         this.ETB = ETB;
     }
 
-    public Double getEUR() {
+    public double getEUR() {
         return EUR;
     }
 
-    public void setEUR(Double EUR) {
+    public void setEUR(double EUR) {
         this.EUR = EUR;
     }
 
-    public Double getFJD() {
+    public double getFJD() {
         return FJD;
     }
 
-    public void setFJD(Double FJD) {
+    public void setFJD(double FJD) {
         this.FJD = FJD;
     }
 
-    public Double getFKP() {
+    public double getFKP() {
         return FKP;
     }
 
-    public void setFKP(Double FKP) {
+    public void setFKP(double FKP) {
         this.FKP = FKP;
     }
 
-    public Double getGBP() {
+    public double getGBP() {
         return GBP;
     }
 
-    public void setGBP(Double GBP) {
+    public void setGBP(double GBP) {
         this.GBP = GBP;
     }
 
-    public Double getGEL() {
+    public double getGEL() {
         return GEL;
     }
 
-    public void setGEL(Double GEL) {
+    public void setGEL(double GEL) {
         this.GEL = GEL;
     }
 
-    public Double getGGP() {
+    public double getGGP() {
         return GGP;
     }
 
-    public void setGGP(Double GGP) {
+    public void setGGP(double GGP) {
         this.GGP = GGP;
     }
 
-    public Double getGHS() {
+    public double getGHS() {
         return GHS;
     }
 
-    public void setGHS(Double GHS) {
+    public void setGHS(double GHS) {
         this.GHS = GHS;
     }
 
-    public Double getGIP() {
+    public double getGIP() {
         return GIP;
     }
 
-    public void setGIP(Double GIP) {
+    public void setGIP(double GIP) {
         this.GIP = GIP;
     }
 
-    public Double getGMD() {
+    public double getGMD() {
         return GMD;
     }
 
-    public void setGMD(Double GMD) {
+    public void setGMD(double GMD) {
         this.GMD = GMD;
     }
 
-    public Double getGNF() {
+    public double getGNF() {
         return GNF;
     }
 
-    public void setGNF(Double GNF) {
+    public void setGNF(double GNF) {
         this.GNF = GNF;
     }
 
-    public Double getGTQ() {
+    public double getGTQ() {
         return GTQ;
     }
 
-    public void setGTQ(Double GTQ) {
+    public void setGTQ(double GTQ) {
         this.GTQ = GTQ;
     }
 
-    public Double getGYD() {
+    public double getGYD() {
         return GYD;
     }
 
-    public void setGYD(Double GYD) {
+    public void setGYD(double GYD) {
         this.GYD = GYD;
     }
 
-    public Double getHKD() {
+    public double getHKD() {
         return HKD;
     }
 
-    public void setHKD(Double HKD) {
+    public void setHKD(double HKD) {
         this.HKD = HKD;
     }
 
-    public Double getHNL() {
+    public double getHNL() {
         return HNL;
     }
 
-    public void setHNL(Double HNL) {
+    public void setHNL(double HNL) {
         this.HNL = HNL;
     }
 
-    public Double getHRK() {
+    public double getHRK() {
         return HRK;
     }
 
-    public void setHRK(Double HRK) {
+    public void setHRK(double HRK) {
         this.HRK = HRK;
     }
 
-    public Double getHTG() {
+    public double getHTG() {
         return HTG;
     }
 
-    public void setHTG(Double HTG) {
+    public void setHTG(double HTG) {
         this.HTG = HTG;
     }
 
-    public Double getHUF() {
+    public double getHUF() {
         return HUF;
     }
 
-    public void setHUF(Double HUF) {
+    public void setHUF(double HUF) {
         this.HUF = HUF;
     }
 
-    public Double getIDR() {
+    public double getIDR() {
         return IDR;
     }
 
-    public void setIDR(Double IDR) {
+    public void setIDR(double IDR) {
         this.IDR = IDR;
     }
 
-    public Double getILS() {
+    public double getILS() {
         return ILS;
     }
 
-    public void setILS(Double ILS) {
+    public void setILS(double ILS) {
         this.ILS = ILS;
     }
 
-    public Double getIMP() {
+    public double getIMP() {
         return IMP;
     }
 
-    public void setIMP(Double IMP) {
+    public void setIMP(double IMP) {
         this.IMP = IMP;
     }
 
-    public Double getINR() {
+    public double getINR() {
         return INR;
     }
 
-    public void setINR(Double INR) {
+    public void setINR(double INR) {
         this.INR = INR;
     }
 
-    public Double getIQD() {
+    public double getIQD() {
         return IQD;
     }
 
-    public void setIQD(Double IQD) {
+    public void setIQD(double IQD) {
         this.IQD = IQD;
     }
 
-    public Double getIRR() {
+    public double getIRR() {
         return IRR;
     }
 
-    public void setIRR(Double IRR) {
+    public void setIRR(double IRR) {
         this.IRR = IRR;
     }
 
-    public Double getISK() {
+    public double getISK() {
         return ISK;
     }
 
-    public void setISK(Double ISK) {
+    public void setISK(double ISK) {
         this.ISK = ISK;
     }
 
-    public Double getJEP() {
+    public double getJEP() {
         return JEP;
     }
 
-    public void setJEP(Double JEP) {
+    public void setJEP(double JEP) {
         this.JEP = JEP;
     }
 
-    public Double getJMD() {
+    public double getJMD() {
         return JMD;
     }
 
-    public void setJMD(Double JMD) {
+    public void setJMD(double JMD) {
         this.JMD = JMD;
     }
 
-    public Double getJOD() {
+    public double getJOD() {
         return JOD;
     }
 
-    public void setJOD(Double JOD) {
+    public void setJOD(double JOD) {
         this.JOD = JOD;
     }
 
-    public Double getJPY() {
+    public double getJPY() {
         return JPY;
     }
 
-    public void setJPY(Double JPY) {
+    public void setJPY(double JPY) {
         this.JPY = JPY;
     }
 
-    public Double getKES() {
+    public double getKES() {
         return KES;
     }
 
-    public void setKES(Double KES) {
+    public void setKES(double KES) {
         this.KES = KES;
     }
 
-    public Double getKGS() {
+    public double getKGS() {
         return KGS;
     }
 
-    public void setKGS(Double KGS) {
+    public void setKGS(double KGS) {
         this.KGS = KGS;
     }
 
-    public Double getKHR() {
+    public double getKHR() {
         return KHR;
     }
 
-    public void setKHR(Double KHR) {
+    public void setKHR(double KHR) {
         this.KHR = KHR;
     }
 
-    public Double getKMF() {
+    public double getKMF() {
         return KMF;
     }
 
-    public void setKMF(Double KMF) {
+    public void setKMF(double KMF) {
         this.KMF = KMF;
     }
 
-    public Double getKPW() {
+    public double getKPW() {
         return KPW;
     }
 
-    public void setKPW(Double KPW) {
+    public void setKPW(double KPW) {
         this.KPW = KPW;
     }
 
-    public Double getKRW() {
+    public double getKRW() {
         return KRW;
     }
 
-    public void setKRW(Double KRW) {
+    public void setKRW(double KRW) {
         this.KRW = KRW;
     }
 
-    public Double getKWD() {
+    public double getKWD() {
         return KWD;
     }
 
-    public void setKWD(Double KWD) {
+    public void setKWD(double KWD) {
         this.KWD = KWD;
     }
 
-    public Double getKYD() {
+    public double getKYD() {
         return KYD;
     }
 
-    public void setKYD(Double KYD) {
+    public void setKYD(double KYD) {
         this.KYD = KYD;
     }
 
-    public Double getKZT() {
+    public double getKZT() {
         return KZT;
     }
 
-    public void setKZT(Double KZT) {
+    public void setKZT(double KZT) {
         this.KZT = KZT;
     }
 
-    public Double getLAK() {
+    public double getLAK() {
         return LAK;
     }
 
-    public void setLAK(Double LAK) {
+    public void setLAK(double LAK) {
         this.LAK = LAK;
     }
 
-    public Double getLBP() {
+    public double getLBP() {
         return LBP;
     }
 
-    public void setLBP(Double LBP) {
+    public void setLBP(double LBP) {
         this.LBP = LBP;
     }
 
-    public Double getLKR() {
+    public double getLKR() {
         return LKR;
     }
 
-    public void setLKR(Double LKR) {
+    public void setLKR(double LKR) {
         this.LKR = LKR;
     }
 
-    public Double getLRD() {
+    public double getLRD() {
         return LRD;
     }
 
-    public void setLRD(Double LRD) {
+    public void setLRD(double LRD) {
         this.LRD = LRD;
     }
 
-    public Double getLSL() {
+    public double getLSL() {
         return LSL;
     }
 
-    public void setLSL(Double LSL) {
+    public void setLSL(double LSL) {
         this.LSL = LSL;
     }
 
-    public Double getLTL() {
+    public double getLTL() {
         return LTL;
     }
 
-    public void setLTL(Double LTL) {
+    public void setLTL(double LTL) {
         this.LTL = LTL;
     }
 
-    public Double getLVL() {
+    public double getLVL() {
         return LVL;
     }
 
-    public void setLVL(Double LVL) {
+    public void setLVL(double LVL) {
         this.LVL = LVL;
     }
 
-    public Double getLYD() {
+    public double getLYD() {
         return LYD;
     }
 
-    public void setLYD(Double LYD) {
+    public void setLYD(double LYD) {
         this.LYD = LYD;
     }
 
-    public Double getMAD() {
+    public double getMAD() {
         return MAD;
     }
 
-    public void setMAD(Double MAD) {
+    public void setMAD(double MAD) {
         this.MAD = MAD;
     }
 
-    public Double getMDL() {
+    public double getMDL() {
         return MDL;
     }
 
-    public void setMDL(Double MDL) {
+    public void setMDL(double MDL) {
         this.MDL = MDL;
     }
 
-    public Double getMGA() {
+    public double getMGA() {
         return MGA;
     }
 
-    public void setMGA(Double MGA) {
+    public void setMGA(double MGA) {
         this.MGA = MGA;
     }
 
-    public Double getMKD() {
+    public double getMKD() {
         return MKD;
     }
 
-    public void setMKD(Double MKD) {
+    public void setMKD(double MKD) {
         this.MKD = MKD;
     }
 
-    public Double getMMK() {
+    public double getMMK() {
         return MMK;
     }
 
-    public void setMMK(Double MMK) {
+    public void setMMK(double MMK) {
         this.MMK = MMK;
     }
 
-    public Double getMNT() {
+    public double getMNT() {
         return MNT;
     }
 
-    public void setMNT(Double MNT) {
+    public void setMNT(double MNT) {
         this.MNT = MNT;
     }
 
-    public Double getMOP() {
+    public double getMOP() {
         return MOP;
     }
 
-    public void setMOP(Double MOP) {
+    public void setMOP(double MOP) {
         this.MOP = MOP;
     }
 
-    public Double getMRO() {
+    public double getMRO() {
         return MRO;
     }
 
-    public void setMRO(Double MRO) {
+    public void setMRO(double MRO) {
         this.MRO = MRO;
     }
 
-    public Double getMUR() {
+    public double getMUR() {
         return MUR;
     }
 
-    public void setMUR(Double MUR) {
+    public void setMUR(double MUR) {
         this.MUR = MUR;
     }
 
-    public Double getMVR() {
+    public double getMVR() {
         return MVR;
     }
 
-    public void setMVR(Double MVR) {
+    public void setMVR(double MVR) {
         this.MVR = MVR;
     }
 
-    public Double getMWK() {
+    public double getMWK() {
         return MWK;
     }
 
-    public void setMWK(Double MWK) {
+    public void setMWK(double MWK) {
         this.MWK = MWK;
     }
 
-    public Double getMXN() {
+    public double getMXN() {
         return MXN;
     }
 
-    public void setMXN(Double MXN) {
+    public void setMXN(double MXN) {
         this.MXN = MXN;
     }
 
-    public Double getMYR() {
+    public double getMYR() {
         return MYR;
     }
 
-    public void setMYR(Double MYR) {
+    public void setMYR(double MYR) {
         this.MYR = MYR;
     }
 
-    public Double getMZN() {
+    public double getMZN() {
         return MZN;
     }
 
-    public void setMZN(Double MZN) {
+    public void setMZN(double MZN) {
         this.MZN = MZN;
     }
 
-    public Double getNAD() {
+    public double getNAD() {
         return NAD;
     }
 
-    public void setNAD(Double NAD) {
+    public void setNAD(double NAD) {
         this.NAD = NAD;
     }
 
-    public Double getNGN() {
+    public double getNGN() {
         return NGN;
     }
 
-    public void setNGN(Double NGN) {
+    public void setNGN(double NGN) {
         this.NGN = NGN;
     }
 
-    public Double getNIO() {
+    public double getNIO() {
         return NIO;
     }
 
-    public void setNIO(Double NIO) {
+    public void setNIO(double NIO) {
         this.NIO = NIO;
     }
 
-    public Double getNOK() {
+    public double getNOK() {
         return NOK;
     }
 
-    public void setNOK(Double NOK) {
+    public void setNOK(double NOK) {
         this.NOK = NOK;
     }
 
-    public Double getNPR() {
+    public double getNPR() {
         return NPR;
     }
 
-    public void setNPR(Double NPR) {
+    public void setNPR(double NPR) {
         this.NPR = NPR;
     }
 
-    public Double getNZD() {
+    public double getNZD() {
         return NZD;
     }
 
-    public void setNZD(Double NZD) {
+    public void setNZD(double NZD) {
         this.NZD = NZD;
     }
 
-    public Double getOMR() {
+    public double getOMR() {
         return OMR;
     }
 
-    public void setOMR(Double OMR) {
+    public void setOMR(double OMR) {
         this.OMR = OMR;
     }
 
-    public Double getPAB() {
+    public double getPAB() {
         return PAB;
     }
 
-    public void setPAB(Double PAB) {
+    public void setPAB(double PAB) {
         this.PAB = PAB;
     }
 
-    public Double getPEN() {
+    public double getPEN() {
         return PEN;
     }
 
-    public void setPEN(Double PEN) {
+    public void setPEN(double PEN) {
         this.PEN = PEN;
     }
 
-    public Double getPGK() {
+    public double getPGK() {
         return PGK;
     }
 
-    public void setPGK(Double PGK) {
+    public void setPGK(double PGK) {
         this.PGK = PGK;
     }
 
-    public Double getPHP() {
+    public double getPHP() {
         return PHP;
     }
 
-    public void setPHP(Double PHP) {
+    public void setPHP(double PHP) {
         this.PHP = PHP;
     }
 
-    public Double getPKR() {
+    public double getPKR() {
         return PKR;
     }
 
-    public void setPKR(Double PKR) {
+    public void setPKR(double PKR) {
         this.PKR = PKR;
     }
 
-    public Double getPLN() {
+    public double getPLN() {
         return PLN;
     }
 
-    public void setPLN(Double PLN) {
+    public void setPLN(double PLN) {
         this.PLN = PLN;
     }
 
-    public Double getPYG() {
+    public double getPYG() {
         return PYG;
     }
 
-    public void setPYG(Double PYG) {
+    public void setPYG(double PYG) {
         this.PYG = PYG;
     }
 
-    public Double getQAR() {
+    public double getQAR() {
         return QAR;
     }
 
-    public void setQAR(Double QAR) {
+    public void setQAR(double QAR) {
         this.QAR = QAR;
     }
 
-    public Double getRON() {
+    public double getRON() {
         return RON;
     }
 
-    public void setRON(Double RON) {
+    public void setRON(double RON) {
         this.RON = RON;
     }
 
-    public Double getRSD() {
+    public double getRSD() {
         return RSD;
     }
 
-    public void setRSD(Double RSD) {
+    public void setRSD(double RSD) {
         this.RSD = RSD;
     }
 
-    public Double getRUB() {
+    public double getRUB() {
         return RUB;
     }
 
-    public void setRUB(Double RUB) {
+    public void setRUB(double RUB) {
         this.RUB = RUB;
     }
 
-    public Double getRWF() {
+    public double getRWF() {
         return RWF;
     }
 
-    public void setRWF(Double RWF) {
+    public void setRWF(double RWF) {
         this.RWF = RWF;
     }
 
-    public Double getSAR() {
+    public double getSAR() {
         return SAR;
     }
 
-    public void setSAR(Double SAR) {
+    public void setSAR(double SAR) {
         this.SAR = SAR;
     }
 
-    public Double getSBD() {
+    public double getSBD() {
         return SBD;
     }
 
-    public void setSBD(Double SBD) {
+    public void setSBD(double SBD) {
         this.SBD = SBD;
     }
 
-    public Double getSCR() {
+    public double getSCR() {
         return SCR;
     }
 
-    public void setSCR(Double SCR) {
+    public void setSCR(double SCR) {
         this.SCR = SCR;
     }
 
-    public Double getSDG() {
+    public double getSDG() {
         return SDG;
     }
 
-    public void setSDG(Double SDG) {
+    public void setSDG(double SDG) {
         this.SDG = SDG;
     }
 
-    public Double getSEK() {
+    public double getSEK() {
         return SEK;
     }
 
-    public void setSEK(Double SEK) {
+    public void setSEK(double SEK) {
         this.SEK = SEK;
     }
 
-    public Double getSGD() {
+    public double getSGD() {
         return SGD;
     }
 
-    public void setSGD(Double SGD) {
+    public void setSGD(double SGD) {
         this.SGD = SGD;
     }
 
-    public Double getSHP() {
+    public double getSHP() {
         return SHP;
     }
 
-    public void setSHP(Double SHP) {
+    public void setSHP(double SHP) {
         this.SHP = SHP;
     }
 
-    public Double getSLL() {
+    public double getSLL() {
         return SLL;
     }
 
-    public void setSLL(Double SLL) {
+    public void setSLL(double SLL) {
         this.SLL = SLL;
     }
 
-    public Double getSOS() {
+    public double getSOS() {
         return SOS;
     }
 
-    public void setSOS(Double SOS) {
+    public void setSOS(double SOS) {
         this.SOS = SOS;
     }
 
-    public Double getSRD() {
+    public double getSRD() {
         return SRD;
     }
 
-    public void setSRD(Double SRD) {
+    public void setSRD(double SRD) {
         this.SRD = SRD;
     }
 
-    public Double getSTD() {
+    public double getSTD() {
         return STD;
     }
 
-    public void setSTD(Double STD) {
+    public void setSTD(double STD) {
         this.STD = STD;
     }
 
-    public Double getSVC() {
+    public double getSVC() {
         return SVC;
     }
 
-    public void setSVC(Double SVC) {
+    public void setSVC(double SVC) {
         this.SVC = SVC;
     }
 
-    public Double getSYP() {
+    public double getSYP() {
         return SYP;
     }
 
-    public void setSYP(Double SYP) {
+    public void setSYP(double SYP) {
         this.SYP = SYP;
     }
 
-    public Double getSZL() {
+    public double getSZL() {
         return SZL;
     }
 
-    public void setSZL(Double SZL) {
+    public void setSZL(double SZL) {
         this.SZL = SZL;
     }
 
-    public Double getTHB() {
+    public double getTHB() {
         return THB;
     }
 
-    public void setTHB(Double THB) {
+    public void setTHB(double THB) {
         this.THB = THB;
     }
 
-    public Double getTJS() {
+    public double getTJS() {
         return TJS;
     }
 
-    public void setTJS(Double TJS) {
+    public void setTJS(double TJS) {
         this.TJS = TJS;
     }
 
-    public Double getTMT() {
+    public double getTMT() {
         return TMT;
     }
 
-    public void setTMT(Double TMT) {
+    public void setTMT(double TMT) {
         this.TMT = TMT;
     }
 
-    public Double getTND() {
+    public double getTND() {
         return TND;
     }
 
-    public void setTND(Double TND) {
+    public void setTND(double TND) {
         this.TND = TND;
     }
 
-    public Double getTOP() {
+    public double getTOP() {
         return TOP;
     }
 
-    public void setTOP(Double TOP) {
+    public void setTOP(double TOP) {
         this.TOP = TOP;
     }
 
-    public Double getTRY() {
+    public double getTRY() {
         return TRY;
     }
 
-    public void setTRY(Double TRY) {
+    public void setTRY(double TRY) {
         this.TRY = TRY;
     }
 
-    public Double getTTD() {
+    public double getTTD() {
         return TTD;
     }
 
-    public void setTTD(Double TTD) {
+    public void setTTD(double TTD) {
         this.TTD = TTD;
     }
 
-    public Double getTWD() {
+    public double getTWD() {
         return TWD;
     }
 
-    public void setTWD(Double TWD) {
+    public void setTWD(double TWD) {
         this.TWD = TWD;
     }
 
-    public Double getTZS() {
+    public double getTZS() {
         return TZS;
     }
 
-    public void setTZS(Double TZS) {
+    public void setTZS(double TZS) {
         this.TZS = TZS;
     }
 
-    public Double getUAH() {
+    public double getUAH() {
         return UAH;
     }
 
-    public void setUAH(Double UAH) {
+    public void setUAH(double UAH) {
         this.UAH = UAH;
     }
 
-    public Double getUGX() {
+    public double getUGX() {
         return UGX;
     }
 
-    public void setUGX(Double UGX) {
+    public void setUGX(double UGX) {
         this.UGX = UGX;
     }
 
-    public Double getUSD() {
+    public double getUSD() {
         return USD;
     }
 
-    public void setUSD(Double USD) {
+    public void setUSD(double USD) {
         this.USD = USD;
     }
 
-    public Double getUYU() {
+    public double getUYU() {
         return UYU;
     }
 
-    public void setUYU(Double UYU) {
+    public void setUYU(double UYU) {
         this.UYU = UYU;
     }
 
-    public Double getUZS() {
+    public double getUZS() {
         return UZS;
     }
 
-    public void setUZS(Double UZS) {
+    public void setUZS(double UZS) {
         this.UZS = UZS;
     }
 
-    public Double getVEF() {
+    public double getVEF() {
         return VEF;
     }
 
-    public void setVEF(Double VEF) {
+    public void setVEF(double VEF) {
         this.VEF = VEF;
     }
 
-    public Double getVND() {
+    public double getVND() {
         return VND;
     }
 
-    public void setVND(Double VND) {
+    public void setVND(double VND) {
         this.VND = VND;
     }
 
-    public Double getVUV() {
+    public double getVUV() {
         return VUV;
     }
 
-    public void setVUV(Double VUV) {
+    public void setVUV(double VUV) {
         this.VUV = VUV;
     }
 
-    public Double getWST() {
+    public double getWST() {
         return WST;
     }
 
-    public void setWST(Double WST) {
+    public void setWST(double WST) {
         this.WST = WST;
     }
 
-    public Double getXAF() {
+    public double getXAF() {
         return XAF;
     }
 
-    public void setXAF(Double XAF) {
+    public void setXAF(double XAF) {
         this.XAF = XAF;
     }
 
-    public Double getXAG() {
+    public double getXAG() {
         return XAG;
     }
 
-    public void setXAG(Double XAG) {
+    public void setXAG(double XAG) {
         this.XAG = XAG;
     }
 
-    public Double getXAU() {
+    public double getXAU() {
         return XAU;
     }
 
-    public void setXAU(Double XAU) {
+    public void setXAU(double XAU) {
         this.XAU = XAU;
     }
 
-    public Double getXCD() {
+    public double getXCD() {
         return XCD;
     }
 
-    public void setXCD(Double XCD) {
+    public void setXCD(double XCD) {
         this.XCD = XCD;
     }
 
-    public Double getXDR() {
+    public double getXDR() {
         return XDR;
     }
 
-    public void setXDR(Double XDR) {
+    public void setXDR(double XDR) {
         this.XDR = XDR;
     }
 
-    public Double getXOF() {
+    public double getXOF() {
         return XOF;
     }
 
-    public void setXOF(Double XOF) {
+    public void setXOF(double XOF) {
         this.XOF = XOF;
     }
 
-    public Double getXPF() {
+    public double getXPF() {
         return XPF;
     }
 
-    public void setXPF(Double XPF) {
+    public void setXPF(double XPF) {
         this.XPF = XPF;
     }
 
-    public Double getYER() {
+    public double getYER() {
         return YER;
     }
 
-    public void setYER(Double YER) {
+    public void setYER(double YER) {
         this.YER = YER;
     }
 
-    public Double getZAR() {
+    public double getZAR() {
         return ZAR;
     }
 
-    public void setZAR(Double ZAR) {
+    public void setZAR(double ZAR) {
         this.ZAR = ZAR;
     }
 
-    public Double getZMK() {
+    public double getZMK() {
         return ZMK;
     }
 
-    public void setZMK(Double ZMK) {
+    public void setZMK(double ZMK) {
         this.ZMK = ZMK;
     }
 
-    public Double getZMW() {
+    public double getZMW() {
         return ZMW;
     }
 
-    public void setZMW(Double ZMW) {
+    public void setZMW(double ZMW) {
         this.ZMW = ZMW;
     }
 
-    public Double getZWL() {
+    public double getZWL() {
         return ZWL;
     }
 
-    public void setZWL(Double ZWL) {
+    public void setZWL(double ZWL) {
         this.ZWL = ZWL;
     }
 
-    public double getCurrencyByName(String currency) {
 
+    public double getValueByCode(String currency) {
+
+        if (!currenciesList.isEmpty())
+            return currenciesList.get(currency);
         return 0.0;
     }
 
-    public boolean isCurrencyExist(String currency) {
-        Field[] fields = this.getClass().getFields();
-        for (Field field : fields) {
-            Log.i("Fields", field.getName());
-            if (field.getName().equals(currency))
-                return true;
+
+    private Map<String, Double> toHashMap() throws IllegalAccessException {
+        Map<String, Double> myObjectAsDict = new HashMap<>();
+        Field[] allFields = Quotes.class.getDeclaredFields();
+        for (Field field : allFields) {
+            Class<?> targetType = field.getType();
+            if (targetType == double.class)
+                myObjectAsDict.put(field.getName(), field.getDouble(this));
         }
+        return myObjectAsDict;
+    }
+
+    public boolean isValidCurrency(String code) {
+
+        try {
+            currenciesList = this.toHashMap();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if (currenciesList.containsKey(code))
+            return true;
         return false;
     }
 }
+

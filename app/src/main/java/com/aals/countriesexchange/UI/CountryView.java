@@ -156,7 +156,7 @@ public class CountryView extends AppCompatActivity {
         spBaseCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //TODO:Get exchange prices
+                //TODO:base exchange prices
             }
 
             @Override
@@ -174,6 +174,9 @@ public class CountryView extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO:Get exchange prices
+                String code = parent.getItemAtPosition(position).toString();
+                if (rates.isValidCurrency(code))
+                    tvExchangeValue.setText(Double.toString(rates.getValueByCode(code)));
             }
 
             @Override
