@@ -10,6 +10,7 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(tableName = "countries")
@@ -372,6 +373,14 @@ public class Country implements Serializable {
                 result += timezones.get(i) + ", ";
         }
         return result;
+    }
+
+    public List<String> currenciesCodes() {
+        List<String> list = new ArrayList<String>();
+        for (int i = 0; i < currencies.size(); i++) {
+            list.add(i, currencies.get(i).getCode());
+        }
+        return list;
     }
 
 }

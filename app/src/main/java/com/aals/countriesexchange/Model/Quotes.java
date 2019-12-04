@@ -1,5 +1,7 @@
 package com.aals.countriesexchange.Model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -1897,9 +1899,10 @@ public class Quotes implements Serializable {
         return 0.0;
     }
 
-    public boolean checkCurrency(String currency) {
-        Field[] fields = getClass().getFields();
+    public boolean isCurrencyExist(String currency) {
+        Field[] fields = this.getClass().getFields();
         for (Field field : fields) {
+            Log.i("Fields", field.getName());
             if (field.getName().equals(currency))
                 return true;
         }
