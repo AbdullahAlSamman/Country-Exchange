@@ -3,7 +3,6 @@ package com.aals.countriesexchange.UI;
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -31,7 +30,6 @@ import org.osmdroid.views.MapView;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.lang.reflect.Field;
 
 public class CountryView extends AppCompatActivity {
 
@@ -119,34 +117,36 @@ public class CountryView extends AppCompatActivity {
 
 
         for (Currency currency : country.getCurrencies()) {
-            LinearLayout innerLinearlayout = new LinearLayout(context);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            layoutParams.setMargins(5, 5, 5, 5);
-            innerLinearlayout.setLayoutParams(layoutParams);
-            innerLinearlayout.setOrientation(LinearLayout.HORIZONTAL);
+            if (currency.getName() != null) {
+                LinearLayout innerLinearlayout = new LinearLayout(context);
+                LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                layoutParams.setMargins(5, 5, 5, 5);
+                innerLinearlayout.setLayoutParams(layoutParams);
+                innerLinearlayout.setOrientation(LinearLayout.HORIZONTAL);
 
-            llCurrency.addView(innerLinearlayout);
+                llCurrency.addView(innerLinearlayout);
 
-            TextView currencyName = new TextView(context);
-            currencyName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            currencyName.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+                TextView currencyName = new TextView(context);
+                currencyName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                currencyName.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
-            TextView currencyCode = new TextView(context);
-            currencyCode.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            currencyCode.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+                TextView currencyCode = new TextView(context);
+                currencyCode.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                currencyCode.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
-            TextView currencySymbol = new TextView(context);
-            currencySymbol.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
-            currencySymbol.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
+                TextView currencySymbol = new TextView(context);
+                currencySymbol.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                currencySymbol.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
-            currencyName.setText(currency.getName());
-            currencyCode.setText(currency.getCode());
-            currencySymbol.setText(currency.getSymbol());
+                currencyName.setText(currency.getName());
+                currencyCode.setText(currency.getCode());
+                currencySymbol.setText(currency.getSymbol());
 
 
-            innerLinearlayout.addView(currencyName);
-            innerLinearlayout.addView(currencyCode);
-            innerLinearlayout.addView(currencySymbol);
+                innerLinearlayout.addView(currencyName);
+                innerLinearlayout.addView(currencyCode);
+                innerLinearlayout.addView(currencySymbol);
+            }
         }
 
         //Base exchange spinner from Strings array
@@ -157,9 +157,6 @@ public class CountryView extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO:Get exchange prices
-                tvExchangeValue.setText(rates.getEUR().toString());
-                Field[] fields = rates.getClass().getFields();
-                Log.i("Fields", fields.length + "");
             }
 
             @Override
@@ -177,9 +174,6 @@ public class CountryView extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 //TODO:Get exchange prices
-                tvExchangeValue.setText(rates.getEUR().toString());
-                Field[] fields = rates.getClass().getFields();
-                Log.i("Fields", fields.length + "");
             }
 
             @Override

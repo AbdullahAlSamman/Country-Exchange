@@ -377,8 +377,10 @@ public class Country implements Serializable {
 
     public List<String> currenciesCodes() {
         List<String> list = new ArrayList<String>();
+        String nill = "null";
         for (int i = 0; i < currencies.size(); i++) {
-            list.add(i, currencies.get(i).getCode());
+            if (currencies.get(i).getName() != null)
+                list.add(i, currencies.get(i).getCode());
         }
         return list;
     }
