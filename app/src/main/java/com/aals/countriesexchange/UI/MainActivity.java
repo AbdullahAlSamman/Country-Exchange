@@ -4,6 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.SearchView;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -49,6 +55,35 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         countriesAdapter = new CountriesAdapter(countries, this);
         rvCoutries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvCoutries.setAdapter(countriesAdapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.search_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) searchItem.getActionView();
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Log.e("search event", "onsubmit");
+                countriesAdapter.getFilter().filter(query);
+                countriesAdapter.notifyAll();
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                Log.e("search event", "onQueryTextChanged");
+                countriesAdapter.getFilter().filter(newText);
+                countriesAdapter.notifyDataSetChanged();
+                return false;
+            }
+        });
+
+        return true;
     }
 
     public class GetDataFromDB extends AsyncTask<Context, CountriesAdapter.OnCountryListener, String> {

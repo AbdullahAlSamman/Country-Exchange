@@ -19,6 +19,7 @@
     <string name="currency_name">Name</string>
     <string name="currency_symbol">Symbol</string>
     <string name="currency_code">Code</string>
+    <string name="action_search">Search</string>
     <string-array name="base_exchange_currencies">
         <item>USD</item>
         <item>EUR</item>

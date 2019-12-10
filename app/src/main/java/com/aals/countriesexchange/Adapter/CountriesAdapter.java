@@ -1,9 +1,12 @@
 package com.aals.countriesexchange.Adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -16,16 +19,19 @@ import com.pixplicity.sharp.Sharp;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 
-public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> {
+public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> implements Filterable {
 
+    private List<Country> fullCountries;
     private List<Country> mCountries;
     private Context context;
     private OnCountryListener onCountryListener;
 
     public CountriesAdapter(List<Country> countries, OnCountryListener onCountryListener) {
-        this.mCountries = countries;
+        this.fullCountries = countries;
+        mCountries = new ArrayList<Country>(countries);
         this.onCountryListener = onCountryListener;
     }
 
@@ -43,7 +49,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Country country = mCountries.get(position);
+        Country country = fullCountries.get(position);
         try {
             TextView countryName = holder.nameTV;
             countryName.setText(country.getName());
@@ -62,7 +68,38 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
 
     @Override
     public int getItemCount() {
-        return mCountries.size();
+        return fullCountries.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                List<Country> filteredList = new ArrayList<>();
+                if (constraint.length() == 0 || constraint == null) {
+                    filteredList.addAll(mCountries);
+                } else {
+                    String filterPattern = constraint.toString().toLowerCase().trim();
+                    for (Country item : fullCountries) {
+                        if (item.getName().toLowerCase().contains(filterPattern) || item.getCallingCodes().get(0).toLowerCase().contains(filterPattern))
+                            filteredList.add(item);
+                    }
+
+                }
+                FilterResults results = new FilterResults();
+                results.values = filteredList;
+                return results;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                fullCountries.clear();
+                fullCountries.addAll((List) results.values);
+                notifyDataSetChanged();
+
+            }
+        };
     }
 
 
