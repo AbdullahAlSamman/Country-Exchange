@@ -347,6 +347,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/ll_currencies_list"
             android:layout_margin="5dp"
+            android:weightSum="4.5"
             android:gravity="center_horizontal"
             android:orientation="horizontal">
 
@@ -354,8 +355,8 @@
                 android:id="@+id/sp_cs_base_exchange"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="5dp"
                 android:textAlignment="center"
+                android:layout_weight="1"
                 android:textAppearance="@style/CountryViewTextStyle"></Spinner>
 
             <ImageView
@@ -363,6 +364,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
+                android:layout_weight="0.5"
                 android:src="@drawable/ic_swap_horiz_24px"
                 android:textAppearance="@style/CountryViewTextStyle"></ImageView>
 
@@ -372,13 +374,15 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="5dp"
                 android:textAlignment="center"
+                android:layout_weight="1"
                 android:textAppearance="@style/CountryViewTextStyle"></Spinner>
 
             <TextView
                 android:id="@+id/tv_cs_currency_exchange_value"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_weight="2"
                 android:text="@string/country_currencies"
                 android:textAppearance="@style/CountryViewTextStyle"></TextView>
 

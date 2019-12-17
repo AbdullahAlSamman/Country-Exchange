@@ -24,6 +24,7 @@ public class Quotes implements Serializable {
     private String base;
     @Ignore
     private Map<String, Double> currenciesList;
+
     @SerializedName("USDAED")
     @Expose
     private double AED;
@@ -1943,7 +1944,8 @@ public class Quotes implements Serializable {
 
             midValue = 1 / getValueByCode(baseCode);
             result = Double.toString(midValue * getValueByCode(targetCode));
-            result = result.substring(0, 9);
+            if (result.length() > 9)
+                result = result.substring(0, 9);
         }
         return result;
     }
