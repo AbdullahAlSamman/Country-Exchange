@@ -214,23 +214,25 @@ public class CountryView extends AppCompatActivity {
     }
 
     public double zoomRatio(double area) {
-        if (area < 300.0) {
-            return 15.0;
+        if (area < 1000.0) {
+            return 14.0;
         } else if (area < 5000) {
-            return 12.0;
+            return 13.5;
         } else if (area < 10000) {
-            return 10.0;
+            return 13.0;
+        } else if (area < 70000) {
+            return 12.0;
         } else if (area < 100000) {
-            return 9.0;
+            return 11.0;
+        } else if (area < 150000) {
+            return 10.0;
         } else if (area < 200000) {
-            return 7.0;
-        } else if (area < 400000) {
+            return 9.0;
+        } else if (area < 300000) {
             return 8.0;
-        } else if (area < 800000) {
-            return 6.0;
-        } else if (area < 800000) {
-            return 5.0;
         } else if (area < 1000000) {
+            return 7.0;
+        } else if (area < 5000000) {
             return 4.0;
         }
         return 3.0;
