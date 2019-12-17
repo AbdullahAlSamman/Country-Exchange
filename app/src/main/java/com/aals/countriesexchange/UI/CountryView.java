@@ -3,6 +3,7 @@ package com.aals.countriesexchange.UI;
 import android.content.Context;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -156,7 +157,10 @@ public class CountryView extends AppCompatActivity {
         spBaseCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //TODO:base exchange prices
+                String base = parent.getItemAtPosition(position).toString();
+                String target = spCountryCurrency.getSelectedItem().toString();
+                Log.i("Spinners", base + "," + target);
+                tvExchangeValue.setText(rates.convertBaseToTarget(base, target));
             }
 
             @Override
@@ -173,10 +177,10 @@ public class CountryView extends AppCompatActivity {
         spCountryCurrency.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                //TODO:Get exchange prices
-                String code = parent.getItemAtPosition(position).toString();
-                if (rates.isValidCurrency(code))
-                    tvExchangeValue.setText(Double.toString(rates.getValueByCode(code)));
+                String base = spBaseCurrency.getSelectedItem().toString();
+                String target = spCountryCurrency.getSelectedItem().toString();
+                Log.i("Spinners", base + "," + target);
+                tvExchangeValue.setText(rates.convertBaseToTarget(base, target));
             }
 
             @Override
@@ -192,7 +196,7 @@ public class CountryView extends AppCompatActivity {
 
         //Go to country location , enable multitouch
         IMapController mapController = countryMap.getController();
-        mapController.setZoom(7.5); //TODO:Zoom calculate using area
+        mapController.setZoom(6.0); //TODO:Zoom calculate using area
         GeoPoint geoPoint = new GeoPoint(country.getLatlng().get(0), country.getLatlng().get(1));
         mapController.setCenter(geoPoint);
     }

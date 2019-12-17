@@ -530,6 +530,7 @@ public class Quotes implements Serializable {
     private double ZWL;
 
     public Quotes() {
+
     }
 
     public String getBase() {
@@ -1902,8 +1903,7 @@ public class Quotes implements Serializable {
 
 
     public double getValueByCode(String currency) {
-
-        if (!currenciesList.isEmpty())
+        if (!currenciesList.isEmpty() && isValidCurrency(currency))
             return currenciesList.get(currency);
         return 0.0;
     }
@@ -1921,16 +1921,32 @@ public class Quotes implements Serializable {
     }
 
     public boolean isValidCurrency(String code) {
-
-        try {
-            currenciesList = this.toHashMap();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
         if (currenciesList.containsKey(code))
             return true;
         return false;
     }
+
+    public String convertBaseToTarget(String baseCode, String targetCode) {
+
+        try {
+            currenciesList = this.toHashMap();
+        } catch (Exception e) {
+            e.printStackTrace(); //TODO: make sure you are connected to the internet.
+        }
+
+        double midValue;
+        String result = "1.0";
+        if (isValidCurrency(baseCode) && isValidCurrency(targetCode)) {
+
+            if (baseCode.equals(targetCode))
+                return result;
+
+            midValue = 1 / getValueByCode(baseCode);
+            result = Double.toString(midValue * getValueByCode(targetCode));
+            result = result.substring(0, 9);
+        }
+        return result;
+    }
+
 }
 

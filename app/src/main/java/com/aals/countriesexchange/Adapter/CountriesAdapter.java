@@ -80,6 +80,8 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
                 if (constraint.length() == 0 || constraint == null) {
                     filteredList.addAll(mCountries);
                 } else {
+                    fullCountries.clear();
+                    fullCountries.addAll(mCountries);
                     String filterPattern = constraint.toString().toLowerCase().trim();
                     for (Country item : fullCountries) {
                         if (item.getName().toLowerCase().contains(filterPattern) || item.getCallingCodes().get(0).toLowerCase().contains(filterPattern))
