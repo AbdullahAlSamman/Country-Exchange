@@ -1904,6 +1904,9 @@ public class Quotes implements Serializable {
 
 
     public double getValueByCode(String currency) {
+
+        hashMap();
+
         if (!currenciesList.isEmpty() && isValidCurrency(currency))
             return currenciesList.get(currency);
         return 0.0;
@@ -1922,6 +1925,9 @@ public class Quotes implements Serializable {
     }
 
     public boolean isValidCurrency(String code) {
+
+        hashMap();
+
         if (currenciesList.containsKey(code))
             return true;
         return false;
@@ -1929,11 +1935,7 @@ public class Quotes implements Serializable {
 
     public String convertBaseToTarget(String baseCode, String targetCode) {
 
-        try {
-            currenciesList = this.toHashMap();
-        } catch (Exception e) {
-            e.printStackTrace(); //TODO: make sure you are connected to the internet.
-        }
+        hashMap();
 
         double midValue;
         String result = "1.0";
@@ -1942,12 +1944,21 @@ public class Quotes implements Serializable {
             if (baseCode.equals(targetCode))
                 return result;
 
+            //since the USD is the base the division and conversion based on the USD/Currency
             midValue = 1 / getValueByCode(baseCode);
             result = Double.toString(midValue * getValueByCode(targetCode));
             if (result.length() > 9)
                 result = result.substring(0, 9);
         }
         return result;
+    }
+
+    private void hashMap() {
+        try {
+            currenciesList = this.toHashMap();
+        } catch (Exception e) {
+            e.printStackTrace(); //TODO: handel right way
+        }
     }
 
 }
