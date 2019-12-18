@@ -338,21 +338,10 @@ public class Country implements Serializable {
         return result;
     }
 
-    public String currenciesToString() {
-        String result = "";
-        for (int i = 0; i < currencies.size(); i++) {
-            if (i == currencies.size() - 1)
-                result += currencies.get(i).getName() + ", Symbol: " + currencies.get(i).getSymbol() + "\n";
-            else
-                result += currencies.get(i).getName() + ", Symbol: " + currencies.get(i).getSymbol() + "\n";
-        }
-        return result;
-    }
-
     public String bordersToString() {
         String result = "";
         if (borders.size() == 0)
-            return "Island no Borders";
+            return "Island has no orders";
         for (int i = 0; i < borders.size(); i++) {
             if (i == borders.size() - 1)
                 result += borders.get(i).toString();
@@ -377,7 +366,6 @@ public class Country implements Serializable {
 
     public List<String> currenciesCodes() {
         List<String> list = new ArrayList<String>();
-        String nill = "null";
         for (int i = 0; i < currencies.size(); i++) {
             if (currencies.get(i).getName() != null)
                 list.add(i, currencies.get(i).getCode());
