@@ -1,5 +1,8 @@
 package com.aals.countriesexchange;
 
+import android.app.Instrumentation;
+import android.content.pm.InstrumentationInfo;
+
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.Currency;
 import com.aals.countriesexchange.Model.Language;
