@@ -23,5 +23,8 @@
     <string-array name="base_exchange_currencies">
         <item>USD</item>
         <item>EUR</item>
+        <item>AUD</item>
+        <item>GBP</item>
+        <item>CAD</item>
     </string-array>
 </resources>
