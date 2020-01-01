@@ -1,6 +1,7 @@
 package com.aals.countriesexchange.DB;
 
 import androidx.room.Dao;
+import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
@@ -20,4 +21,7 @@ public interface ExchangeRatesDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertRates(Quotes rates);
+
+    @Delete
+    void delete(Quotes rates);
 }

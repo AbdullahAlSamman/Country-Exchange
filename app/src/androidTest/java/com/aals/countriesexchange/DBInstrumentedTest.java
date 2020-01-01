@@ -7,6 +7,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 
 import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.Model.Country;
+import com.aals.countriesexchange.Model.Quotes;
 
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,6 +19,8 @@ import org.junit.runner.RunWith;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.core.IsNot.not;
 import static org.junit.Assert.*;
 
 /**
@@ -86,5 +89,41 @@ public class DBInstrumentedTest {
         //make sure country deleteTest is deleted
         countries = dbInstance.countryDao().getAllCountries();
         assertEquals(countries.size(), 250);
+    }
+
+    @After
+    public void getQuotesTest() {
+        List<Quotes> rates = dbInstance.exchangeRatesDao().getRates();
+        assertThat(rates.size(),is(not(0)));
+    }
+
+    @After
+    public void getLastRateTest(){
+        Quotes rate = dbInstance.exchangeRatesDao().getLastRate();
+        assertNotNull(rate);
+        assertTrue(rate.isValidCurrency("USD"));
+        assertFalse(rate.isValidCurrency("new"));
+    }
+
+    @After
+    public void deleteInsertTest(){
+        //create new rates
+        Quotes rate = new Quotes();
+        rate.setUSD(11.0);
+
+        //insert rates
+        dbInstance.exchangeRatesDao().insertRates(rate);
+
+        //get last rates
+        rate = dbInstance.exchangeRatesDao().getLastRate();
+        //make sure the value matched the test value
+        assertEquals(rate.getUSD(), 11.0,0.0);
+
+        //delete the rates
+        dbInstance.exchangeRatesDao().delete(rate);
+
+        //make sure the test rates are deleted by checking the real value instead
+        rate = dbInstance.exchangeRatesDao().getLastRate();
+        assertThat(rate.getUSD(),is(not(11.0)));
     }
 }
