@@ -16,9 +16,6 @@ public interface CountryDao {
     @Query("SELECT * FROM countries")
     List<Country> getAllCountries();
 
-    @Query("SELECT * FROM countries WHERE alpha3Code IN (:countryIds)")
-    List<Country> loadAllByIds(int[] countryIds);
-
     @Query("SELECT * FROM countries WHERE name LIKE :name  LIMIT 1")
     Country findByName(String name);
 
