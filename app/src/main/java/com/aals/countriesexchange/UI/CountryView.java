@@ -196,7 +196,7 @@ public class CountryView extends AppCompatActivity {
 
         //Go to country location , enable multitouch
         IMapController mapController = countryMap.getController();
-        mapController.setZoom(zoomRatio(country.getArea())); //TODO:Zoom calculate using area
+        mapController.setZoom(zoomRatio(country.getArea()));
         GeoPoint geoPoint = new GeoPoint(country.getLatlng().get(0), country.getLatlng().get(1));
         mapController.setCenter(geoPoint);
     }

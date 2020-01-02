@@ -84,8 +84,8 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
     @Override
     public void onFailure(Call<List<CountryODS>> call, Throwable t) {
         //TODO:send message to user
-        // TODS:Testing
         Log.e("DataManager Error", t.getMessage());
+        call.cancel();
     }
 
     public void logging() {

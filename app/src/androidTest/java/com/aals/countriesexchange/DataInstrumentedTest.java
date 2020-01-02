@@ -6,6 +6,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.aals.countriesexchange.DataControllers.DataManager;
+import com.aals.countriesexchange.DataControllers.ODSAPI;
 
 import org.junit.Before;
 import org.junit.Test;

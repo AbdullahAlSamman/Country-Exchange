@@ -40,13 +40,15 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
             new DBInsert().execute(null, null, null);
 
         } else {
+            //TODO: handel error
             Log.e("Error", response.errorBody().toString());
         }
     }
 
     @Override
     public void onFailure(Call<List<ExchangeODS>> call, Throwable t) {
-
+        //TODO: Handel error
+        call.cancel();
     }
 
 
