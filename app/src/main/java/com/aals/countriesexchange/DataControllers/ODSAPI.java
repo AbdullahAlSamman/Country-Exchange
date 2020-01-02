@@ -1,4 +1,7 @@
-package com.aals.countriesexchange.Model;
+package com.aals.countriesexchange.DataControllers;
+
+import com.aals.countriesexchange.Model.CountryODS;
+import com.aals.countriesexchange.Model.ExchangeODS;
 
 import java.util.List;
 

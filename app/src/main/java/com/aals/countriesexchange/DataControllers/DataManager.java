@@ -1,10 +1,9 @@
-package com.aals.countriesexchange.Controller;
+package com.aals.countriesexchange.DataControllers;
 
 import android.content.Context;
 
 import com.aals.countriesexchange.Model.CountryODS;
 import com.aals.countriesexchange.Model.ExchangeODS;
-import com.aals.countriesexchange.Model.ODSAPI;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 

@@ -1,4 +1,4 @@
-package com.aals.countriesexchange.Controller;
+package com.aals.countriesexchange.DataControllers;
 
 import android.content.Context;
 import android.content.Intent;

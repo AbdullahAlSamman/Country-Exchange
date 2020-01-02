@@ -5,7 +5,7 @@ import android.content.Context;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
-import com.aals.countriesexchange.DB.AppDB;
+import com.aals.countriesexchange.DataControllers.DataManager;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -17,26 +17,31 @@ import static org.junit.Assert.assertNotNull;
 @RunWith(AndroidJUnit4.class)
 public class DataInstrumentedTest {
     private Context appContext;
+    private DataManager dataManager;
 
 
     @Before
-    public void setups(){
+    public void inits() {
         // Context of the app under test.
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.aals.countriesexchange", appContext.getPackageName());
+
+        dataManager = new DataManager(appContext.getResources().getString(R.string.server_url));
+        dataManager.setBaseContext(appContext);
     }
 
     @Test
-    public void getCountriesTest(){
-
-    }
-    @Test
-    public void getExchangeRatesTest(){
+    public void getCountriesTest() {
 
     }
 
     @Test
-    public void getFlagTest(){
+    public void getExchangeRatesTest() {
+
+    }
+
+    @Test
+    public void getFlagTest() {
 
     }
 }

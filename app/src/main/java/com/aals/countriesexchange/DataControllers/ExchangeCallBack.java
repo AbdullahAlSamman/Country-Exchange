@@ -1,4 +1,4 @@
-package com.aals.countriesexchange.Controller;
+package com.aals.countriesexchange.DataControllers;
 
 import android.content.Context;
 import android.os.AsyncTask;
@@ -40,7 +40,6 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
             new DBInsert().execute(null, null, null);
 
         } else {
-            //TODO:Handle error or internet
             Log.e("Error", response.errorBody().toString());
         }
     }
@@ -58,10 +57,8 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
         protected Void doInBackground(Void... voids) {
 
             try {
-                //TODO:Check For time stamp if the same as last record don't save the data on db
                 AppDB.getInstance(baseContext).exchangeRatesDao().insertRates(quotes);
             } catch (Exception e) {
-                //TODO: handel exceptions
                 e.printStackTrace();
             }
             return null;
