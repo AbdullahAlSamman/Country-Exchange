@@ -34,35 +34,36 @@ public class DBInstrumentedTest {
     private AppDB dbInstance;
 
     //The test will fail unless you open the app at least once to get all data from server
-    @Test
+    @Before
     public void useAppContext() {
         // Context of the app under test.
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 
         assertEquals("com.aals.countriesexchange", appContext.getPackageName());
-
         dbInstance = AppDB.getInstance(appContext);
         assertNotNull(dbInstance);
+
     }
 
-    @After
+
+    @Test
     public void getCountriesTest() {
         assertEquals(dbInstance.countryDao().getCountriesCount(), 250);
     }
 
-    @After
+    @Test
     public void findbyCountryNameTest() {
         Country country = dbInstance.countryDao().findByName("Brazil");
         assertEquals(country.getName(), "Brazil");
     }
 
-    @After
+    @Test
     public void getAllCountriesTest() {
         List<Country> countries = dbInstance.countryDao().getAllCountries();
         assertEquals(countries.size(), 250);
     }
 
-    @After
+    @Test
     public void deleteInsertCountryTest() {
         // create country
         Country country = new Country();
@@ -91,13 +92,13 @@ public class DBInstrumentedTest {
         assertEquals(countries.size(), 250);
     }
 
-    @After
+    @Test
     public void getQuotesTest() {
         List<Quotes> rates = dbInstance.exchangeRatesDao().getRates();
         assertThat(rates.size(),is(not(0)));
     }
 
-    @After
+    @Test
     public void getLastRateTest(){
         Quotes rate = dbInstance.exchangeRatesDao().getLastRate();
         assertNotNull(rate);
@@ -105,7 +106,7 @@ public class DBInstrumentedTest {
         assertFalse(rate.isValidCurrency("new"));
     }
 
-    @After
+    @Test
     public void deleteInsertTest(){
         //create new rates
         Quotes rate = new Quotes();
