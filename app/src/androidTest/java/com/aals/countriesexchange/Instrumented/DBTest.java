@@ -1,4 +1,4 @@
-package com.aals.countriesexchange;
+package com.aals.countriesexchange.Instrumented;
 
 import android.content.Context;
 
@@ -29,7 +29,7 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
-public class DBInstrumentedTest {
+public class DBTest {
     private Context appContext;
     private AppDB dbInstance;
 

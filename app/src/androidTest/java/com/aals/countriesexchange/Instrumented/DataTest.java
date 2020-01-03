@@ -1,4 +1,4 @@
-package com.aals.countriesexchange;
+package com.aals.countriesexchange.Instrumented;
 
 import android.content.Context;
 
@@ -7,6 +7,7 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import com.aals.countriesexchange.DataControllers.DataManager;
 import com.aals.countriesexchange.DataControllers.ODSAPI;
+import com.aals.countriesexchange.R;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,7 +17,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 @RunWith(AndroidJUnit4.class)
-public class DataInstrumentedTest {
+public class DataTest {
     private Context appContext;
     private DataManager dataManager;
 
