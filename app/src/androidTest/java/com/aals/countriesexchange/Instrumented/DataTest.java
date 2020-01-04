@@ -28,8 +28,6 @@ public class DataTest {
         appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         assertEquals("com.aals.countriesexchange", appContext.getPackageName());
 
-        dataManager = new DataManager(appContext.getResources().getString(R.string.server_url));
-        dataManager.setBaseContext(appContext);
     }
 
     @Test
