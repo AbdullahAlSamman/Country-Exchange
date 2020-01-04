@@ -22,6 +22,11 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
     private Context baseContext;
     private List<ExchangeODS> exchangeOdsList = new ArrayList<ExchangeODS>();
     private Quotes quotes;
+    private boolean update = false;
+
+    public void setUpdate(boolean update) {
+        this.update = update;
+    }
 
     public void setBaseContext(Context baseContext) {
         this.baseContext = baseContext;
@@ -69,8 +74,10 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
-            DataManager dataManager = new DataManager(baseContext.getResources().getString(R.string.server_url));
-            dataManager.startGetCountries();
+            if (!update) {
+                DataManager dataManager = new DataManager(baseContext.getResources().getString(R.string.server_url));
+                dataManager.startGetCountries();
+            }
         }
     }
 }

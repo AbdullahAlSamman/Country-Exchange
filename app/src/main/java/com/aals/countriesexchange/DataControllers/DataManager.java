@@ -59,8 +59,21 @@ public class DataManager {
         ODSAPI odsapi = querry.create(ODSAPI.class);
 
         Call<List<ExchangeODS>> call = odsapi.getExchangeRates();
+
         exchangeCallBack = new ExchangeCallBack();
         exchangeCallBack.setBaseContext(baseContext);
+        call.enqueue(exchangeCallBack);
+    }
+
+    public void updateExhcangeRates() {
+
+        ODSAPI odsapi = querry.create(ODSAPI.class);
+
+        Call<List<ExchangeODS>> call = odsapi.getExchangeRates();
+
+        exchangeCallBack = new ExchangeCallBack();
+        exchangeCallBack.setBaseContext(baseContext);
+        exchangeCallBack.setUpdate(true);
         call.enqueue(exchangeCallBack);
     }
 }

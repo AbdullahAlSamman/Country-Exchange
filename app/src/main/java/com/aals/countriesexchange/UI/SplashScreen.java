@@ -64,11 +64,17 @@ public class SplashScreen extends AppCompatActivity {
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
+
+                        ODSManager = new DataManager(getResources().getString(R.string.server_url));
+                        ODSManager.setBaseContext(getApplicationContext());
+                        ODSManager.updateExhcangeRates();
+
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
+
                     }
-                }, 1000);
+                }, 800);
 
             }
         }
