@@ -31,6 +31,7 @@ public class MainActivityUITest {
     public ActivityTestRule<MainActivity> activityRule
             = new ActivityTestRule<>(MainActivity.class);
 
+
     @Test
     public void recyclerViewOnItemClickTest() {
         //pressing at Second item
