@@ -31,11 +31,14 @@ import org.osmdroid.views.MapView;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 
 public class CountryView extends AppCompatActivity {
 
     private Country country;
     private Quotes rates;
+    private Map<String, String> alpha2names;
     private TextView tvCountryName;
     private ImageView ivCountryFlag;
     private TextView tvCountryCallingCodes;
@@ -97,6 +100,8 @@ public class CountryView extends AppCompatActivity {
         //Get country & rates from intent set Name Title
         country = (Country) getIntent().getSerializableExtra("country");
         rates = (Quotes) getIntent().getSerializableExtra("rates");
+        alpha2names = (Map<String, String>) getIntent().getSerializableExtra("alpha2names");
+
         tvCountryName.setText(country.getName());
         toolbar.setTitle(country.getName());
 
@@ -112,7 +117,7 @@ public class CountryView extends AppCompatActivity {
         tvCountryAlpah3Codes.setText(country.getAlpha3Code());
         tvCountryAlpah2Codes.setText(country.getAlpha2Code());
         tvCountryTimeZones.setText(country.timezoneToString());
-        tvCountryBorders.setText(country.bordersToString());
+        tvCountryBorders.setText(borderCountryNames());
         tvCountryNativeName.setText(country.getNativeName());
         tvCountryRegion.setText(country.getRegion());
 
@@ -236,6 +241,22 @@ public class CountryView extends AppCompatActivity {
             return 4.0;
         }
         return 3.0;
+    }
+
+    public String borderCountryNames() {
+        String result = "";
+        List<String> list = country.getBorders();
+        if (list.size() == 0) {
+            result = "Island has no Borders";
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (i == list.size() - 1)
+                    result += alpha2names.get(list.get(i));
+                else
+                    result += alpha2names.get(list.get(i)) + ", ";
+            }
+        }
+        return result;
     }
 
 }

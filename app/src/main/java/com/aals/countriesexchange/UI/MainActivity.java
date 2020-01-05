@@ -21,12 +21,16 @@ import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.Quotes;
 import com.aals.countriesexchange.R;
 
+import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements CountriesAdapter.OnCountryListener {
 
     private RecyclerView rvCoutries;
     private List<Country> countries;
+    private Map<String, String> alpha2Name;
     private Quotes rates;
     private CountriesAdapter countriesAdapter;
 
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         Intent intent = new Intent(this, CountryView.class);
         intent.putExtra("country", countries.get(position));
         intent.putExtra("rates", rates);
+        intent.putExtra("alpha2names", (Serializable) alpha2Name);
         startActivity(intent);
     }
 
@@ -54,6 +59,13 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         countriesAdapter = new CountriesAdapter(countries, this);
         rvCoutries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvCoutries.setAdapter(countriesAdapter);
+    }
+
+    public void alpha2Names() {
+        alpha2Name = new HashMap<>();
+        for (Country country : countries) {
+            alpha2Name.put(country.getAlpha3Code(), country.getName());
+        }
     }
 
     @Override
@@ -97,6 +109,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
+            alpha2Names();
             iniRecyclerView();
         }
     }
