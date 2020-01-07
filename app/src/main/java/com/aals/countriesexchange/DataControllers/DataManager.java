@@ -18,7 +18,7 @@ public class DataManager {
     private static Gson gson;
     private static String url;
     private static Context baseContext;
-    private Retrofit querry;
+    private Retrofit quarry;
     private CountryCallBack countryCallBack;
     private ExchangeCallBack exchangeCallBack;
 
@@ -29,7 +29,7 @@ public class DataManager {
                 .setLenient()
                 .create();
 
-        querry = new Retrofit.Builder()
+        quarry = new Retrofit.Builder()
                 .baseUrl(url)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -45,7 +45,7 @@ public class DataManager {
 
     public void startGetCountries() {
 
-        ODSAPI odsapi = querry.create(ODSAPI.class);
+        ODSAPI odsapi = quarry.create(ODSAPI.class);
 
         Call<List<CountryODS>> call = odsapi.getCountries();
 
@@ -56,7 +56,7 @@ public class DataManager {
 
     public void startGetExchangeRates() {
 
-        ODSAPI odsapi = querry.create(ODSAPI.class);
+        ODSAPI odsapi = quarry.create(ODSAPI.class);
 
         Call<List<ExchangeODS>> call = odsapi.getExchangeRates();
 
@@ -67,7 +67,7 @@ public class DataManager {
 
     public void updateExhcangeRates() {
 
-        ODSAPI odsapi = querry.create(ODSAPI.class);
+        ODSAPI odsapi = quarry.create(ODSAPI.class);
 
         Call<List<ExchangeODS>> call = odsapi.getExchangeRates();
 

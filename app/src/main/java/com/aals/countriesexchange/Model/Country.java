@@ -338,6 +338,7 @@ public class Country implements Serializable {
         return result;
     }
 
+    @Deprecated
     public String bordersToString() {
         String result = "";
         if (borders.size() == 0)

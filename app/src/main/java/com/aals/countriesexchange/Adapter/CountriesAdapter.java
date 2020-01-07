@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.R;
 import com.pixplicity.sharp.Sharp;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -61,8 +62,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             InputStream targetStream = new ByteArrayInputStream(country.getFlagImage());
             Sharp.loadInputStream(targetStream).into(flagImage);
         } catch (Exception e) {
-            //TODO:right handling
-            e.printStackTrace();
+            Log.i(this.getClass().getSimpleName(), e.getMessage());
         }
     }
 

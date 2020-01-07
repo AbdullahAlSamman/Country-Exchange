@@ -184,8 +184,8 @@ public class CountryView extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String base = spBaseCurrency.getSelectedItem().toString();
                 String target = spCountryCurrency.getSelectedItem().toString();
-                Log.i("Spinners", base + "," + target);
                 tvExchangeValue.setText(rates.convertBaseToTarget(base, target));
+                Log.i("Spinners", base + "," + target);
             }
 
             @Override
@@ -247,7 +247,7 @@ public class CountryView extends AppCompatActivity {
         String result = "";
         List<String> list = country.getBorders();
         if (list.size() == 0) {
-            result = "Island has no Borders";
+            result = getResources().getString(R.string.country_no_borders);
         } else {
             for (int i = 0; i < list.size(); i++) {
                 if (i == list.size() - 1)

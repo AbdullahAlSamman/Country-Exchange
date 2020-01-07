@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
+import android.widget.TextView;
 
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
     private Map<String, String> alpha2Name;
     private Quotes rates;
     private CountriesAdapter countriesAdapter;
+    private TextView tvMainInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         setContentView(R.layout.activity_main);
 
         rvCoutries = findViewById(R.id.rv_countries);
+        tvMainInfo = findViewById(R.id.tv_ma_message);
 
         new GetDataFromDB().execute(getApplicationContext());
     }
@@ -109,8 +112,12 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            alpha2Names();
-            iniRecyclerView();
+            if (countries.size() == 0) {
+                tvMainInfo.setText(getResources().getString(R.string.internet_disconnected_retry));
+            } else {
+                alpha2Names();
+                iniRecyclerView();
+            }
         }
     }
 }

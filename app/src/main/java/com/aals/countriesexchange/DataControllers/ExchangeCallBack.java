@@ -1,5 +1,6 @@
 package com.aals.countriesexchange.DataControllers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
@@ -45,20 +46,19 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
             new DBInsert().execute(null, null, null);
 
         } else {
-            //TODO: handel error
-            Log.e("Error", response.errorBody().toString());
+            Log.e(getClass().getSimpleName(), response.errorBody().toString());
+            call.cancel();
         }
     }
 
     @Override
     public void onFailure(Call<List<ExchangeODS>> call, Throwable t) {
-        //TODO: Handel error
+        Log.e(getClass().getSimpleName(), t.getMessage());
         call.cancel();
     }
 
 
     public class DBInsert extends AsyncTask<Void, Void, Void> {
-
 
         @Override
         protected Void doInBackground(Void... voids) {
@@ -66,7 +66,7 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
             try {
                 AppDB.getInstance(baseContext).exchangeRatesDao().insertRates(quotes);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), e.getMessage());
             }
             return null;
         }

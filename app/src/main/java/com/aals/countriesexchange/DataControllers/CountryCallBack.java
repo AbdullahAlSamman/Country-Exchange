@@ -1,5 +1,7 @@
 package com.aals.countriesexchange.DataControllers;
 
+import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -41,6 +43,7 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
     }
 
     public static void fetchSvg(final int index, String flagUrl) throws Exception {
+
         if (httpClient == null) {
             httpClient = new OkHttpClient.Builder()
                     .build();
@@ -52,10 +55,10 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         if (response.isSuccessful()) {
             InputStream stream = response.body().byteStream();
             countries.get(index).setFlagImage(toByteArray(stream));
-            Log.e("flag", countries.get(index).getFlagImage().length + "");
+            Log.e("fetchSVG", countries.get(index).getFlagImage().length + "");
             stream.close();
         } else {
-            Log.e("flag", "failed to get data");
+            Log.e("fetchSVG", "failed to get flag");
         }
     }
 
@@ -73,29 +76,27 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
             countries = countryOdsList.get(0).getData();
 
             new DBInsertAll().execute(null, null, null);
-
         } else {
-            //TODO:Handle error or internet
-            Log.e("Error", response.errorBody().toString());
+            Log.e(getClass().getSimpleName(), response.errorBody().toString());
+            call.cancel();
         }
 
     }
 
     @Override
     public void onFailure(Call<List<CountryODS>> call, Throwable t) {
-        //TODO:send message to user
-        Log.e("DataManager Error", t.getMessage());
-        call.cancel();
+        Log.e(getClass().getSimpleName(), t.getMessage());
+        call.clone().enqueue(this);
     }
 
     public void logging() {
         //Log ExchangeRates
-        Log.i("ODSObject", "Size: " + countryOdsList.size() + "");
-        Log.i("ODSObject", "ID: " + countryOdsList.get(0).getId() + "");
-        Log.i("ODSObject", "License: " + countryOdsList.get(0).getLicense() + "");
-        Log.i("ODSObject", "TimeStamp: " + countryOdsList.get(0).getTimestamp() + "");
-        Log.i("ODSObject", "Origin: " + countryOdsList.get(0).getOrigin() + "");
-        Log.i("ODSObject", "ExchangeRates Array Size: " + countryOdsList.get(0).getData().size() + "");
+        Log.i(getClass().getSimpleName(), "Size: " + countryOdsList.size() + "");
+        Log.i(getClass().getSimpleName(), "ID: " + countryOdsList.get(0).getId() + "");
+        Log.i(getClass().getSimpleName(), "License: " + countryOdsList.get(0).getLicense() + "");
+        Log.i(getClass().getSimpleName(), "TimeStamp: " + countryOdsList.get(0).getTimestamp() + "");
+        Log.i(getClass().getSimpleName(), "Origin: " + countryOdsList.get(0).getOrigin() + "");
+        Log.i(getClass().getSimpleName(), "ExchangeRates Array Size: " + countryOdsList.get(0).getData().size() + "");
     }
 
     public static class DBInsertAll extends AsyncTask<Void, Void, Void> {
@@ -110,7 +111,7 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
                     }
                 AppDB.getInstance(baseContext).countryDao().insertAllCountries(countries);
             } catch (Exception e) {
-                e.printStackTrace();
+                Log.e(getClass().getSimpleName(), e.getMessage());
             }
             return null;
         }

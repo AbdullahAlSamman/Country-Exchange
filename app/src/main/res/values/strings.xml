@@ -21,7 +21,9 @@
     <string name="currency_code">Code</string>
     <string name="action_search">Search</string>
     <string name="internet_disconnected">Please check your internet connection</string>
+    <string name="internet_disconnected_retry">Please check your internet connection and restart the app</string>
     <string name="splash_loading">Loading....</string>
+    <string name="country_no_borders">Island has no Borders.</string>
     <string-array name="base_exchange_currencies">
         <item>USD</item>
         <item>EUR</item>
