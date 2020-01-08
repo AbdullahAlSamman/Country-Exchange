@@ -105,8 +105,7 @@ public class CountryView extends AppCompatActivity {
         tvCountryName.setText(country.getName());
         toolbar.setTitle(country.getName());
 
-        InputStream targetStream = new ByteArrayInputStream(country.getFlagImage());
-        Sharp.loadInputStream(targetStream).into(ivCountryFlag);
+        ivCountryFlag.setImageBitmap(country.getFlagImage());
 
         //Country Data
         tvCountryPopulation.setText(country.getPopulation().toString());

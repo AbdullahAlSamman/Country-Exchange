@@ -1,5 +1,8 @@
 package com.aals.countriesexchange.DB;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 import androidx.room.TypeConverter;
 
 import com.aals.countriesexchange.Model.Currency;
@@ -8,6 +11,7 @@ import com.aals.countriesexchange.Model.RegionalBloc;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayOutputStream;
 import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
@@ -87,5 +91,17 @@ public class Converters {
     public static String regionalBlocsFromList(List<RegionalBloc> list) {
         Gson gson = new Gson();
         return gson.toJson(list);
+    }
+
+    @TypeConverter
+    public static byte[] bitmapToByteArray(Bitmap bitmap) {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        return outputStream.toByteArray();
+    }
+
+    @TypeConverter
+    public static Bitmap byteArrayToBitmap(byte[] imgByte) {
+        return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
     }
 }

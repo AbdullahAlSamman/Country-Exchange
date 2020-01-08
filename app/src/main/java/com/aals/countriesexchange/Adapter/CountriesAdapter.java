@@ -59,10 +59,9 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             TextView countryCallingCodes = holder.callingCodeTV;
             countryCallingCodes.setText(country.callingCodesToString());
             ImageView flagImage = holder.flagIV;
-            InputStream targetStream = new ByteArrayInputStream(country.getFlagImage());
-            Sharp.loadInputStream(targetStream).into(flagImage);
+            flagImage.setImageBitmap(country.getFlagImage());
         } catch (Exception e) {
-            Log.i(this.getClass().getSimpleName(), e.getMessage());
+            Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
     }
 

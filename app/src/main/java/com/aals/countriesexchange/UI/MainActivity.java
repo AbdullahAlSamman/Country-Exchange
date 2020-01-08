@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (countries.size() == 0) {
+                //restart the app or another solutions
                 tvMainInfo.setText(getResources().getString(R.string.internet_disconnected_retry));
             } else {
                 alpha2Names();

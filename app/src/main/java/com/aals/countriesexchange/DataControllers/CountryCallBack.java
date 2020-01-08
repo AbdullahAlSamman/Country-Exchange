@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -54,8 +55,8 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
 
         if (response.isSuccessful()) {
             InputStream stream = response.body().byteStream();
-            countries.get(index).setFlagImage(toByteArray(stream));
-            Log.e("fetchSVG", countries.get(index).getFlagImage().length + "");
+            countries.get(index).setFlagImage(BitmapFactory.decodeStream(stream));
+            Log.e("fetchSVG", countries.get(index).getFlagImage().getWidth() + " " + countries.get(index).getFlagImage().getHeight());
             stream.close();
         } else {
             Log.e("fetchSVG", "failed to get flag");
@@ -107,7 +108,7 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
             try {
                 if (countries.size() != AppDB.getInstance(baseContext).countryDao().getCountriesCount())
                     for (int i = 0; i < countries.size(); i++) {
-                        fetchSvg(i, countries.get(i).getFlag());
+                        fetchSvg(i, "https://www.countryflags.io/" + countries.get(i).getAlpha2Code() + "/flat/64.png");
                     }
                 AppDB.getInstance(baseContext).countryDao().insertAllCountries(countries);
             } catch (Exception e) {

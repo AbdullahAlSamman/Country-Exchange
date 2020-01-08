@@ -1,5 +1,7 @@
 package com.aals.countriesexchange.Model;
 
+import android.graphics.Bitmap;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -112,15 +114,16 @@ public class Country implements Serializable {
     @SerializedName("topLevelDomain")
     @Expose
     private List<String> topLevelDomain = null;
+
     @SerializedName("flagImage")
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    private byte[] flagImage;
+    private Bitmap flagImage;
 
-    public byte[] getFlagImage() {
+    public Bitmap getFlagImage() {
         return flagImage;
     }
 
-    public void setFlagImage(byte[] flagImage) {
+    public void setFlagImage(Bitmap flagImage) {
         this.flagImage = flagImage;
     }
 
