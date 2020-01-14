@@ -115,15 +115,14 @@ public class Country implements Serializable {
     @Expose
     private List<String> topLevelDomain = null;
 
-    @SerializedName("flagImage")
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
-    private Bitmap flagImage;
+    private SerializableBitmap flagImage;
 
-    public Bitmap getFlagImage() {
+    public SerializableBitmap getFlagImage() {
         return flagImage;
     }
 
-    public void setFlagImage(Bitmap flagImage) {
+    public void setFlagImage(SerializableBitmap flagImage) {
         this.flagImage = flagImage;
     }
 

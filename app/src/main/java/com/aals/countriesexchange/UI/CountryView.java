@@ -21,7 +21,9 @@ import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.Currency;
 import com.aals.countriesexchange.Model.Quotes;
 import com.aals.countriesexchange.R;
+import com.bumptech.glide.Glide;
 import com.pixplicity.sharp.Sharp;
+import com.squareup.picasso.Picasso;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -61,6 +63,7 @@ public class CountryView extends AppCompatActivity {
     private MapView countryMap;
     private Context context;
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -105,7 +108,11 @@ public class CountryView extends AppCompatActivity {
         tvCountryName.setText(country.getName());
         toolbar.setTitle(country.getName());
 
-        ivCountryFlag.setImageBitmap(country.getFlagImage());
+//        ivCountryFlag.setImageBitmap(country.getFlagImage().getBitmap());
+
+        Glide.with(this).load(country.getFlag()).into(ivCountryFlag);
+
+//        Picasso.get().load("https://flagpedia.net/data/flags/ultra/" + country.getAlpha2Code() + ".png").into(ivCountryFlag);
 
         //Country Data
         tvCountryPopulation.setText(country.getPopulation().toString());

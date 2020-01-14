@@ -8,6 +8,7 @@ import androidx.room.TypeConverter;
 import com.aals.countriesexchange.Model.Currency;
 import com.aals.countriesexchange.Model.Language;
 import com.aals.countriesexchange.Model.RegionalBloc;
+import com.aals.countriesexchange.Model.SerializableBitmap;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -94,14 +95,15 @@ public class Converters {
     }
 
     @TypeConverter
-    public static byte[] bitmapToByteArray(Bitmap bitmap) {
+    public static byte[] bitmapToByteArray(SerializableBitmap bitmap) {
+        Bitmap image = bitmap.getBitmap();
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
+        image.compress(Bitmap.CompressFormat.PNG, 0, outputStream);
         return outputStream.toByteArray();
     }
 
     @TypeConverter
-    public static Bitmap byteArrayToBitmap(byte[] imgByte) {
-        return BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length);
+    public static SerializableBitmap byteArrayToBitmap(byte[] imgByte) {
+        return new SerializableBitmap(BitmapFactory.decodeByteArray(imgByte, 0, imgByte.length));
     }
 }

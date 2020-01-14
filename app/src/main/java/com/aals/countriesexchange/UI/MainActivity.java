@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Log.e("search event", "onsubmit");
+                Log.i("search event", "onsubmit");
                 countriesAdapter.getFilter().filter(query);
                 countriesAdapter.notifyAll();
                 return false;
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                Log.e("search event", "onQueryTextChanged");
+                Log.i("search event", "onQueryTextChanged");
                 countriesAdapter.getFilter().filter(newText);
                 countriesAdapter.notifyDataSetChanged();
                 return false;

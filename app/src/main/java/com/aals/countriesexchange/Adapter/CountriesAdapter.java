@@ -59,7 +59,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
             TextView countryCallingCodes = holder.callingCodeTV;
             countryCallingCodes.setText(country.callingCodesToString());
             ImageView flagImage = holder.flagIV;
-            flagImage.setImageBitmap(country.getFlagImage());
+            flagImage.setImageBitmap(country.getFlagImage().getBitmap());
         } catch (Exception e) {
             Log.e(this.getClass().getSimpleName(), e.getMessage());
         }
