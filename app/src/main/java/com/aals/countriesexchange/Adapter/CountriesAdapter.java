@@ -15,11 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.R;
-import com.pixplicity.sharp.Sharp;
-import com.squareup.picasso.Picasso;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 

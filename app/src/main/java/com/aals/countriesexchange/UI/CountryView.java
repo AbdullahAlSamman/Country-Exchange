@@ -22,11 +22,8 @@ import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.Currency;
 import com.aals.countriesexchange.Model.Quotes;
 import com.aals.countriesexchange.R;
-import com.bumptech.glide.Glide;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGParseException;
-import com.pixplicity.sharp.Sharp;
-import com.squareup.picasso.Picasso;
 
 import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
@@ -58,6 +55,7 @@ public class CountryView extends AppCompatActivity {
     private TextView tvCountryRegion;
     private TextView tvCountryArea;
     private TextView tvCountryCurrencies;
+    private TextView tvNoHighFlag;
     private LinearLayout llCurrency;
     private Spinner spBaseCurrency;
     private Spinner spCountryCurrency;
@@ -98,8 +96,9 @@ public class CountryView extends AppCompatActivity {
         tvCountryRegion = findViewById(R.id.tv_cs_region);
         tvCountryArea = findViewById(R.id.tv_cs_area);
         tvCountryCurrencies = findViewById(R.id.tv_cs_currencies);
-        llCurrency = findViewById(R.id.ll_currencies_list);
         tvExchangeValue = findViewById(R.id.tv_cs_currency_exchange_value);
+        tvNoHighFlag = findViewById(R.id.tv_cs_noHiflag);
+        llCurrency = findViewById(R.id.ll_currencies_list);
         spBaseCurrency = findViewById(R.id.sp_cs_base_exchange);
         spCountryCurrency = findViewById(R.id.sp_cs_country_exchange);
         countryMap = findViewById(R.id.osm_cs_map);
@@ -118,6 +117,7 @@ public class CountryView extends AppCompatActivity {
             PictureDrawable pd = new PictureDrawable(flagSVG.renderToPicture());
             ivCountryFlag.setImageDrawable(pd);
         } catch (SVGParseException e) {
+            tvNoHighFlag.setText(getResources().getString(R.string.country_no_hi_flag));
             e.printStackTrace();
         }
 
