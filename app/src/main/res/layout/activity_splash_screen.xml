@@ -42,6 +42,7 @@
         android:layout_below="@+id/pb_ss_loading"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
+        android:alpha="0.5"
         android:text="@string/splash_loading"
         android:textColor="@color/colorText"
         android:textSize="18sp"></TextView>
