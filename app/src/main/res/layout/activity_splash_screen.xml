@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@mipmap/sp_background"
     tools:context=".UI.SplashScreen">
 
     <TextView
@@ -10,12 +11,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
+        android:layout_marginTop="120dp"
         android:text="@string/app_name"
-        android:textColor="@color/colorPrimary"
-        android:textSize="25sp">
+        android:textColor="@color/colorText"
+        android:textSize="27dp"></TextView>
 
-    </TextView>
+    <View
+        android:layout_width="340dp"
+        android:layout_height="2dp"
+        android:layout_below="@+id/tv_ss_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:alpha="0.4"
+        android:background="@color/colorText" />
 
     <ProgressBar
         android:id="@+id/pb_ss_loading"
@@ -24,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_ss_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="450dp"
         android:indeterminate="true" />
 
     <TextView
@@ -33,8 +41,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/pb_ss_loading"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="10dp"
         android:text="@string/splash_loading"
+        android:textColor="@color/colorText"
         android:textSize="18sp"></TextView>
 
 

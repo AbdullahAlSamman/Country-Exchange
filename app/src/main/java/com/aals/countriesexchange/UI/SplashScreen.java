@@ -1,12 +1,15 @@
 package com.aals.countriesexchange.UI;
 
 import android.content.Intent;
+import android.graphics.PorterDuff;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.aals.countriesexchange.DB.AppDB;
 import com.aals.countriesexchange.DataControllers.DataManager;
@@ -19,6 +22,7 @@ public class SplashScreen extends AppCompatActivity {
     private Utils tools;
     private AppDB instance;
     private TextView tvInfo;
+    private ProgressBar pbLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,8 +30,12 @@ public class SplashScreen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         tvInfo = findViewById(R.id.tv_ss_info);
+        pbLoading = findViewById(R.id.pb_ss_loading);
         tools = Utils.create(getApplicationContext());
         instance = AppDB.getInstance(getApplicationContext());
+
+        pbLoading.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorText), PorterDuff.Mode.SRC_IN);
+
         new StartUp().execute();
     }
 
