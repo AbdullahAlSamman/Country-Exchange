@@ -118,6 +118,17 @@ public class Country implements Serializable {
     @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
     private SerializableBitmap flagImage;
 
+    @ColumnInfo(typeAffinity = ColumnInfo.BLOB)
+    private byte[] flagHighImage;
+
+    public byte[] getFlagHighImage() {
+        return flagHighImage;
+    }
+
+    public void setFlagHighImage(byte[] flagHighImage) {
+        this.flagHighImage = flagHighImage;
+    }
+
     public SerializableBitmap getFlagImage() {
         return flagImage;
     }

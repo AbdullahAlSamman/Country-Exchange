@@ -1,6 +1,7 @@
 package com.aals.countriesexchange.UI;
 
 import android.content.Context;
+import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -22,6 +23,8 @@ import com.aals.countriesexchange.Model.Currency;
 import com.aals.countriesexchange.Model.Quotes;
 import com.aals.countriesexchange.R;
 import com.bumptech.glide.Glide;
+import com.caverock.androidsvg.SVG;
+import com.caverock.androidsvg.SVGParseException;
 import com.pixplicity.sharp.Sharp;
 import com.squareup.picasso.Picasso;
 
@@ -62,6 +65,7 @@ public class CountryView extends AppCompatActivity {
     private ActionBar toolbar;
     private MapView countryMap;
     private Context context;
+    private SVG flagSVG;
 
     @SuppressWarnings("deprecation")
     @Override
@@ -108,11 +112,14 @@ public class CountryView extends AppCompatActivity {
         tvCountryName.setText(country.getName());
         toolbar.setTitle(country.getName());
 
-//        ivCountryFlag.setImageBitmap(country.getFlagImage().getBitmap());
 
-        Glide.with(this).load(country.getFlag()).into(ivCountryFlag);
-
-//        Picasso.get().load("https://flagpedia.net/data/flags/ultra/" + country.getAlpha2Code() + ".png").into(ivCountryFlag);
+        try {
+            flagSVG = SVG.getFromInputStream(new ByteArrayInputStream(country.getFlagHighImage()));
+            PictureDrawable pd = new PictureDrawable(flagSVG.renderToPicture());
+            ivCountryFlag.setImageDrawable(pd);
+        } catch (SVGParseException e) {
+            e.printStackTrace();
+        }
 
         //Country Data
         tvCountryPopulation.setText(country.getPopulation().toString());

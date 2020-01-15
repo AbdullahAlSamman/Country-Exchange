@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 
 import com.aals.countriesexchange.DB.AppDB;
@@ -11,9 +12,11 @@ import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.CountryODS;
 import com.aals.countriesexchange.Model.SerializableBitmap;
 import com.aals.countriesexchange.UI.MainActivity;
+import com.caverock.androidsvg.SVG;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,8 +58,26 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         if (response.code() == 200) {
             InputStream stream = response.body().byteStream();
             countries.get(index).setFlagImage(new SerializableBitmap(BitmapFactory.decodeStream(stream)));
-            Log.e("fetchFlag", countries.get(index).getFlagImage().getWidth() + "*" + countries.get(index).getFlagImage().getHeight());
+            Log.e(countries.get(index).getAlpha3Code() + " fetchFlag", countries.get(index).getFlagImage().getWidth() + "*" + countries.get(index).getFlagImage().getHeight());
             stream.close();
+        } else {
+            countries.get(index).setFlagImage(null);
+            Log.e("fetchFlag", String.valueOf(response.code()));
+        }
+    }
+
+    public static void fetchSVG(final int index, String flagUrl) throws Exception {
+        if (httpClient == null) {
+            httpClient = new OkHttpClient.Builder()
+                    .build();
+        }
+
+        Request request = new Request.Builder().url(flagUrl).build();
+        okhttp3.Response response = httpClient.newCall(request).execute();
+        if (response.code() == 200) {
+            byte[] stream = response.body().bytes();
+            countries.get(index).setFlagHighImage(stream);
+            Log.i(countries.get(index).getAlpha3Code() + " ImageSvg# " + index, stream.length + "");
         } else {
             countries.get(index).setFlagImage(null);
             Log.e("fetchFlag", String.valueOf(response.code()));
@@ -109,10 +130,12 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
                 if (countries.size() != AppDB.getInstance(baseContext).countryDao().getCountriesCount())
                     for (int i = 0; i < countries.size(); i++) {
 //                        String url = "https://flagpedia.net/data/flags/normal/" + countries.get(i).getAlpha2Code().toLowerCase() + ".png";
-//                        String url = "https://restcountries.eu/data/" + countries.get(i).getAlpha3Code().toLowerCase() + ".svg";
+                        String svgUrl = "https://restcountries.eu/data/" + countries.get(i).getAlpha3Code().toLowerCase() + ".svg";
                         String url = "https://www.countryflags.io/" + countries.get(i).getAlpha2Code() + "/flat/64.png";
                         Log.i(getClass().getSimpleName(), url);
                         fetchFlag(i, url);
+                        fetchSVG(i, svgUrl);
+
                     }
                 AppDB.getInstance(baseContext).countryDao().insertAllCountries(countries);
             } catch (Exception e) {
