@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -49,7 +50,7 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Country country = fullCountries.get(position);
         try {
-            RelativeLayout llTextArea = holder.llTextArea;
+            LinearLayout llTextArea = holder.llTextArea;
             llTextArea.getBackground().setAlpha(40);
             TextView countryName = holder.nameTV;
             countryName.setText(country.getName());
@@ -112,13 +113,13 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         public TextView languageTV;
         public TextView callingCodeTV;
         public ImageView flagIV;
-        public RelativeLayout llTextArea;
+        public LinearLayout llTextArea;
         OnCountryListener onCountryListener;
 
 
         public ViewHolder(final View itemView, OnCountryListener onCountryListener) {
             super(itemView);
-            llTextArea = itemView.findViewById(R.id.rl_ic_country_item);
+            llTextArea = itemView.findViewById(R.id.ll_ic_text_area);
             nameTV = itemView.findViewById(R.id.country_name);
             languageTV = itemView.findViewById(R.id.country_language);
             callingCodeTV = itemView.findViewById(R.id.country_calling_code);
