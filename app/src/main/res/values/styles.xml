@@ -17,6 +17,7 @@
 
     <style name="CountryViewTextStyle" parent="@android:style/TextAppearance">
         <item name="android:textSize">14dp</item>
+        <item name="android:textColor">@color/colorText</item>
     </style>
 
 </resources>

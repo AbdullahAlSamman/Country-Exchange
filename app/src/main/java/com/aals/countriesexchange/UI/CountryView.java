@@ -83,7 +83,6 @@ public class CountryView extends AppCompatActivity {
         toolbar.setDisplayShowHomeEnabled(true);
 
         ivCountryFlag = findViewById(R.id.iv_cs_image);
-        tvCountryName = findViewById(R.id.tv_cs_name);
         tvCountryAlpah2Codes = findViewById(R.id.tv_cs_alpah2code);
         tvCountryAlpah3Codes = findViewById(R.id.tv_cs_alpah3code);
         tvCountryBorders = findViewById(R.id.tv_cs_borders);
@@ -101,14 +100,13 @@ public class CountryView extends AppCompatActivity {
         llCurrency = findViewById(R.id.ll_currencies_list);
         spBaseCurrency = findViewById(R.id.sp_cs_base_exchange);
         spCountryCurrency = findViewById(R.id.sp_cs_country_exchange);
-        countryMap = findViewById(R.id.osm_cs_map);
+//        countryMap = findViewById(R.id.osm_cs_map);
 
         //Get country & rates from intent set Name Title
         country = (Country) getIntent().getSerializableExtra("country");
         rates = (Quotes) getIntent().getSerializableExtra("rates");
         alpha2names = (Map<String, String>) getIntent().getSerializableExtra("alpha2names");
 
-        tvCountryName.setText(country.getName());
         toolbar.setTitle(country.getName());
 
 
@@ -209,26 +207,26 @@ public class CountryView extends AppCompatActivity {
         spCountryCurrency.setAdapter(exchangeCurrencyAdapter);
 
         //Map config
-        countryMap.setTileSource(TileSourceFactory.MAPNIK);
-        countryMap.setMultiTouchControls(true);
+//        countryMap.setTileSource(TileSourceFactory.MAPNIK);
+//        countryMap.setMultiTouchControls(true);
 
         //Go to country location , enable multitouch
-        IMapController mapController = countryMap.getController();
+      /*  IMapController mapController = countryMap.getController();
         mapController.setZoom(zoomRatio(country.getArea()));
         GeoPoint geoPoint = new GeoPoint(country.getLatlng().get(0), country.getLatlng().get(1));
-        mapController.setCenter(geoPoint);
+        mapController.setCenter(geoPoint);*/
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        countryMap.onResume();
+//        countryMap.onResume();
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        countryMap.onPause();
+//        countryMap.onPause();
     }
 
     public double zoomRatio(double area) {
