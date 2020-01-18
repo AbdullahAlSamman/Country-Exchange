@@ -25,6 +25,7 @@
     <string name="country_no_hi_flag">Sorry, no high resolution flag is available</string>
     <string name="splash_loading">Loading....</string>
     <string name="country_no_borders">Island has no Borders.</string>
+    <string name="country_map_button">Map</string>
     <string-array name="base_exchange_currencies">
         <item>USD</item>
         <item>EUR</item>

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.Currency;
@@ -145,14 +146,17 @@ public class CountryView extends AppCompatActivity {
 
                 TextView currencyName = new TextView(context);
                 currencyName.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                currencyName.setTextColor(ContextCompat.getColor(this, R.color.colorText));
                 currencyName.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
                 TextView currencyCode = new TextView(context);
                 currencyCode.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                currencyCode.setTextColor(ContextCompat.getColor(this, R.color.colorText));
                 currencyCode.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
                 TextView currencySymbol = new TextView(context);
                 currencySymbol.setTextAlignment(View.TEXT_ALIGNMENT_CENTER);
+                currencySymbol.setTextColor(ContextCompat.getColor(this, R.color.colorText));
                 currencySymbol.setLayoutParams(new TableLayout.LayoutParams(0, ViewGroup.LayoutParams.MATCH_PARENT, 1f));
 
                 currencyName.setText(currency.getName());
@@ -254,7 +258,7 @@ public class CountryView extends AppCompatActivity {
         return 3.0;
     }
 
-    public String borderCountryNames() {
+    protected String borderCountryNames() {
         String result = "";
         List<String> list = country.getBorders();
         if (list.size() == 0) {

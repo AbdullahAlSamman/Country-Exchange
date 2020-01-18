@@ -5,4 +5,6 @@
     <color name="colorAccent">#D81B60</color>
     <color name="colorCountryItem">#BEBEBE</color>
     <color name="colorText">#ffffff</color>
+    <color name="colorExchangeBackground">#b6b0d2</color>
+    <color name="colorMapButtonBackground">#4a94b0</color>
 </resources>
