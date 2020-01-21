@@ -76,7 +76,7 @@ public class SplashScreen extends AppCompatActivity {
 
                         ODSManager = new DataManager(getResources().getString(R.string.server_url));
                         ODSManager.setBaseContext(getApplicationContext());
-                        ODSManager.updateExhcangeRates();
+                        ODSManager.updateExchangeRates();
 
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

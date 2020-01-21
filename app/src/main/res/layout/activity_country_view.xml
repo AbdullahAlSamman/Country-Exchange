@@ -12,7 +12,9 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="125dp"
-        android:textSize="14dp"></TextView>
+        android:textAlignment="center"
+        android:textColor="@color/colorText"
+        android:textSize="18dp"></TextView>
 
     <ImageView
         android:id="@+id/iv_cs_image"

@@ -12,6 +12,7 @@ import android.widget.SearchView;
 import android.widget.TextView;
 
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -112,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         @Override
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
-            if (countries.size() == 0) {
+            if (countries.isEmpty()) {
                 //restart the app or another solutions
                 tvMainInfo.setText(getResources().getString(R.string.internet_disconnected_retry));
             } else {

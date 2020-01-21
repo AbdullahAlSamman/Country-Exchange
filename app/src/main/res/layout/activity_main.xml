@@ -27,7 +27,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:textSize="14dp"></TextView>
+            android:textAlignment="center"
+            android:textColor="@color/colorText"
+            android:textSize="20dp"></TextView>
 
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

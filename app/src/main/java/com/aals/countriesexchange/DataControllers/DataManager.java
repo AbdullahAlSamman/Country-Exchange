@@ -65,7 +65,7 @@ public class DataManager {
         call.enqueue(exchangeCallBack);
     }
 
-    public void updateExhcangeRates() {
+    public void updateExchangeRates() {
 
         ODSAPI odsapi = quarry.create(ODSAPI.class);
 

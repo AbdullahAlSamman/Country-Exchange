@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.util.Base64;
 import android.util.Log;
 
 import com.aals.countriesexchange.DB.AppDB;
@@ -12,11 +11,8 @@ import com.aals.countriesexchange.Model.Country;
 import com.aals.countriesexchange.Model.CountryODS;
 import com.aals.countriesexchange.Model.SerializableBitmap;
 import com.aals.countriesexchange.UI.MainActivity;
-import com.caverock.androidsvg.SVG;
 
-import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,17 +28,35 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
     private static List<Country> countries = new ArrayList<Country>();
     private static OkHttpClient httpClient;
     private List<CountryODS> countryOdsList = new ArrayList<CountryODS>();
+    private final static String flagURLStart = "https://www.countryflags.io/";
+    private final static String flagURLEnd = "/flat/64.png";
 
-    public static byte[] toByteArray(InputStream bitmap) throws Exception {
-        ByteArrayOutputStream byteArray = new ByteArrayOutputStream();
-        int nRead;
-        byte[] data = new byte[16384];
+    public void setBaseContext(Context baseContext) {
+        CountryCallBack.baseContext = baseContext;
+    }
 
-        while ((nRead = bitmap.read(data, 0, data.length)) != -1) {
-            byteArray.write(data, 0, nRead);
+    @Override
+    public void onResponse(Call<List<CountryODS>> call, Response<List<CountryODS>> response) {
+        if (response.isSuccessful()) {
+            countryOdsList = response.body();
+
+            infoLogging();
+
+            countries = countryOdsList.get(0).getData();
+
+            new DBInsertAll().execute(null, null, null);
+
+        } else {
+            Log.e(getClass().getSimpleName(), response.errorBody().toString());
+            call.cancel();
         }
 
-        return byteArray.toByteArray();
+    }
+
+    @Override
+    public void onFailure(Call<List<CountryODS>> call, Throwable t) {
+        Log.e(getClass().getSimpleName(), t.getMessage());
+        call.clone().enqueue(this);
     }
 
     public static void fetchFlag(final int index, String flagUrl) throws Exception {
@@ -84,43 +98,6 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         }
     }
 
-    public void setBaseContext(Context baseContext) {
-        CountryCallBack.baseContext = baseContext;
-    }
-
-    @Override
-    public void onResponse(Call<List<CountryODS>> call, Response<List<CountryODS>> response) {
-        if (response.isSuccessful()) {
-            countryOdsList = response.body();
-
-            logging();
-
-            countries = countryOdsList.get(0).getData();
-
-            new DBInsertAll().execute(null, null, null);
-        } else {
-            Log.e(getClass().getSimpleName(), response.errorBody().toString());
-            call.cancel();
-        }
-
-    }
-
-    @Override
-    public void onFailure(Call<List<CountryODS>> call, Throwable t) {
-        Log.e(getClass().getSimpleName(), t.getMessage());
-        call.clone().enqueue(this);
-    }
-
-    public void logging() {
-        //Log ExchangeRates
-        Log.i(getClass().getSimpleName(), "Size: " + countryOdsList.size() + "");
-        Log.i(getClass().getSimpleName(), "ID: " + countryOdsList.get(0).getId() + "");
-        Log.i(getClass().getSimpleName(), "License: " + countryOdsList.get(0).getLicense() + "");
-        Log.i(getClass().getSimpleName(), "TimeStamp: " + countryOdsList.get(0).getTimestamp() + "");
-        Log.i(getClass().getSimpleName(), "Origin: " + countryOdsList.get(0).getOrigin() + "");
-        Log.i(getClass().getSimpleName(), "ExchangeRates Array Size: " + countryOdsList.get(0).getData().size() + "");
-    }
-
     public static class DBInsertAll extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -129,9 +106,8 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
             try {
                 if (countries.size() != AppDB.getInstance(baseContext).countryDao().getCountriesCount())
                     for (int i = 0; i < countries.size(); i++) {
-//                        String url = "https://flagpedia.net/data/flags/normal/" + countries.get(i).getAlpha2Code().toLowerCase() + ".png";
-                        String svgUrl = "https://restcountries.eu/data/" + countries.get(i).getAlpha3Code().toLowerCase() + ".svg";
-                        String url = "https://www.countryflags.io/" + countries.get(i).getAlpha2Code() + "/flat/64.png";
+                        String svgUrl = countries.get(i).getFlag();
+                        String url = flagURLStart + countries.get(i).getAlpha2Code() + flagURLEnd;
                         Log.i(getClass().getSimpleName(), url);
                         fetchFlag(i, url);
                         fetchSVG(i, svgUrl);
@@ -153,4 +129,13 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         }
     }
 
+    public void infoLogging() {
+        //Log ExchangeRates
+        Log.i(getClass().getSimpleName(), "Size: " + countryOdsList.size() + "");
+        Log.i(getClass().getSimpleName(), "ID: " + countryOdsList.get(0).getId() + "");
+        Log.i(getClass().getSimpleName(), "License: " + countryOdsList.get(0).getLicense() + "");
+        Log.i(getClass().getSimpleName(), "TimeStamp: " + countryOdsList.get(0).getTimestamp() + "");
+        Log.i(getClass().getSimpleName(), "Origin: " + countryOdsList.get(0).getOrigin() + "");
+        Log.i(getClass().getSimpleName(), "ExchangeRates Array Size: " + countryOdsList.get(0).getData().size() + "");
+    }
 }
