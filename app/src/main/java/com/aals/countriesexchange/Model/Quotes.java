@@ -1,5 +1,7 @@
 package com.aals.countriesexchange.Model;
 
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.Ignore;
@@ -1957,7 +1959,8 @@ public class Quotes implements Serializable {
         try {
             currenciesList = this.toHashMap();
         } catch (Exception e) {
-            e.printStackTrace(); //TODO: handel right way
+            Log.e(getClass().getName(), e.getMessage());
+            e.printStackTrace();
         }
     }
 

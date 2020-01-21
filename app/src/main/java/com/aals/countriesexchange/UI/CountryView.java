@@ -106,7 +106,6 @@ public class CountryView extends AppCompatActivity {
 
         setTargetCurrencySpinner();
 
-
         btMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
