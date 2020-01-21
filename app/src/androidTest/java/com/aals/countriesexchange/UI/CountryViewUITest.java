@@ -37,7 +37,6 @@ public class CountryViewUITest {
     @Test
     public void assertions() {
         onView(withId(R.id.iv_cs_image)).check(matches(isDisplayed()));
-        onView(withId(R.id.tv_cs_name)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_cs_nativename)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_cs_area)).check(matches(isDisplayed()));
         onView(withId(R.id.tv_cs_population)).check(matches(isDisplayed()));
