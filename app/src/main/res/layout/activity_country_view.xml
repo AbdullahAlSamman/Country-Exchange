@@ -394,13 +394,6 @@
 
                 </LinearLayout>
 
-
-                <!--        <org.osmdroid.views.MapView-->
-                <!--            android:id="@+id/osm_cs_map"-->
-                <!--            android:layout_width="0dp"-->
-                <!--            android:layout_height="0dp"-->
-                <!--            android:layout_below="@+id/ll_exchange"></org.osmdroid.views.MapView>-->
-
             </LinearLayout>
 
 
@@ -457,6 +450,7 @@
             </LinearLayout>
 
             <Button
+                android:id="@+id/bt_cs_map"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"

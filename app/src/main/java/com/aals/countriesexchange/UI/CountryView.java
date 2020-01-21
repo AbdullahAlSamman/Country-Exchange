@@ -1,20 +1,24 @@
 package com.aals.countriesexchange.UI;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -30,7 +34,6 @@ import org.osmdroid.api.IMapController;
 import org.osmdroid.config.Configuration;
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
 import org.osmdroid.util.GeoPoint;
-import org.osmdroid.views.MapView;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
@@ -61,20 +64,16 @@ public class CountryView extends AppCompatActivity {
     private Spinner spBaseCurrency;
     private Spinner spCountryCurrency;
     private TextView tvExchangeValue;
+    private Button btMap;
     private ActionBar toolbar;
-    private MapView countryMap;
     private Context context;
     private SVG flagSVG;
 
-    @SuppressWarnings("deprecation")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        context = getApplicationContext();
-
-        //View Map configuration to Local storage and App Context
-        Configuration.getInstance().load(context, PreferenceManager.getDefaultSharedPreferences(context));
+        context = getBaseContext();
 
         setContentView(R.layout.activity_country_view);
 
@@ -98,10 +97,11 @@ public class CountryView extends AppCompatActivity {
         tvCountryCurrencies = findViewById(R.id.tv_cs_currencies);
         tvExchangeValue = findViewById(R.id.tv_cs_currency_exchange_value);
         tvNoHighFlag = findViewById(R.id.tv_cs_noHiflag);
+        btMap = findViewById(R.id.bt_cs_map);
         llCurrency = findViewById(R.id.ll_currencies_list);
         spBaseCurrency = findViewById(R.id.sp_cs_base_exchange);
         spCountryCurrency = findViewById(R.id.sp_cs_country_exchange);
-//        countryMap = findViewById(R.id.osm_cs_map);
+
 
         //Get country & rates from intent set Name Title
         country = (Country) getIntent().getSerializableExtra("country");
@@ -210,52 +210,27 @@ public class CountryView extends AppCompatActivity {
         });
         spCountryCurrency.setAdapter(exchangeCurrencyAdapter);
 
-        //Map config
-//        countryMap.setTileSource(TileSourceFactory.MAPNIK);
-//        countryMap.setMultiTouchControls(true);
+        btMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startMap = new Intent(getBaseContext(), MapView.class);
+                startMap.putExtra("country", country);
+                startActivity(startMap);
+            }
+        });
 
-        //Go to country location , enable multitouch
-      /*  IMapController mapController = countryMap.getController();
-        mapController.setZoom(zoomRatio(country.getArea()));
-        GeoPoint geoPoint = new GeoPoint(country.getLatlng().get(0), country.getLatlng().get(1));
-        mapController.setCenter(geoPoint);*/
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-//        countryMap.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-//        countryMap.onPause();
-    }
-
-    public double zoomRatio(double area) {
-        if (area < 1000.0) {
-            return 14.0;
-        } else if (area < 5000) {
-            return 13.5;
-        } else if (area < 10000) {
-            return 13.0;
-        } else if (area < 70000) {
-            return 12.0;
-        } else if (area < 100000) {
-            return 11.0;
-        } else if (area < 150000) {
-            return 10.0;
-        } else if (area < 200000) {
-            return 9.0;
-        } else if (area < 300000) {
-            return 8.0;
-        } else if (area < 1000000) {
-            return 7.0;
-        } else if (area < 5000000) {
-            return 4.0;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+            default:
+                break;
         }
-        return 3.0;
+        return true;
     }
 
     protected String borderCountryNames() {

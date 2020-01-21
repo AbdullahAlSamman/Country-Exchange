@@ -17,9 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".UI.MapView"></activity>
         <activity
             android:name=".UI.CountryView"
-            android:parentActivityName=".UI.MainActivity"></activity>
+            android:parentActivityName=".UI.MainActivity" />
         <activity
             android:name=".UI.SplashScreen"
             android:noHistory="true"
