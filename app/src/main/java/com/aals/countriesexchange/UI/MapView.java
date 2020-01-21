@@ -45,7 +45,6 @@ public class MapView extends AppCompatActivity {
 
         toolbar.setTitle(country.getName());
 
-
         //Map config
         countryMap.setTileSource(TileSourceFactory.MAPNIK);
         countryMap.setMultiTouchControls(true);
@@ -102,13 +101,8 @@ public class MapView extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:
-                break;
-        }
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
         return true;
     }
 }

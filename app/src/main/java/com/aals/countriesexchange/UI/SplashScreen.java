@@ -34,6 +34,7 @@ public class SplashScreen extends AppCompatActivity {
         tools = Utils.create(getApplicationContext());
         instance = AppDB.getInstance(getApplicationContext());
 
+        //set progressbar color
         pbLoading.getIndeterminateDrawable().setColorFilter(ContextCompat.getColor(this, R.color.colorText), PorterDuff.Mode.SRC_IN);
 
         new StartUp().execute();

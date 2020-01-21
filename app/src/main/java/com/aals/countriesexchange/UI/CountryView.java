@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.PictureDrawable;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,13 +29,7 @@ import com.aals.countriesexchange.R;
 import com.caverock.androidsvg.SVG;
 import com.caverock.androidsvg.SVGParseException;
 
-import org.osmdroid.api.IMapController;
-import org.osmdroid.config.Configuration;
-import org.osmdroid.tileprovider.tilesource.TileSourceFactory;
-import org.osmdroid.util.GeoPoint;
-
 import java.io.ByteArrayInputStream;
-import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
@@ -45,7 +38,6 @@ public class CountryView extends AppCompatActivity {
     private Country country;
     private Quotes rates;
     private Map<String, String> alpha2names;
-    private TextView tvCountryName;
     private ImageView ivCountryFlag;
     private TextView tvCountryCallingCodes;
     private TextView tvCountryPopulation;
@@ -58,7 +50,6 @@ public class CountryView extends AppCompatActivity {
     private TextView tvCountryNativeName;
     private TextView tvCountryRegion;
     private TextView tvCountryArea;
-    private TextView tvCountryCurrencies;
     private TextView tvNoHighFlag;
     private LinearLayout llCurrency;
     private Spinner spBaseCurrency;
@@ -94,7 +85,6 @@ public class CountryView extends AppCompatActivity {
         tvCountryNativeName = findViewById(R.id.tv_cs_nativename);
         tvCountryRegion = findViewById(R.id.tv_cs_region);
         tvCountryArea = findViewById(R.id.tv_cs_area);
-        tvCountryCurrencies = findViewById(R.id.tv_cs_currencies);
         tvExchangeValue = findViewById(R.id.tv_cs_currency_exchange_value);
         tvNoHighFlag = findViewById(R.id.tv_cs_noHiflag);
         btMap = findViewById(R.id.bt_cs_map);
@@ -102,24 +92,56 @@ public class CountryView extends AppCompatActivity {
         spBaseCurrency = findViewById(R.id.sp_cs_base_exchange);
         spCountryCurrency = findViewById(R.id.sp_cs_country_exchange);
 
-
-        //Get country & rates from intent set Name Title
-        country = (Country) getIntent().getSerializableExtra("country");
-        rates = (Quotes) getIntent().getSerializableExtra("rates");
-        alpha2names = (Map<String, String>) getIntent().getSerializableExtra("alpha2names");
+        getDataFromIntent();
 
         toolbar.setTitle(country.getName());
 
+        setCountryData();
 
-        try {
-            flagSVG = SVG.getFromInputStream(new ByteArrayInputStream(country.getFlagHighImage()));
-            PictureDrawable pd = new PictureDrawable(flagSVG.renderToPicture());
-            ivCountryFlag.setImageDrawable(pd);
-        } catch (SVGParseException e) {
-            tvNoHighFlag.setText(getResources().getString(R.string.country_no_hi_flag));
-            e.printStackTrace();
+        setFlag();
+
+        setCurrencyList();
+
+        setBaseCurrencySpinner();
+
+        setTargetCurrencySpinner();
+
+
+        btMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startMap = new Intent(getBaseContext(), MapView.class);
+                startMap.putExtra("country", country);
+                startActivity(startMap);
+            }
+        });
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home)
+            onBackPressed();
+        return true;
+    }
+
+    protected String borderCountryNames() {
+        String result = "";
+        List<String> list = country.getBorders();
+        if (list.size() == 0) {
+            result = getResources().getString(R.string.country_no_borders);
+        } else {
+            for (int i = 0; i < list.size(); i++) {
+                if (i == list.size() - 1)
+                    result += alpha2names.get(list.get(i));
+                else
+                    result += alpha2names.get(list.get(i)) + ", ";
+            }
         }
+        return result;
+    }
 
+    public void setCountryData() {
         //Country Data
         tvCountryPopulation.setText(country.getPopulation().toString());
         tvCountryArea.setText(Double.toString(country.getArea()));
@@ -132,8 +154,20 @@ public class CountryView extends AppCompatActivity {
         tvCountryBorders.setText(borderCountryNames());
         tvCountryNativeName.setText(country.getNativeName());
         tvCountryRegion.setText(country.getRegion());
+    }
 
+    public void setFlag() {
+        try {
+            flagSVG = SVG.getFromInputStream(new ByteArrayInputStream(country.getFlagHighImage()));
+            PictureDrawable pd = new PictureDrawable(flagSVG.renderToPicture());
+            ivCountryFlag.setImageDrawable(pd);
+        } catch (SVGParseException e) {
+            tvNoHighFlag.setText(getResources().getString(R.string.country_no_hi_flag));
+            e.printStackTrace();
+        }
+    }
 
+    public void setCurrencyList() {
         for (Currency currency : country.getCurrencies()) {
             if (currency.getName() != null) {
                 LinearLayout innerLinearlayout = new LinearLayout(context);
@@ -169,7 +203,9 @@ public class CountryView extends AppCompatActivity {
                 innerLinearlayout.addView(currencySymbol);
             }
         }
+    }
 
+    public void setBaseCurrencySpinner() {
         //Base exchange spinner from Strings array
         ArrayAdapter<CharSequence> baseCurrencyAdapter = ArrayAdapter.createFromResource(this,
                 R.array.base_exchange_currencies, android.R.layout.simple_spinner_item);
@@ -189,8 +225,9 @@ public class CountryView extends AppCompatActivity {
             }
         });
         spBaseCurrency.setAdapter(baseCurrencyAdapter);
+    }
 
-
+    public void setTargetCurrencySpinner() {
         //Base exchange spinner from Strings array
         ArrayAdapter<String> exchangeCurrencyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country.currenciesCodes());
         exchangeCurrencyAdapter.setDropDownViewResource(R.layout.spinner_item_base_exchange);
@@ -209,44 +246,12 @@ public class CountryView extends AppCompatActivity {
             }
         });
         spCountryCurrency.setAdapter(exchangeCurrencyAdapter);
-
-        btMap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startMap = new Intent(getBaseContext(), MapView.class);
-                startMap.putExtra("country", country);
-                startActivity(startMap);
-            }
-        });
-
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-            default:
-                break;
-        }
-        return true;
+    public void getDataFromIntent() {
+        //Get country & rates from intent set Name Title
+        country = (Country) getIntent().getSerializableExtra("country");
+        rates = (Quotes) getIntent().getSerializableExtra("rates");
+        alpha2names = (Map<String, String>) getIntent().getSerializableExtra("alpha2names");
     }
-
-    protected String borderCountryNames() {
-        String result = "";
-        List<String> list = country.getBorders();
-        if (list.size() == 0) {
-            result = getResources().getString(R.string.country_no_borders);
-        } else {
-            for (int i = 0; i < list.size(); i++) {
-                if (i == list.size() - 1)
-                    result += alpha2names.get(list.get(i));
-                else
-                    result += alpha2names.get(list.get(i)) + ", ";
-            }
-        }
-        return result;
-    }
-
 }

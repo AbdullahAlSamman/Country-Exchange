@@ -29,7 +29,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity implements CountriesAdapter.OnCountryListener {
 
-    private RecyclerView rvCoutries;
+    private RecyclerView rvCountries;
     private List<Country> countries;
     private Map<String, String> alpha2Name;
     private Quotes rates;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        rvCoutries = findViewById(R.id.rv_countries);
+        rvCountries = findViewById(R.id.rv_countries);
         tvMainInfo = findViewById(R.id.tv_ma_message);
 
         new GetDataFromDB().execute(getApplicationContext());
@@ -60,8 +60,8 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
 
     public void iniRecyclerView() {
         countriesAdapter = new CountriesAdapter(countries, this);
-        rvCoutries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        rvCoutries.setAdapter(countriesAdapter);
+        rvCountries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        rvCountries.setAdapter(countriesAdapter);
     }
 
     public void alpha2Names() {
