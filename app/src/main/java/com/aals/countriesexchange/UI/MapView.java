@@ -57,6 +57,13 @@ public class MapView extends AppCompatActivity {
 
     }
 
+    /**
+     * Zoom ratio double.
+     * get the zoom level according to country area as referenced in OSM zoom levels.
+     *
+     * @param area the area
+     * @return the double
+     */
     public double zoomRatio(double area) {
         if (area < 1000.0) {
             return 12.0;

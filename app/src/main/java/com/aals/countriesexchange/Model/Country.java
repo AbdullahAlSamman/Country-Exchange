@@ -329,6 +329,12 @@ public class Country implements Serializable {
         this.topLevelDomain = topLevelDomain;
     }
 
+    /**
+     * Languages to string.
+     * get the languages from the list to one string to be displayed.
+     *
+     * @return the string
+     */
     public String languagesToString() {
         String result = "";
         for (int i = 0; i < languages.size(); i++) {
@@ -340,6 +346,12 @@ public class Country implements Serializable {
         return result;
     }
 
+    /**
+     * Calling codes to string string.
+     * get the calling codes from the list into a single string to be displayed.
+     *
+     * @return the string
+     */
     public String callingCodesToString() {
         String result = "";
         for (int i = 0; i < callingCodes.size(); i++) {
@@ -351,6 +363,12 @@ public class Country implements Serializable {
         return result;
     }
 
+    /**
+     * Borders to string string.
+     * get the Borders codes from the list into a single string to be displayed.
+     *
+     * @return the string
+     */
     @Deprecated
     public String bordersToString() {
         String result = "";
@@ -365,6 +383,12 @@ public class Country implements Serializable {
         return result;
     }
 
+    /**
+     * Timezone to string string.
+     * get the time zones from the list into a single string to be displayed.
+     *
+     * @return the string
+     */
     public String timezoneToString() {
         String result = "";
         if (timezones.size() == 0)
@@ -378,6 +402,12 @@ public class Country implements Serializable {
         return result;
     }
 
+    /**
+     * Currencies codes list.
+     * get the currencies codes from the list into a single string to be displayed.
+     *
+     * @return the list
+     */
     public List<String> currenciesCodes() {
         List<String> list = new ArrayList<String>();
         for (int i = 0; i < currencies.size(); i++) {

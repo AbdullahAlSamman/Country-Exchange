@@ -5,6 +5,11 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+
+/**
+ * The type Currency.
+ * represent the parent response from the server as class entity for retrofit parsing the serialization is required to match server response.
+ */
 public class Currency implements Serializable {
 
     @SerializedName("code")

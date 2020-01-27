@@ -59,12 +59,19 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         startActivity(intent);
     }
 
+    /**
+     * Initialize recycler view.
+     */
     public void iniRecyclerView() {
         countriesAdapter = new CountriesAdapter(countries, this);
         rvCountries.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         rvCountries.setAdapter(countriesAdapter);
     }
 
+    /**
+     * Alpha 2 names.
+     * create hashmap to convert country code to a full name.
+     */
     public void alpha2Names() {
         alpha2Name = new HashMap<>();
         for (Country country : countries) {
@@ -102,6 +109,10 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         return true;
     }
 
+    /**
+     * The type Get data from db.
+     * load all countries data from db to memory objects to be displayed in recycler view.
+     */
     public class GetDataFromDB extends AsyncTask<Context, CountriesAdapter.OnCountryListener, String> {
 
         @Override
@@ -115,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements CountriesAdapter.
         protected void onPostExecute(String s) {
             super.onPostExecute(s);
             if (countries.isEmpty()) {
-                //restart the app or another solutions
+                // send user ui message to restart the app.
                 tvMainInfo.setText(getResources().getString(R.string.internet_disconnected_retry));
             } else {
                 alpha2Names();

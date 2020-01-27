@@ -41,6 +41,10 @@ public class SplashScreen extends AppCompatActivity {
     }
 
 
+    /**
+     * The type Start up.
+     * start getting data from server process including reties and delays.
+     */
     public class StartUp extends AsyncTask<Void, Void, Void> {
         int dbCount = 0;
 
@@ -89,6 +93,10 @@ public class SplashScreen extends AppCompatActivity {
         }
     }
 
+    /**
+     * Retry.
+     * retry getting data from server if the internet connection becomes available again.
+     */
     public void retry() {
         new StartUp().execute();
     }

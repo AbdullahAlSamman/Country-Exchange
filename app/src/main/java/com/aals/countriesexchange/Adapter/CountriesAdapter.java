@@ -20,6 +20,9 @@ import com.aals.countriesexchange.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Countries adapter for Recycler View in MainActivity.
+ */
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.ViewHolder> implements Filterable {
 
     private List<Country> fullCountries;
@@ -27,6 +30,12 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
     private Context context;
     private OnCountryListener onCountryListener;
 
+    /**
+     * Instantiates a new Countries adapter.
+     *
+     * @param countries         the countries
+     * @param onCountryListener the on country listener to detect clicks on each item in recycler view
+     */
     public CountriesAdapter(List<Country> countries, OnCountryListener onCountryListener) {
         this.fullCountries = countries;
         mCountries = new ArrayList<Country>(countries);
@@ -102,19 +111,55 @@ public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.View
         };
     }
 
+
+    /**
+     * The interface On country listener.
+     */
     public interface OnCountryListener {
+        /**
+         * On country click.
+         *
+         * @param position the item position in recycler view
+         */
         void onCountryClick(int position);
     }
 
+    /**
+     * The type View holder.
+     */
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        /**
+         * The TextView Name.
+         */
         public TextView nameTV;
+        /**
+         * The TextView Language.
+         */
         public TextView languageTV;
+        /**
+         * The Text View Calling code.
+         */
         public TextView callingCodeTV;
+        /**
+         * The Image View Flag.
+         */
         public ImageView flagIV;
+        /**
+         * The Linear Layout text area.
+         */
         public LinearLayout llTextArea;
+        /**
+         * The On country listener.
+         */
         OnCountryListener onCountryListener;
 
 
+        /**
+         * Instantiates a new View holder.
+         *
+         * @param itemView          the item view
+         * @param onCountryListener the Custom on country listener
+         */
         public ViewHolder(final View itemView, OnCountryListener onCountryListener) {
             super(itemView);
             llTextArea = itemView.findViewById(R.id.ll_ic_text_area);

@@ -17,6 +17,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The type Exchange call back.
+ */
 public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
 
     private Context baseContext;
@@ -24,10 +27,20 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
     private Quotes quotes;
     private boolean update = false;
 
+    /**
+     * Sets update status.
+     *
+     * @param update the to update data base without restarting whole data download.
+     */
     public void setUpdate(boolean update) {
         this.update = update;
     }
 
+    /**
+     * Sets base context.
+     *
+     * @param baseContext the base context of current activity.
+     */
     public void setBaseContext(Context baseContext) {
         this.baseContext = baseContext;
     }
@@ -57,6 +70,10 @@ public class ExchangeCallBack implements Callback<List<ExchangeODS>> {
     }
 
 
+    /**
+     * The type Db insert.
+     * Insert all data in background to data base.
+     */
     public class DBInsert extends AsyncTask<Void, Void, Void> {
 
         @Override

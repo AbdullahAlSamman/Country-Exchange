@@ -17,6 +17,10 @@ import java.lang.reflect.Type;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * The type Converters.
+ * this class defines all converters needed to convert all complex data types to native data types to be stored or retrieved from the Data base.
+ */
 public class Converters {
 
     @TypeConverter

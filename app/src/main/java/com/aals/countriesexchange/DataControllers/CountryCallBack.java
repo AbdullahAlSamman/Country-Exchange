@@ -22,6 +22,9 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+/**
+ * The type Country call back.
+ */
 public class CountryCallBack implements Callback<List<CountryODS>> {
 
     private static Context baseContext;
@@ -31,6 +34,11 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
     private final static String flagURLStart = "https://www.countryflags.io/";
     private final static String flagURLEnd = "/flat/64.png";
 
+    /**
+     * Sets base context.
+     *
+     * @param baseContext the base context of current activity.
+     */
     public void setBaseContext(Context baseContext) {
         CountryCallBack.baseContext = baseContext;
     }
@@ -59,6 +67,13 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         call.clone().enqueue(this);
     }
 
+    /**
+     * Fetch flag from server.
+     *
+     * @param index   the index
+     * @param flagUrl the flag url
+     * @throws Exception the exception
+     */
     public static void fetchFlag(final int index, String flagUrl) throws Exception {
 
         if (httpClient == null) {
@@ -80,6 +95,13 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         }
     }
 
+    /**
+     * Fetch svg from server.
+     *
+     * @param index   the index
+     * @param flagUrl the flag url
+     * @throws Exception the exception
+     */
     public static void fetchSVG(final int index, String flagUrl) throws Exception {
         if (httpClient == null) {
             httpClient = new OkHttpClient.Builder()
@@ -98,6 +120,10 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         }
     }
 
+    /**
+     * The type Db insert all.
+     * Insert all information in background to Local data base.
+     */
     public static class DBInsertAll extends AsyncTask<Void, Void, Void> {
 
         @Override
@@ -129,6 +155,9 @@ public class CountryCallBack implements Callback<List<CountryODS>> {
         }
     }
 
+    /**
+     * Response Info logging to Logcat.
+     */
     public void infoLogging() {
         //Log ExchangeRates
         Log.i(getClass().getSimpleName(), "Size: " + countryOdsList.size() + "");

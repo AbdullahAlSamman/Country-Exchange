@@ -3,6 +3,10 @@ package com.aals.countriesexchange.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+/**
+ * The type Exchange ods.
+ * represent the parent response from the server as class entity for retrofit to parse, serialization is required to match server response.
+ */
 public class ExchangeODS {
 
     @SerializedName("id")

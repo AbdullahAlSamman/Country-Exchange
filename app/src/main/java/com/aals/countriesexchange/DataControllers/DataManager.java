@@ -13,6 +13,9 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * The type Data manager.
+ */
 public class DataManager {
 
     private static Gson gson;
@@ -22,6 +25,11 @@ public class DataManager {
     private CountryCallBack countryCallBack;
     private ExchangeCallBack exchangeCallBack;
 
+    /**
+     * Instantiates a new Data manager.
+     *
+     * @param url the server url
+     */
     public DataManager(String url) {
         this.url = url;
 
@@ -35,14 +43,27 @@ public class DataManager {
                 .build();
     }
 
+    /**
+     * Gets base context.
+     *
+     * @return the base context of current activity
+     */
     public static Context getBaseContext() {
         return baseContext;
     }
 
+    /**
+     * Sets base context.
+     *
+     * @param baseContext the base context of current activity.
+     */
     public void setBaseContext(Context baseContext) {
         this.baseContext = baseContext;
     }
 
+    /**
+     * Start get countries.
+     */
     public void startGetCountries() {
 
         ODSAPI odsapi = quarry.create(ODSAPI.class);
@@ -54,6 +75,9 @@ public class DataManager {
         call.enqueue(countryCallBack);
     }
 
+    /**
+     * Start get exchange rates.
+     */
     public void startGetExchangeRates() {
 
         ODSAPI odsapi = quarry.create(ODSAPI.class);
@@ -65,6 +89,9 @@ public class DataManager {
         call.enqueue(exchangeCallBack);
     }
 
+    /**
+     * Update exchange rates.
+     */
     public void updateExchangeRates() {
 
         ODSAPI odsapi = quarry.create(ODSAPI.class);

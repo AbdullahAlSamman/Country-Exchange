@@ -124,6 +124,12 @@ public class CountryView extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Border country names string.
+     * convert all borders from alpha3code to full string name.
+     *
+     * @return the string
+     */
     protected String borderCountryNames() {
         String result = "";
         List<String> list = country.getBorders();
@@ -140,6 +146,10 @@ public class CountryView extends AppCompatActivity {
         return result;
     }
 
+    /**
+     * Sets country data.
+     * all UI element gets country details values.
+     */
     public void setCountryData() {
         //Country Data
         tvCountryPopulation.setText(country.getPopulation().toString());
@@ -155,6 +165,10 @@ public class CountryView extends AppCompatActivity {
         tvCountryRegion.setText(country.getRegion());
     }
 
+    /**
+     * Sets flag.
+     * checks if the svg data of the file is renderable picture and send the user a massage if not.
+     */
     public void setFlag() {
         try {
             flagSVG = SVG.getFromInputStream(new ByteArrayInputStream(country.getFlagHighImage()));
@@ -166,6 +180,10 @@ public class CountryView extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets currency list.
+     * for each official currency add UI elements.
+     */
     public void setCurrencyList() {
         for (Currency currency : country.getCurrencies()) {
             if (currency.getName() != null) {
@@ -204,6 +222,10 @@ public class CountryView extends AppCompatActivity {
         }
     }
 
+    /**
+     * Sets base currency spinner.
+     * get list of base currencies from strings file.
+     */
     public void setBaseCurrencySpinner() {
         //Base exchange spinner from Strings array
         ArrayAdapter<CharSequence> baseCurrencyAdapter = ArrayAdapter.createFromResource(this,
@@ -226,6 +248,10 @@ public class CountryView extends AppCompatActivity {
         spBaseCurrency.setAdapter(baseCurrencyAdapter);
     }
 
+    /**
+     * Sets target currency spinner.
+     * get country official currencies.
+     */
     public void setTargetCurrencySpinner() {
         //Base exchange spinner from Strings array
         ArrayAdapter<String> exchangeCurrencyAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, country.currenciesCodes());
@@ -247,6 +273,9 @@ public class CountryView extends AppCompatActivity {
         spCountryCurrency.setAdapter(exchangeCurrencyAdapter);
     }
 
+    /**
+     * Gets data from intent.
+     */
     public void getDataFromIntent() {
         //Get country & rates from intent set Name Title
         country = (Country) getIntent().getSerializableExtra("country");

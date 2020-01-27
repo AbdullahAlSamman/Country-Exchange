@@ -7,6 +7,10 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * The type Regional bloc.
+ * represent the parent response from the server as class entity for retrofit to parse serialization is required to match server response.
+ */
 public class RegionalBloc implements Serializable {
 
     @SerializedName("name")

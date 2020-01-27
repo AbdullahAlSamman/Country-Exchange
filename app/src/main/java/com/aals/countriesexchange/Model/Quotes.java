@@ -1905,6 +1905,12 @@ public class Quotes implements Serializable {
     }
 
 
+    /**
+     * Gets value by code.
+     *
+     * @param currency the currency
+     * @return the currency value.
+     */
     public double getValueByCode(String currency) {
 
         hashMap();
@@ -1926,6 +1932,13 @@ public class Quotes implements Serializable {
         return myObjectAsDict;
     }
 
+    /**
+     * Is valid currency boolean.
+     * check if the currency code is valid and has a value.
+     *
+     * @param code the code
+     * @return the boolean
+     */
     public boolean isValidCurrency(String code) {
 
         hashMap();
@@ -1935,6 +1948,14 @@ public class Quotes implements Serializable {
         return false;
     }
 
+    /**
+     * Convert base to target string.
+     * calculate the target currency via base currency USD value.
+     *
+     * @param baseCode   the base code
+     * @param targetCode the target code
+     * @return the string
+     */
     public String convertBaseToTarget(String baseCode, String targetCode) {
 
         hashMap();
