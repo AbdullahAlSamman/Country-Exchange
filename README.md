@@ -9,16 +9,16 @@ this application was built as part of Advanced Methods of Software Engineering (
 ## Tech Highlight
 This project uses different technologies in frontend and backend:
 - Backend:
-*- Jvalue ODS (Open Data Source) [Github](https://github.com/jvalue/open-data-service)
+  - Jvalue ODS (Open Data Source) [repo](https://github.com/jvalue/open-data-service)
 
 - Frontend:
-*- Retrofit 2
-*- Room 
-*- Recycler View
-*- AndroidSVG
-*- OpenStreetMap
-*- Android Debug Database
-*- Different libraries for testing
+  - Retrofit 2
+  - Room 
+  - Recycler View
+  - AndroidSVG
+  - OpenStreetMap
+  - Android Debug Database
+  - Different libraries for testing
 
 ## ScreenShots
 Splash Screen
