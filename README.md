@@ -1,6 +1,6 @@
 [![build](https://circleci.com/gh/AbdullahAlSamman/Country-Exchange.svg?style=svg)](https://app.circleci.com/github/AbdullahAlSamman/Country-Exchange/pipelines)
 
-[![license](https://img.shields.io/badge/license-GPL-V3.0-1abc9c.svg)](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/License.txt)
+[![license](https://img.shields.io/badge/license-GPL%20V3.0-blue)](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/License.txt)
 
 # Country-Exchange
 Country-Exchange is an Android App shows a list of all countries with search functionality and details about each country.
