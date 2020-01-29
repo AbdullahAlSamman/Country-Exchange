@@ -22,22 +22,22 @@ This project uses different technologies in frontend and backend:
 
 ## ScreenShots
 Splash Screen
-![splashscreen](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/splash1.png | width=480)
+<img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/splash1.png"  width="250"/>
 
 Main 
-![main](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/main1.png | width=480)
+<img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/main1.png "  width="250"/>
 
 Search via country name
-![search1](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/search1.png | width=480)
+<img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/search1.png"  width="250"/>
 
 Search via Calling code
-![search2](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/search2.png | width=480)
+<img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/search2.png"  width="250"/>
 
 Details with exchange prices 
-![details](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/details2.png | width=480)
+<img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/details2.png"  width="250"/>
 
 Country map
-![map](https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/map1.png | width=480)
+<img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/map1.png"  width="250"/>
 
 ## License
 
