@@ -22,28 +22,34 @@ This project uses different technologies in frontend and backend:
 
 ## ScreenShots
 Splash Screen
+<br>
 <img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/splash1.png"  width="250"/>
 
-Main 
+Main
+<br> 
 <img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/main1.png "  width="250"/>
 
 Search via country name
+<br>
 <img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/search1.png"  width="250"/>
 
 Search via Calling code
+<br>
 <img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/search2.png"  width="250"/>
 
-Details with exchange prices 
+Details with exchange prices
+<br> 
 <img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/details2.png"  width="250"/>
 
 Country map
+<br>
 <img src="https://github.com/AbdullahAlSamman/Country-Exchange/blob/master/images/map1.png"  width="250"/>
 
 ## License
 
 The project code is licensed under **GNU General Public License v3.0**, **however all custom graphics from backgrounds, icons and XML layouts falls under Copyright © Raghad Al Sakka 2020** using this graphics in other distributions needs permission from the designer.
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an **"AS IS" BASIS**, **WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND**, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an **"AS IS" BASIS**, **WITHOUT WARRANTIES**, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
  
 
